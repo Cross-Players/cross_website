@@ -43,10 +43,9 @@ class HeaderHomePage extends StatelessComponent {
         //   id: 'primary_image',
         //   src: 'images/demo_primary_image.png',
         // ),
-        iframe([],
-            classes: 'primary_image',
+        iframe(classes: 'primary_image',
             src:
-                "https://lottie.host/embed/3a7f8b85-040f-422b-a652-b0cb1561e655/AnFjBAGkJL.lottie")
+                "https://lottie.host/embed/3a7f8b85-040f-422b-a652-b0cb1561e655/AnFjBAGkJL.lottie", [])
       ]),
     ]);
   }
@@ -98,9 +97,9 @@ class HeaderHomePage extends StatelessComponent {
           ),
         ]),
         css('.primary_image').styles(
-          border: Border(style: BorderStyle.none),
           width: 50.percent,
           height: 700.px,
+          border: Border(style: BorderStyle.none),
         ),
         css.media(
             MediaQuery.screen(maxWidth: HeaderState.mobileBreakpoint.px), [

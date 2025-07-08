@@ -38,8 +38,8 @@ class LoadingScreen extends StatelessComponent {
         css('.loading-container', [
           css('&').styles(
             display: Display.flex,
-            height: 100.vh,
             width: 100.vw,
+            height: 100.vh,
             justifyContent: JustifyContent.center,
             alignItems: AlignItems.center,
             backgroundColor: AppColors.backgroundTheme,
@@ -49,8 +49,8 @@ class LoadingScreen extends StatelessComponent {
           css('&').styles(
             display: Display.flex,
             flexDirection: FlexDirection.column,
-            alignItems: AlignItems.center,
             justifyContent: JustifyContent.center,
+            alignItems: AlignItems.center,
             textAlign: TextAlign.center,
           ),
         ]),
