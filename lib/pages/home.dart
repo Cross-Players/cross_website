@@ -1,6 +1,5 @@
 import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/components/common/title_icon_home.dart';
-import 'package:cross_website/components/cookie_consent_banner.dart';
 import 'package:cross_website/components/header.dart';
 import 'package:cross_website/components/home_page/case_studies_block.dart';
 import 'package:cross_website/components/home_page/contact_us_block.dart';
@@ -24,44 +23,25 @@ class Home extends StatefulComponent {
 }
 
 class HomeState extends State<Home> {
-  // final logger = Logger();
-  // bool _isLoading = true;
-  // bool _hasError = false;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _loadTranslations();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    if (kIsWeb) {
+    } else {
+    }
+  }
 
-  // Future<void> _loadTranslations() async {
-  //   try {
-  //     final success = await LanguageManager.loadTranslations();
-  //     if (mounted) {
-  //       setState(() {
-  //         _isLoading = false;
-  //         _hasError = !success;
-  //       });
-  //     }
-  //   } catch (e) {
-  //     if (mounted) {
-  //       setState(() {
-  //         _isLoading = false;
-  //         _hasError = true;
-  //       });
-  //     }
-  //   }
-  // }
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
     final selectedLang =
         context.watch(LanguageManager.selectedLanguageProvider);
-    // if (_isLoading) {
-    //   yield LoadingScreen();
-    // } else if (_hasError) {
-    //   text('Error');
-    // } else {
+
     yield div(
         styles: Styles(
           raw: {
@@ -69,7 +49,6 @@ class HomeState extends State<Home> {
           },
         ),
         [
-          CookieConsentBanner(),
           Header(),
           HeaderHomePage(),
           ListLogo(),
@@ -121,9 +100,5 @@ class HomeState extends State<Home> {
           SizeBoxComponent(height: 140),
           FooterBlock(),
         ]);
-    // }
   }
-
-  @css
-  static List<StyleRule> get styles => [];
 }

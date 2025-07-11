@@ -45,7 +45,7 @@ class Services extends StatelessComponent {
   }
 
   @css
-  static List<StyleRule> get styles => [
+  static final styles = [
     css('ol').styles(
       maxWidth: 500.px,
     ),

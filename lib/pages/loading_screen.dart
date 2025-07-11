@@ -1,5 +1,4 @@
 import 'package:cross_website/components/common/dotlottie_player.dart';
-import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/constants/app_colors.dart';
 import 'package:jaspr/jaspr.dart';
 
@@ -19,15 +18,6 @@ class LoadingScreen extends StatelessComponent {
           height: 100,
           loop: true,
           autoplay: true,
-        ),
-        SizeBoxComponent(height: 30),
-        p(
-          styles: Styles(
-            color: AppColors.textBlack,
-            fontSize: 16.px,
-            fontWeight: FontWeight.w500,
-          ),
-          [text('Loading...')],
         ),
       ]),
     ]);

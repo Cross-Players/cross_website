@@ -125,9 +125,9 @@ class HeaderState extends State<Header> {
         ])
           div(classes: 'nav-item', [
             if (route.path == '/about' || route.path == '/')
-              a(
-                href: route.path,
-                [(text(route.label))],
+              Link(
+                to: route.path,
+                child: text(route.label),
               )
             else
               div(
@@ -158,12 +158,19 @@ class HeaderState extends State<Header> {
                 alignItems: AlignItems.center,
               ),
               [
-                img(
-                  src: getFlagAsset(selectedLang),
+                span(
                   styles: Styles(
-                    width: 35.px,
-                    height: 25.px,
+                    fontSize: 30.px,
                   ),
+                  [
+                    img(
+                      src: getFlagAsset(selectedLang),
+                      styles: Styles(
+                        width: 35.px,
+                        height: 25.px,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -183,7 +190,7 @@ class HeaderState extends State<Header> {
                     context
                         .read(LanguageManager.selectedLanguageProvider.notifier)
                         .state = value;
-                    LanguageManager.saveLanguage(value, context);
+                    LanguageManager.saveLanguage(value);
                   }
                 },
               },
@@ -196,19 +203,28 @@ class HeaderState extends State<Header> {
                           Spacing.symmetric(vertical: 2.px, horizontal: 1.px),
                       alignItems: AlignItems.center,
                       color: AppColors.textBlack,
+                      backgroundColor: AppColors.backgroundTheme,
                     ),
                     attributes: {
                       'value': lang.key,
                       if (lang.key == selectedLang) 'selected': '',
                     },
                     [
-                      img(
-                        src: getFlagAsset(lang.key),
+                      span(
                         styles: Styles(
-                          width: 20.px,
-                          height: 15.px,
                           margin: Spacing.only(right: 12.px),
+                          fontSize: 14.px,
                         ),
+                        [
+                          img(
+                            src: getFlagAsset(lang.key),
+                            styles: Styles(
+                              width: 20.px,
+                              height: 15.px,
+                              margin: Spacing.only(right: 12.px),
+                            ),
+                          ),
+                        ],
                       ),
                       span(
                         styles: Styles(
