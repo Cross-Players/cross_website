@@ -567,4 +567,9 @@ class LanguageManager {
   static String tr(String key, String langCode) {
     return translations[key]?[langCode] ?? 'unknown';
   }
+
+  static List<String> parseFeatures(String featuresText) {
+    // Phân tách chuỗi thành danh sách dựa trên dấu "|"
+    return featuresText.split('|').map((e) => e.trim()).toList();
+  }
 }
