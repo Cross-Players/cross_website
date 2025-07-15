@@ -1,7 +1,6 @@
 import 'package:cross_website/constants/app_colors.dart';
 import 'package:cross_website/language/language_manager.dart';
 import 'package:cross_website/pages/loading_screen.dart';
-import 'package:cross_website/pages/not_found_page.dart';
 import 'package:cross_website/pages/price.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
@@ -47,51 +46,46 @@ class AppState extends State<App> {
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
-    if (_isLoading) {
-      yield LoadingScreen();
-    } else if (_hasError) {
-      yield div(classes: 'main', [text('Error loading translations')]);
-    } else {
-      yield ProviderScope(
-        child: div(classes: 'main', [
-          Router(
-            routes: [
-              Route(
-                path: '/',
-                title: 'Home',
-                builder: (context, state) => div(classes: 'main', [
-                  // Header(),
-                  const Home(),
-                ]),
-              ),
-              Route(
-                path: '/about',
-                title: 'About',
-                builder: (context, state) => div(classes: 'main', [
-                  // Header(),
-                  const AboutNew(),
-                ]),
-              ),
-              Route(
-                path: '/pricing',
-                title: 'Pricing',
-                builder: (context, state) => const PricePage(),
-              ),
-              Route(
-                path: '/:path',
-                builder: (context, state) {
-                  final currentPath = state.path;
-                  if (currentPath != '/' && currentPath != '/about') {
-                    return const NotFoundPage();
-                  }
-                  return div([]);
-                },
-              ),
-            ],
-          ),
-        ]),
-      );
-    }
+    // if (_isLoading) {
+    //   yield LoadingScreen();
+    // }
+
+    yield ProviderScope(
+      child: div(classes: 'main', [
+        Router(
+          routes: [
+            Route(
+              path: '/',
+              title: 'Home',
+              builder: (context, state) =>
+                  _isLoading ? LoadingScreen() : const Home(),
+            ),
+            Route(
+              path: '/about',
+              title: 'About',
+              builder: (context, state) =>
+                  _isLoading ? LoadingScreen() : const AboutNew(),
+            ),
+            Route(
+              path: '/pricing',
+              title: 'Pricing',
+              builder: (context, state) =>
+                  _isLoading ? LoadingScreen() : const PricePage(),
+            ),
+            // Route(
+            //   path: '/:path',
+            //   builder: (context, state) {
+            //     final currentPath = state.path;
+            //     if (currentPath != '/' && currentPath != '/about') {
+            //       return const NotFoundPage();
+            //     }
+            //     return div([]);
+            //   },
+            // ),
+          ],
+        ),
+      ]),
+    );
   }
 
   @css

@@ -145,7 +145,7 @@ class PricePage extends StatelessComponent {
   Iterable<Component> build(BuildContext context) sync* {
     final selectedLang =
         context.watch(LanguageManager.selectedLanguageProvider);
-    yield section([
+    yield section(classes: 'section_price', [
       div(id: serviceGroups.first.id, [
         const HeaderPrice(),
         div(
@@ -243,7 +243,7 @@ class PricePage extends StatelessComponent {
 
         // ---------- LAYOUT ----------
 
-        css('section').raw({
+        css('.section_price').raw({
           'background': 'var(--gradientBackground)',
         }),
 
