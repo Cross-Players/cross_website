@@ -276,6 +276,8 @@ class PricePage extends StatelessComponent {
           'font-size': '2rem',
           'color': '#1976d2',
           'margin-bottom': '2rem',
+          'margin-left': '1rem',
+          'margin-right': '1rem',
           'font-weight': '600',
         }),
 
