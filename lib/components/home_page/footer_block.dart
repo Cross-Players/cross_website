@@ -72,7 +72,18 @@ class FooterBlock extends StatelessComponent {
             SizeBoxComponent(width: 20),
             text(LanguageManager.translate('footer_user_case', lang)),
             SizeBoxComponent(width: 20),
-            text(LanguageManager.translate('footer_pricing', lang)),
+            a(
+              href: '/pricing',
+              styles: Styles(
+                cursor: Cursor.pointer,
+                color: Colors.white,
+                textDecoration:
+                    TextDecoration(line: TextDecorationLine.underline),
+              ),
+              [
+                text(LanguageManager.translate('footer_pricing', lang)),
+              ],
+            ),
           ],
         ),
         div(
