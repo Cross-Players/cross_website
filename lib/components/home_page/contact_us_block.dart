@@ -161,7 +161,6 @@ class ContactUsBlockState extends State<ContactUsBlock> {
             fontWeight: FontWeight.w400,
             backgroundColor: Colors.white,
           ),
-          [],
         ),
       ],
     );

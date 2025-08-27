@@ -8,7 +8,6 @@ import 'package:cross_website/language/language_manager.dart';
 import 'package:cross_website/utils/events.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
-import 'package:jaspr_router/jaspr_router.dart';
 import 'package:universal_web/web.dart' as web;
 
 class Header extends StatefulComponent {

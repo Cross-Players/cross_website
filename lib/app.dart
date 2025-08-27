@@ -1,7 +1,6 @@
 import 'package:cross_website/constants/app_colors.dart';
 import 'package:cross_website/language/language_manager.dart';
 import 'package:cross_website/pages/loading_screen.dart';
-import 'package:cross_website/pages/price.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 import 'package:jaspr_router/jaspr_router.dart';
@@ -66,12 +65,12 @@ class AppState extends State<App> {
               builder: (context, state) =>
                   _isLoading ? LoadingScreen() : const AboutNew(),
             ),
-            Route(
-              path: '/pricing',
-              title: 'Pricing',
-              builder: (context, state) =>
-                  _isLoading ? LoadingScreen() : const PricePage(),
-            ),
+            // Route(
+            //   path: '/pricing',
+            //   title: 'Pricing',
+            //   builder: (context, state) =>
+            //       _isLoading ? LoadingScreen() : const PricePage(),
+            // ),
             // Route(
             //   path: '/:path',
             //   builder: (context, state) {
