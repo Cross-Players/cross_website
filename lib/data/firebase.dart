@@ -24,7 +24,7 @@ class FirebaseService {
       FirebaseAdminApp.initializeApp(
     'cross-website-83900',
     Credential.fromServiceAccount(File(
-        'lib/configs/cross-website-83900-firebase-adminsdk-fbsvc-36a102538e.json')),
+        'lib/.env/cross-website-83900-firebase-adminsdk-fbsvc-36a102538e.json')),
   );
 
   late final FirestoreOrStubbed adminFirestore = Firestore(adminApp);
@@ -36,9 +36,6 @@ class FirebaseService {
       var app = await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
-
-      // Không cần anonymous authentication để đọc public data
-      // await FirebaseAuth.instance.signInAnonymously();
 
       return app;
     } catch (e) {
@@ -66,12 +63,9 @@ class FirebaseService {
       }
     } catch (e) {
       print('Error loading jobs: $e');
-      // Trả về dữ liệu mock khi có lỗi
       return [];
     }
   }
-
-
 
   Future<Job?> getJobById(String id) async {
     if (kIsWeb) {
@@ -102,7 +96,6 @@ class FirebaseService {
         }).toList();
       }
     } else {
-      // Server side không hỗ trợ stream, trả về list một lần
       yield await loadJobs();
     }
   }

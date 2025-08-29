@@ -47,7 +47,7 @@ class Images {
   static const String vietTran = "images/viettran.png";
   static const String quangHuy = "images/Phùng Quang Huy.JPG";
   static const String baoPhong = "images/Bùi Bảo Phong.JPG";
-  static const String dangTung = "images/dangtung.png";
+  static const String tungTran = "images/tungtran.jpg";
   static const String vietHung = "images/LeVietHung.jpg";
 }
 

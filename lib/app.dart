@@ -93,6 +93,9 @@ class AppState extends State<App> {
             alignItems: AlignItems.center,
             flex: Flex(grow: 1),
           ),
+          css('h1, h4, p').styles(
+            color: AppColors.textBlack,
+          ),
         ]),
         css('.loading-container', [
           css('&').styles(

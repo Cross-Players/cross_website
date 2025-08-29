@@ -33,17 +33,10 @@ class GroupOfCard extends StatelessComponent {
         content: LanguageManager.translate('team_member3_content', lang),
       ),
       MemberCard(
-        name: LanguageManager.translate('team_member4_name', lang),
-        position: LanguageManager.translate('team_member4_position', lang),
-        imagePath: Images.baoPhong,
-        alt: 'Bùi Bảo Phong',
-        content: LanguageManager.translate('team_member4_content', lang),
-      ),
-      MemberCard(
         name: LanguageManager.translate('team_member5_name', lang),
         position: LanguageManager.translate('team_member5_position', lang),
-        imagePath: Images.dangTung,
-        alt: 'Nguyễn Đăng Tùng',
+        imagePath: Images.tungTran,
+        alt: 'Tùng Trần',
         content: LanguageManager.translate('team_member5_content', lang),
       ),
       MemberCard(
@@ -52,6 +45,13 @@ class GroupOfCard extends StatelessComponent {
         imagePath: Images.vietHung,
         alt: 'Lê Việt Hùng',
         content: LanguageManager.translate('team_member6_content', lang),
+      ),
+      MemberCard(
+        name: LanguageManager.translate('team_member4_name', lang),
+        position: LanguageManager.translate('team_member4_position', lang),
+        imagePath: Images.baoPhong,
+        alt: 'Bùi Bảo Phong',
+        content: LanguageManager.translate('team_member4_content', lang),
       ),
     ];
   }
