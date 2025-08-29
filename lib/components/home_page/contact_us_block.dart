@@ -169,7 +169,6 @@ class ContactUsBlockState extends State<ContactUsBlock> {
             fontWeight: FontWeight.w400,
             backgroundColor: Colors.white,
           ),
-          [],
         ),
       ],
     );
@@ -202,7 +201,6 @@ class ContactUsBlockState extends State<ContactUsBlock> {
             fontWeight: FontWeight.w400,
             backgroundColor: Colors.white,
           ),
-          [],
         ),
       ],
     );
@@ -235,7 +233,6 @@ class ContactUsBlockState extends State<ContactUsBlock> {
             fontWeight: FontWeight.w400,
             backgroundColor: Colors.white,
           ),
-          [],
         ),
       ],
     );
@@ -277,7 +274,6 @@ class ContactUsBlockState extends State<ContactUsBlock> {
               'vertical-align': 'top',
             },
           ),
-          [],
         ),
       ],
     );

@@ -30,17 +30,20 @@ void main() async {
     head: [
       // The generated flutter manifest and bootstrap script.
       link(rel: 'manifest', href: 'manifest.json'),
-      script(src: "flutter_bootstrap.js", async: true, []),
+      script(
+        src: "flutter_bootstrap.js",
+        async: true,
+      ),
       link(href: 'images/x_cross.png', rel: 'icon', type: 'image/png'),
       script(
-          src:
-              "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js",
-          []),
+        src:
+            "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js",
+      ),
       script(
-          src:
-              "https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs",
-          attributes: {'type': 'module'},
-          []),
+        src:
+            "https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs",
+        attributes: {'type': 'module'},
+      ),
     ],
     body: App(),
   ));

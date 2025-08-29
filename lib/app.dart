@@ -1,6 +1,7 @@
 import 'package:cross_website/constants/app_colors.dart';
 import 'package:cross_website/language/language_manager.dart';
 import 'package:cross_website/pages/about_new.dart';
+import 'package:cross_website/pages/career.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 import 'package:jaspr_router/jaspr_router.dart';
@@ -65,6 +66,11 @@ class AppState extends State<App> {
               title: 'About',
               builder: (context, state) => const AboutNew(),
             ),
+            Route(
+              path: '/careers',
+              title: 'Careers',
+              builder: (context, state) => const Career(),
+            ),
           ],
         ),
       ]),
@@ -91,8 +97,8 @@ class AppState extends State<App> {
         css('.loading-container', [
           css('&').styles(
             display: Display.flex,
-            height: 100.vh,
             width: 100.vw,
+            height: 100.vh,
             justifyContent: JustifyContent.center,
             alignItems: AlignItems.center,
             backgroundColor: AppColors.backgroundTheme,
@@ -102,8 +108,8 @@ class AppState extends State<App> {
           css('&').styles(
             display: Display.flex,
             flexDirection: FlexDirection.column,
-            alignItems: AlignItems.center,
             justifyContent: JustifyContent.center,
+            alignItems: AlignItems.center,
             textAlign: TextAlign.center,
           ),
         ]),
