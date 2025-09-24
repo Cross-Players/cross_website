@@ -27,10 +27,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('en', 'US'),
-        Locale('vi', 'VN'),
-      ],
+      supportedLocales: const [Locale('en', 'US'), Locale('vi', 'VN')],
       home: const CareerPage(),
     );
   }
