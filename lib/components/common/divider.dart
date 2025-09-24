@@ -9,7 +9,7 @@ class Divider extends StatelessComponent {
   }
 
   @css
-  static final styles = [
+  static List<StyleRule> get styles => [
     css('.divider').styles(
       width: 97.vw,
       height: 1.px,

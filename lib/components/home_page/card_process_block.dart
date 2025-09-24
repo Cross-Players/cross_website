@@ -42,9 +42,9 @@ class CardProcessBlockState extends State<CardProcessBlock> {
           div(
               styles: Styles(
                 display: Display.flex,
-                alignItems: AlignItems.center,
-                justifyContent: JustifyContent.spaceBetween,
                 width: 100.percent,
+                justifyContent: JustifyContent.spaceBetween,
+                alignItems: AlignItems.center,
               ),
               [
                 div(classes: 'card_process_index', [
@@ -90,34 +90,34 @@ class CardProcessBlockState extends State<CardProcessBlock> {
   static List<StyleRule> get style => [
 // số thứ tự
         css('.card_process_index').styles(
-          fontSize: 60.px,
-          fontWeight: FontWeight.w600,
           flex: Flex(shrink: 0),
           color: AppColors.primaryColor,
+          fontSize: 60.px,
+          fontWeight: FontWeight.w600,
         ),
 
 // tiêu đề
         css('.card_process_title').styles(
-          fontSize: 30.px,
-          fontWeight: FontWeight.w600,
+          flex: Flex(grow: 1),
           color: AppColors.primaryColor,
-          flex: Flex(grow: 1), // chiếm phần còn lại
+          fontSize: 30.px,
+          fontWeight: FontWeight.w600, // chiếm phần còn lại
         ),
 
 // nút “+”
         css('.icon-show-more').styles(
+          display: Display.flex,
           width: 58.px,
           height: 58.px,
+          margin: Spacing.only(left: Unit.auto),
           radius: BorderRadius.circular(50.px),
-          display: Display.flex,
           justifyContent: JustifyContent.center,
           alignItems: AlignItems.center,
+          flex: Flex(shrink: 0),
+          color: AppColors.primaryColor,
           fontSize: 36.px,
           fontWeight: FontWeight.w600,
-          color: AppColors.primaryColor,
           backgroundColor: Colors.white,
-          margin: Spacing.only(left: Unit.auto),
-          flex: Flex(shrink: 0),
         ),
 
         css.media(MediaQuery.screen(maxWidth: 1000.px), [

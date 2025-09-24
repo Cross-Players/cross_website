@@ -8,6 +8,7 @@ import 'package:cross_website/language/language_manager.dart';
 import 'package:cross_website/utils/events.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
+import 'package:jaspr_router/jaspr_router.dart';
 import 'package:universal_web/web.dart' as web;
 
 class Header extends StatefulComponent {
@@ -126,9 +127,9 @@ class HeaderState extends State<Header> {
             if (route.path == '/about' ||
                 route.path == '/' ||
                 route.path == '/careers')
-              a(
-                href: route.path,
-                [text(route.label)],
+              Link(
+                to: route.path,
+                child: text(route.label),
               )
             else
               div(
