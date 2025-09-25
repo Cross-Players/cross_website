@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "275185750466",
+    "project_id": "cross-website-83900",
+    "storage_bucket": "cross-website-83900.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275185750466:android:8f0fc9dd06c0dcc51c865b",
+        "android_client_info": {
+          "package_name": "com.example.cross_website_admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlPSsd66K4GlvfRUxg0mlwfnD0kY4t13M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

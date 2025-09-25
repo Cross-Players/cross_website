@@ -1,13 +1,19 @@
-import 'package:cross_website/components/header.dart';
 import 'package:cross_website/constants/app_colors.dart';
 import 'package:cross_website/language/language_manager.dart';
-import 'package:cross_website/pages/not_found_page.dart';
+import 'package:cross_website/pages/about_new.dart';
+import 'package:cross_website/pages/career.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
-import 'pages/about.dart';
 import 'pages/home.dart';
+
+final translationsProvider = FutureProvider<bool>((ref) async {
+  final start = DateTime.now();
+  final success = await LanguageManager.loadTranslations();
+  print('Translations loaded in ${DateTime.now().difference(start)}');
+  return success;
+});
 
 @client
 class App extends StatefulComponent {
@@ -18,12 +24,6 @@ class App extends StatefulComponent {
 class AppState extends State<App> {
   bool _isLoading = true;
   bool _hasError = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadTranslations();
-  }
 
   Future<void> _loadTranslations() async {
     try {
@@ -45,80 +45,76 @@ class AppState extends State<App> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _loadTranslations();
+  }
+
+  @override
   Iterable<Component> build(BuildContext context) sync* {
-    if (_isLoading) {
-      yield div(
-          classes: 'main',
-          styles: Styles(
-            display: Display.flex,
-            height: 100.vh,
-            justifyContent: JustifyContent.center,
-            alignItems: AlignItems.center,
-            backgroundColor: Colors.white,
-          ),
-          // TODO(tung): change to loading indicator / animation
-          [text('Loading...')]);
-    } else if (_hasError) {
-      yield div(classes: 'main', [text('Error loading translations')]);
-    } else {
-      yield ProviderScope(
-        child: div(classes: 'main', [
-          Router(
-            routes: [
-              Route(
-                path: '/',
-                title: 'Home',
-                builder: (context, state) => div(classes: 'main', [
-                  Header(),
-                  const Home(),
-                ]),
-              ),
-              Route(
-                path: '/about',
-                title: 'About',
-                builder: (context, state) => div(classes: 'main', [
-                  Header(),
-                  const About(),
-                ]),
-              ),
-              Route(
-                path: '/:path',
-                builder: (context, state) {
-                  final currentPath = state.path;
-                  if (currentPath != '/' && currentPath != '/about') {
-                    return const NotFoundPage();
-                  }
-                  return div([]);
-                },
-              ),
-            ],
-          ),
-        ]),
-      );
-    }
+    yield ProviderScope(
+      child: div(classes: 'main', [
+        Router(
+          routes: [
+            Route(
+              path: '/',
+              title: 'Home',
+              builder: (context, state) => const Home(),
+            ),
+            Route(
+              path: '/about',
+              title: 'About',
+              builder: (context, state) => const AboutNew(),
+            ),
+            Route(
+              path: '/careers',
+              title: 'Careers',
+              builder: (context, state) => const Career(),
+            ),
+          ],
+        ),
+      ]),
+    );
   }
 
   @css
-  static final styles = [
-    css('.main', [
-      css('&').styles(
-        display: Display.flex,
-        width: 100.percent,
-        maxWidth: 100.vw,
-        boxSizing: BoxSizing.borderBox,
-        overflow: Overflow.hidden,
-        flexDirection: FlexDirection.column,
-        flexWrap: FlexWrap.wrap,
-        justifyContent: JustifyContent.center,
-        backgroundColor: AppColors.backgroundTheme,
-      ),
-      css('section').styles(
-        display: Display.flex,
-        flexDirection: FlexDirection.column,
-        justifyContent: JustifyContent.center,
-        alignItems: AlignItems.center,
-        flex: Flex(grow: 1),
-      ),
-    ]),
-  ];
+  static List<StyleRule> get styles => [
+        css('.main', [
+          css('&').styles(
+            display: Display.flex,
+            maxWidth: 100.percent,
+            flexDirection: FlexDirection.column,
+            backgroundColor: AppColors.backgroundTheme,
+          ),
+          css('section').styles(
+            display: Display.flex,
+            flexDirection: FlexDirection.column,
+            justifyContent: JustifyContent.center,
+            alignItems: AlignItems.center,
+            flex: Flex(grow: 1),
+          ),
+          css('h1, h4, p').styles(
+            color: AppColors.textBlack,
+          ),
+        ]),
+        css('.loading-container', [
+          css('&').styles(
+            display: Display.flex,
+            width: 100.vw,
+            height: 100.vh,
+            justifyContent: JustifyContent.center,
+            alignItems: AlignItems.center,
+            backgroundColor: AppColors.backgroundTheme,
+          ),
+        ]),
+        css('.loading-spinner', [
+          css('&').styles(
+            display: Display.flex,
+            flexDirection: FlexDirection.column,
+            justifyContent: JustifyContent.center,
+            alignItems: AlignItems.center,
+            textAlign: TextAlign.center,
+          ),
+        ]),
+      ];
 }
