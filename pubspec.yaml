@@ -6,6 +6,10 @@ environment:
   sdk: ">=3.5.0 <4.0.0"
 
 dependencies:
+  flutter:
+    sdk: flutter
+  flutter_sound: ^9.25.4
+  flutter_svg: ^2.0.17
   audioplayers: ^6.3.0
   cloud_firestore: ^6.0.0
   csv: ^6.0.0
@@ -34,6 +38,10 @@ dev_dependencies:
   jaspr_builder: ^0.20.0
   jaspr_lints: ^0.4.0
   jaspr_riverpod: ^0.3.19
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
 
 jaspr:
   mode: static

@@ -64,6 +64,7 @@ images/vision.png
 images/web_image.svg
 images/x_cross.png
 images/zoom_icon.png
+index.html
 main.clients.dart.js
 main.clients.dart.js_1.part.js
 main.clients.dart.js_10.part.js
@@ -155,6 +156,7 @@ packages/flutter/fix_data/fix_widgets/fix_rich_text.yaml
 packages/flutter/fix_data/fix_widgets/fix_widgets.yaml
 packages/flutter/src/foundation/README.md
 packages/flutter/src/material/shaders/ink_sparkle.frag
+packages/flutter_lints/flutter.yaml
 packages/flutter_test/fix_data/README.md
 packages/flutter_test/fix_data/fix_flutter_test/fix_animation_sheet_builder.yaml
 packages/flutter_test/fix_data/fix_flutter_test/fix_binding/fix_automated_test_widgets_flutter_binding.yaml
@@ -416,6 +418,8 @@ packages/leak_tracker/src/leak_tracking/primitives/_retaining_path/DEPENDENCIES.
 packages/leak_tracker/src/shared/DEPENDENCIES.md
 packages/leak_tracker_flutter_testing/src/testing_for_testing/README.md
 packages/leak_tracker_testing/DEPENDENCIES.md
+packages/lints/core.yaml
+packages/lints/recommended.yaml
 packages/sky_engine/_embedder.yaml
 packages/sky_engine/_internal/allowed_experiments.json
 packages/universal_web/fix_data.yaml
