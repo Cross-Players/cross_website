@@ -139,8 +139,8 @@ class _HomePageState extends State<HomePage> {
                         : Colors.grey[600],
                     size: 20,
                   ),
-                  title: CustomSelectableText(
-                    text: item.label,
+                  title: Text(
+                    item.label,
                     style: TextStyle(
                       color: isSelected ? Colors.blue : Colors.grey[800],
                       fontWeight: isSelected
@@ -212,8 +212,8 @@ class _HomePageState extends State<HomePage> {
                     item.icon,
                     color: isSelected ? Colors.blue : Colors.grey[600],
                   ),
-                  title: CustomSelectableText(
-                    text: item.label,
+                  title: Text(
+                    item.label,
                     style: TextStyle(
                       color: isSelected ? Colors.blue : Colors.grey[800],
                       fontWeight: isSelected

@@ -31,8 +31,8 @@ class _CareerPageState extends State<CareerPage> {
                 ElevatedButton.icon(
                   onPressed: () => _showAddJobDialog(context),
                   icon: const Icon(Icons.add, color: Colors.white, size: 18),
-                  label: const CustomSelectableText(
-                    text: 'Add Job',
+                  label: const Text(
+                    'Add Job',
                     style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   style: ElevatedButton.styleFrom(
@@ -193,7 +193,7 @@ class _CareerPageState extends State<CareerPage> {
                           children: [
                             Icon(Icons.edit, color: Colors.blue, size: 18),
                             SizedBox(width: 8),
-                            CustomSelectableText(text: 'Chỉnh sửa'),
+                            Text('Chỉnh sửa'),
                           ],
                         ),
                       ),
@@ -203,7 +203,7 @@ class _CareerPageState extends State<CareerPage> {
                           children: [
                             Icon(Icons.delete, color: Colors.red, size: 18),
                             SizedBox(width: 8),
-                            CustomSelectableText(text: 'Xóa'),
+                            Text('Xóa'),
                           ],
                         ),
                       ),
@@ -486,7 +486,10 @@ class _AddJobDialogState extends State<_AddJobDialog> {
                 children: [
                   TextButton(
                     onPressed: _isLoading ? null : () => Navigator.pop(context),
-                    child: const CustomSelectableText(text: 'Cancel'),
+                    child: const Text(
+                      'Cancel',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
                   ),
                   const SizedBox(width: 12),
                   ElevatedButton(
@@ -511,8 +514,9 @@ class _AddJobDialogState extends State<_AddJobDialog> {
                               strokeWidth: 2,
                             ),
                           )
-                        : CustomSelectableText(
-                            text: _isEditing ? 'Cập nhật' : 'Thêm công việc',
+                        : Text(
+                            _isEditing ? 'Cập nhật' : 'Thêm công việc',
+                            style: TextStyle(fontSize: 18),
                           ),
                   ),
                 ],
