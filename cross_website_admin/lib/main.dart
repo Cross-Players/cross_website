@@ -1,5 +1,5 @@
-import 'package:cross_website_admin/career_page.dart';
 import 'package:cross_website_admin/firebase_options.dart';
+import 'package:cross_website_admin/pages/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Cross Website Admin',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [Locale('en', 'US'), Locale('vi', 'VN')],
-      home: const CareerPage(),
+      home: HomePage(),
     );
   }
 }
