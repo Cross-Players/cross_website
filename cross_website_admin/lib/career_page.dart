@@ -492,7 +492,7 @@ class _AddJobDialogState extends State<_AddJobDialog> {
                   ElevatedButton(
                     onPressed: _isLoading ? null : _saveJob,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF4F46E5),
+                      backgroundColor: AppStyles.primaryColor,
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 24,

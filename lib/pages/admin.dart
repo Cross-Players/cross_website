@@ -1,5 +1,6 @@
 import 'package:jaspr/jaspr.dart';
 
+@client
 class Admin extends StatelessComponent {
   const Admin({super.key});
 
@@ -8,15 +9,21 @@ class Admin extends StatelessComponent {
     yield div(
         styles: Styles(
           display: Display.flex,
-          maxWidth: 100.percent,
-          minHeight: 100.vh,
+          width: 100.percent,
+          height: 100.vh,
           backgroundColor: Colors.white,
         ),
         [
           iframe(
-            [],
-            src: 'https://cross-website-83900.web.app',
-          )
+              width: 1200,
+              src: 'https://cross-website-83900.web.app',
+              styles: Styles(
+                display: Display.flex,
+                width: 100.percent,
+                height: 100.vh,
+                backgroundColor: Colors.white,
+              ),
+              [])
         ]);
   }
 }
