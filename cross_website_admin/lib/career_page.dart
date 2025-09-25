@@ -31,8 +31,8 @@ class _CareerPageState extends State<CareerPage> {
                 ElevatedButton.icon(
                   onPressed: () => _showAddJobDialog(context),
                   icon: const Icon(Icons.add, color: Colors.white, size: 18),
-                  label: const Text(
-                    'Add Job',
+                  label: const CustomSelectableText(
+                    text: 'Add Job',
                     style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   style: ElevatedButton.styleFrom(
@@ -74,11 +74,11 @@ class _CareerPageState extends State<CareerPage> {
               children: [
                 const Icon(Icons.error, size: 64, color: Colors.red),
                 const SizedBox(height: 16),
-                Text('Lỗi: ${snapshot.error}'),
+                CustomSelectableText(text: 'Lỗi: ${snapshot.error}'),
                 const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () => setState(() {}),
-                  child: const Text('Thử lại'),
+                  child: const CustomSelectableText(text: 'Thử lại'),
                 ),
               ],
             ),
@@ -94,7 +94,7 @@ class _CareerPageState extends State<CareerPage> {
               children: [
                 Icon(Icons.work_off, size: 64, color: Colors.grey),
                 SizedBox(height: 16),
-                Text('Chưa có công việc nào'),
+                CustomSelectableText(text: 'Chưa có công việc nào'),
               ],
             ),
           );
@@ -126,8 +126,8 @@ class _CareerPageState extends State<CareerPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Job title
-                        Text(
-                          job.title,
+                        CustomSelectableText(
+                          text: job.title,
                           style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
@@ -193,7 +193,7 @@ class _CareerPageState extends State<CareerPage> {
                           children: [
                             Icon(Icons.edit, color: Colors.blue, size: 18),
                             SizedBox(width: 8),
-                            Text('Chỉnh sửa'),
+                            CustomSelectableText(text: 'Chỉnh sửa'),
                           ],
                         ),
                       ),
@@ -203,7 +203,7 @@ class _CareerPageState extends State<CareerPage> {
                           children: [
                             Icon(Icons.delete, color: Colors.red, size: 18),
                             SizedBox(width: 8),
-                            Text('Xóa'),
+                            CustomSelectableText(text: 'Xóa'),
                           ],
                         ),
                       ),
@@ -235,7 +235,10 @@ class _CareerPageState extends State<CareerPage> {
       children: [
         Icon(icon, size: 16, color: Colors.grey[600]),
         const SizedBox(width: 6),
-        Text(text, style: const TextStyle(fontSize: 14, color: Colors.black54)),
+        CustomSelectableText(
+          text: text,
+          style: const TextStyle(fontSize: 14, color: Colors.black54),
+        ),
       ],
     );
   }
@@ -251,12 +254,14 @@ class _CareerPageState extends State<CareerPage> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Xác nhận xóa'),
-        content: Text('Bạn có chắc chắn muốn xóa công việc "${job.title}"?'),
+        title: const CustomSelectableText(text: 'Xác nhận xóa'),
+        content: CustomSelectableText(
+          text: 'Bạn có chắc chắn muốn xóa công việc "${job.title}"?',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Hủy'),
+            child: const CustomSelectableText(text: 'Hủy'),
           ),
           TextButton(
             onPressed: () async {
@@ -266,7 +271,9 @@ class _CareerPageState extends State<CareerPage> {
                 if (mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Xóa công việc thành công'),
+                      content: CustomSelectableText(
+                        text: 'Xóa công việc thành công',
+                      ),
                       backgroundColor: Colors.green,
                     ),
                   );
@@ -275,7 +282,7 @@ class _CareerPageState extends State<CareerPage> {
                 if (mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Lỗi khi xóa: $e'),
+                      content: CustomSelectableText(text: 'Lỗi khi xóa: $e'),
                       backgroundColor: Colors.red,
                     ),
                   );
@@ -283,7 +290,7 @@ class _CareerPageState extends State<CareerPage> {
               }
             },
             style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: const Text('Xóa'),
+            child: const CustomSelectableText(text: 'Xóa'),
           ),
         ],
       ),
@@ -358,8 +365,8 @@ class _AddJobDialogState extends State<_AddJobDialog> {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        _isEditing
+                      CustomSelectableText(
+                        text: _isEditing
                             ? 'Chỉnh sửa công việc'
                             : 'Thêm công việc mới',
                         style: const TextStyle(
@@ -379,8 +386,8 @@ class _AddJobDialogState extends State<_AddJobDialog> {
                       ),
                     ],
                   ),
-                  Text(
-                    _isEditing
+                  CustomSelectableText(
+                    text: _isEditing
                         ? 'Chỉnh sửa thông tin công việc'
                         : 'Tạo một tin tuyển dụng mới cho công ty',
                     style: TextStyle(color: Colors.grey[600], fontSize: 14),
@@ -479,7 +486,7 @@ class _AddJobDialogState extends State<_AddJobDialog> {
                 children: [
                   TextButton(
                     onPressed: _isLoading ? null : () => Navigator.pop(context),
-                    child: const Text('Cancel'),
+                    child: const CustomSelectableText(text: 'Cancel'),
                   ),
                   const SizedBox(width: 12),
                   ElevatedButton(
@@ -504,7 +511,9 @@ class _AddJobDialogState extends State<_AddJobDialog> {
                               strokeWidth: 2,
                             ),
                           )
-                        : Text(_isEditing ? 'Cập nhật' : 'Thêm công việc'),
+                        : CustomSelectableText(
+                            text: _isEditing ? 'Cập nhật' : 'Thêm công việc',
+                          ),
                   ),
                 ],
               ),
@@ -528,12 +537,15 @@ class _AddJobDialogState extends State<_AddJobDialog> {
       children: [
         Row(
           children: [
-            Text(
-              label,
+            CustomSelectableText(
+              text: label,
               style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             ),
             if (isRequired)
-              const Text(' *', style: TextStyle(color: Colors.red)),
+              const CustomSelectableText(
+                text: ' *',
+                style: TextStyle(color: Colors.red),
+              ),
           ],
         ),
         const SizedBox(height: 8),
@@ -577,12 +589,15 @@ class _AddJobDialogState extends State<_AddJobDialog> {
       children: [
         Row(
           children: [
-            Text(
-              label,
+            CustomSelectableText(
+              text: label,
               style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             ),
             if (isRequired)
-              const Text(' *', style: TextStyle(color: Colors.red)),
+              const CustomSelectableText(
+                text: ' *',
+                style: TextStyle(color: Colors.red),
+              ),
           ],
         ),
         const SizedBox(height: 8),
@@ -660,8 +675,8 @@ class _AddJobDialogState extends State<_AddJobDialog> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(
-              _isEditing
+            content: CustomSelectableText(
+              text: _isEditing
                   ? 'Cập nhật công việc thành công!'
                   : 'Thêm công việc thành công!',
             ),
@@ -673,7 +688,10 @@ class _AddJobDialogState extends State<_AddJobDialog> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Lỗi: $e'), backgroundColor: Colors.red),
+          SnackBar(
+            content: CustomSelectableText(text: 'Lỗi: $e'),
+            backgroundColor: Colors.red,
+          ),
         );
       }
     } finally {

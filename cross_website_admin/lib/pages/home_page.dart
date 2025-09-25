@@ -98,18 +98,14 @@ class _HomePageState extends State<HomePage> {
               }
             },
           ),
-          Image.asset('assets/images/x_cross.png', width: 60, height: 60),
+          Image.asset('images/x_cross.png', width: 60, height: 60),
           CustomSelectableText(
             text: 'Cross Website Admin',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           Spacer(),
           CircleAvatar(
-            child: Image.asset(
-              'assets/images/x_cross.png',
-              width: 60,
-              height: 60,
-            ),
+            child: Image.asset('images/x_cross.png', width: 60, height: 60),
           ),
         ],
       ),
@@ -143,8 +139,8 @@ class _HomePageState extends State<HomePage> {
                         : Colors.grey[600],
                     size: 20,
                   ),
-                  title: Text(
-                    item.label,
+                  title: CustomSelectableText(
+                    text: item.label,
                     style: TextStyle(
                       color: isSelected ? Colors.blue : Colors.grey[800],
                       fontWeight: isSelected
@@ -216,8 +212,8 @@ class _HomePageState extends State<HomePage> {
                     item.icon,
                     color: isSelected ? Colors.blue : Colors.grey[600],
                   ),
-                  title: Text(
-                    item.label,
+                  title: CustomSelectableText(
+                    text: item.label,
                     style: TextStyle(
                       color: isSelected ? Colors.blue : Colors.grey[800],
                       fontWeight: isSelected
