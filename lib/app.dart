@@ -73,7 +73,7 @@ class AppState extends State<App> {
               builder: (context, state) => const Career(),
             ),
             Route(
-              path: '/admin',
+              path: '/adminQuyenAnh',
               title: 'Admin',
               builder: (context, state) => const Admin(),
             ),

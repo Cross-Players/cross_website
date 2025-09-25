@@ -8,7 +8,6 @@ icons/Icon-maskable-512.png
 images/Bùi Bảo Phong.JPG
 images/LaiXeVanXuan.jpg
 images/LeVietHung.jpg
-images/Lê Việt Hùng.jpeg
 images/NguyenQuyenAnh.png
 images/Phùng Quang Huy.JPG
 images/amazon_icon.png
@@ -69,6 +68,10 @@ main.clients.dart.js
 main.clients.dart.js_1.part.js
 main.clients.dart.js_10.part.js
 main.clients.dart.js_11.part.js
+main.clients.dart.js_12.part.js
+main.clients.dart.js_13.part.js
+main.clients.dart.js_14.part.js
+main.clients.dart.js_15.part.js
 main.clients.dart.js_2.part.js
 main.clients.dart.js_3.part.js
 main.clients.dart.js_4.part.js
@@ -113,6 +116,7 @@ packages/cross_website/constants/theme_toogle.styles.json
 packages/cross_website/data/firebase.imports.json
 packages/cross_website/pages/about_new.client.json
 packages/cross_website/pages/about_new.styles.json
+packages/cross_website/pages/admin.client.json
 packages/cross_website/pages/career.client.json
 packages/cross_website/pages/career.styles.json
 packages/cross_website/pages/home.client.json
