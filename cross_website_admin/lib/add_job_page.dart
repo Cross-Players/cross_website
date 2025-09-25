@@ -3,7 +3,7 @@ import 'models/job.dart';
 import 'services/firebase_service.dart';
 
 class AddJobPage extends StatefulWidget {
-  final Job? job;
+  final Job? job; // null nếu thêm mới, có giá trị nếu chỉnh sửa
 
   const AddJobPage({super.key, this.job});
 
