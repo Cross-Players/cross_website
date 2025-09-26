@@ -1,6 +1,7 @@
-import 'package:cross_website_admin/career_page.dart';
+import 'package:cross_website_admin/pages/career_page.dart';
 import 'package:cross_website_admin/constants/app_styles.dart';
 import 'package:cross_website_admin/constants/custom_selectable_text.dart';
+import 'package:cross_website_admin/pages/employee_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,12 +23,7 @@ class _HomePageState extends State<HomePage> {
     NavigationItem(
       icon: Icons.people,
       label: 'Nhân viên',
-      page: const Center(
-        child: Text(
-          'Nhân viên Screen',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
+      page: const EmployeePage(),
     ),
   ];
   @override
@@ -98,14 +94,33 @@ class _HomePageState extends State<HomePage> {
               }
             },
           ),
-          Image.asset('images/x_cross.png', width: 60, height: 60),
+          Image.network(
+            './images/x_cross.png',
+            width: 60,
+            height: 60,
+            errorBuilder: (context, error, stackTrace) => Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Icon(Icons.web, color: Colors.white, size: 30),
+            ),
+          ),
           CustomSelectableText(
             text: 'Cross Website Admin',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           Spacer(),
           CircleAvatar(
-            child: Image.asset('images/x_cross.png', width: 60, height: 60),
+            child: Image.network(
+              './images/x_cross.png',
+              width: 60,
+              height: 60,
+              errorBuilder: (context, error, stackTrace) =>
+                  const Icon(Icons.person, color: Colors.white, size: 24),
+            ),
           ),
         ],
       ),

@@ -2,7 +2,7 @@ import 'package:cross_website_admin/constants/app_styles.dart';
 import 'package:cross_website_admin/constants/custom_selectable_text.dart';
 import 'package:flutter/material.dart';
 import '../models/job.dart';
-import 'services/job_service.dart';
+import '../services/job_service.dart';
 
 class CareerPage extends StatefulWidget {
   const CareerPage({super.key});

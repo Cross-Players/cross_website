@@ -15,7 +15,6 @@ class Admin extends StatelessComponent {
         ),
         [
           iframe(
-              width: 1200,
               src: 'https://cross-website-83900.web.app',
               styles: Styles(
                 display: Display.flex,

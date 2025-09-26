@@ -1,17 +1,18 @@
 import 'package:cross_website_admin/constants/app_styles.dart';
+import 'package:cross_website_admin/constants/app_utils.dart';
 import 'package:cross_website_admin/constants/custom_selectable_text.dart';
+import 'package:cross_website_admin/models/employee.dart';
+import 'package:cross_website_admin/services/employee_service.dart';
 import 'package:flutter/material.dart';
-import '../models/job.dart';
-import 'services/job_service.dart';
 
-class CareerPage extends StatefulWidget {
-  const CareerPage({super.key});
+class EmployeePage extends StatefulWidget {
+  const EmployeePage({super.key});
 
   @override
-  State<CareerPage> createState() => _CareerPageState();
+  State<EmployeePage> createState() => _EmployeePageState();
 }
 
-class _CareerPageState extends State<CareerPage> {
+class _EmployeePageState extends State<EmployeePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,15 +25,15 @@ class _CareerPageState extends State<CareerPage> {
             Row(
               children: [
                 CustomSelectableText(
-                  text: 'Quản lý tuyển dụng',
+                  text: 'Quản lý nhân viên',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 const Spacer(),
                 ElevatedButton.icon(
-                  onPressed: () => _showAddJobDialog(context),
+                  onPressed: () => _showAddEmployeeDialog(context),
                   icon: const Icon(Icons.add, color: Colors.white, size: 18),
                   label: const Text(
-                    'Add Job',
+                    'Add Employee',
                     style: TextStyle(color: Colors.white, fontSize: 14),
                   ),
                   style: ElevatedButton.styleFrom(
@@ -51,17 +52,17 @@ class _CareerPageState extends State<CareerPage> {
               ],
             ),
             const SizedBox(height: 20),
-            // Job list
-            Expanded(child: _buildJobList()),
+            // Employee list
+            Expanded(child: _buildEmployeeList()),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildJobList() {
-    return StreamBuilder<List<Job>>(
-      stream: JobService.getJobsStream(),
+  Widget _buildEmployeeList() {
+    return StreamBuilder<List<Employee>>(
+      stream: EmployeeService.getEmployeesStream(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
@@ -85,178 +86,182 @@ class _CareerPageState extends State<CareerPage> {
           );
         }
 
-        final jobs = snapshot.data ?? [];
+        final employees = snapshot.data ?? [];
 
-        if (jobs.isEmpty) {
+        if (employees.isEmpty) {
           return const Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.work_off, size: 64, color: Colors.grey),
                 SizedBox(height: 16),
-                CustomSelectableText(text: 'Chưa có công việc nào'),
+                CustomSelectableText(text: 'Chưa có nhân viên nào'),
               ],
             ),
           );
         }
 
         return ListView.builder(
-          itemCount: jobs.length,
+          itemCount: employees.length,
           itemBuilder: (context, index) {
-            final job = jobs[index];
-            return Container(
-              margin: const EdgeInsets.only(bottom: 16),
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.grey[200]!),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.05),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Job title
-                        CustomSelectableText(
-                          text: job.title,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black87,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        // Job details
-                        Row(
-                          children: [
-                            _buildJobDetail(
-                              Icons.circle,
-                              "Lương: ${job.salary} triệu VND",
-                            ),
-                            const SizedBox(width: 24),
-                            _buildJobDetail(
-                              Icons.circle,
-                              'Hạn: ${job.deadlineTime}',
-                            ),
-                          ],
-                        ),
-                        if (job.link.isNotEmpty) ...[
-                          const SizedBox(height: 8),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.link,
-                                size: 16,
-                                color: Colors.blue,
-                              ),
-                              const SizedBox(width: 6),
-                              Expanded(
-                                child: Text(
-                                  job.link,
-                                  style: const TextStyle(
-                                    color: Colors.blue,
-                                    decoration: TextDecoration.underline,
-                                    fontSize: 14,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ],
-                    ),
-                  ),
-                  // Action menu
-                  PopupMenuButton<String>(
-                    color: Colors.white,
-                    onSelected: (value) async {
-                      if (value == 'edit') {
-                        _showAddJobDialog(context, job);
-                      } else if (value == 'delete') {
-                        _showDeleteDialog(job);
-                      }
-                    },
-                    itemBuilder: (context) => [
-                      const PopupMenuItem(
-                        value: 'edit',
-                        child: Row(
-                          children: [
-                            Icon(Icons.edit, color: Colors.blue, size: 18),
-                            SizedBox(width: 8),
-                            Text('Chỉnh sửa'),
-                          ],
-                        ),
-                      ),
-                      const PopupMenuItem(
-                        value: 'delete',
-                        child: Row(
-                          children: [
-                            Icon(Icons.delete, color: Colors.red, size: 18),
-                            SizedBox(width: 8),
-                            Text('Xóa'),
-                          ],
-                        ),
-                      ),
-                    ],
-                    child: Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[100],
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: const Icon(
-                        Icons.more_vert,
-                        color: Colors.grey,
-                        size: 20,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
+            final employee = employees[index];
+            return _buildEmployeeCard(employee, context);
           },
         );
       },
     );
   }
 
-  Widget _buildJobDetail(IconData icon, String text) {
+  Widget _buildEmployeeCard(Employee employee, BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey[200]!),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 30,
+            backgroundImage: employee.avatarUrl.isNotEmpty
+                ? NetworkImage(employee.avatarUrl)
+                : const AssetImage('assets/avatar_placeholder.png')
+                      as ImageProvider,
+            backgroundColor: Colors.grey[200],
+          ),
+          const SizedBox(width: 20),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Employee title
+                CustomSelectableText(
+                  text: employee.name,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                // Employee details
+                _buildEmployeeDetail(
+                  Icons.circle,
+                  "Lương: ${employee.description} triệu VND",
+                ),
+                const SizedBox(width: 24),
+                _buildEmployeeDetail(Icons.circle, 'Hạn: ${employee.phone}'),
+                if (employee.cvUrl != null && employee.cvUrl!.isNotEmpty) ...[
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      const Icon(Icons.link, size: 16, color: Colors.blue),
+                      const SizedBox(width: 6),
+                      Expanded(
+                        child: InkWell(
+                          onTap: () => AppUtils().appLaunchUrl(employee.cvUrl!),
+                          child: Text(
+                            employee.cvUrl!,
+                            style: const TextStyle(
+                              color: Colors.blue,
+                              decoration: TextDecoration.underline,
+                              fontSize: 14,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ],
+            ),
+          ),
+          SizedBox(width: 10),
+          // Action menu
+          PopupMenuButton<String>(
+            color: Colors.white,
+            onSelected: (value) async {
+              if (value == 'edit') {
+                _showAddEmployeeDialog(context, employee);
+              } else if (value == 'delete') {
+                _showDeleteDialog(employee);
+              }
+            },
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: 'edit',
+                child: Row(
+                  children: [
+                    Icon(Icons.edit, color: Colors.blue, size: 18),
+                    SizedBox(width: 8),
+                    Text('Chỉnh sửa'),
+                  ],
+                ),
+              ),
+              const PopupMenuItem(
+                value: 'delete',
+                child: Row(
+                  children: [
+                    Icon(Icons.delete, color: Colors.red, size: 18),
+                    SizedBox(width: 8),
+                    Text('Xóa'),
+                  ],
+                ),
+              ),
+            ],
+            child: Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: const Icon(Icons.more_vert, color: Colors.grey, size: 20),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildEmployeeDetail(IconData icon, String text) {
     return Row(
       children: [
         Icon(icon, size: 16, color: Colors.grey[600]),
         const SizedBox(width: 6),
-        CustomSelectableText(
-          text: text,
-          style: const TextStyle(fontSize: 14, color: Colors.black54),
+        Expanded(
+          child: CustomSelectableText(
+            text: text,
+            style: const TextStyle(fontSize: 14, color: Colors.black54),
+          ),
         ),
       ],
     );
   }
 
-  void _showAddJobDialog(BuildContext context, [Job? job]) {
+  void _showAddEmployeeDialog(BuildContext context, [Employee? employee]) {
     showDialog(
       context: context,
-      builder: (context) => _AddJobDialog(job: job),
+      builder: (context) => _AddEmployeeDialog(employee: employee),
     );
   }
 
-  void _showDeleteDialog(Job job) {
+  void _showDeleteDialog(Employee employee) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: const CustomSelectableText(text: 'Xác nhận xóa'),
         content: CustomSelectableText(
-          text: 'Bạn có chắc chắn muốn xóa công việc "${job.title}"?',
+          text: 'Bạn có chắc chắn muốn xóa nhân viên "${employee.name}"?',
         ),
         actions: [
           TextButton(
@@ -267,12 +272,12 @@ class _CareerPageState extends State<CareerPage> {
             onPressed: () async {
               Navigator.pop(context);
               try {
-                await JobService.deleteJob(job.id);
+                await EmployeeService.deleteEmployee(employee.id);
                 if (mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: CustomSelectableText(
-                        text: 'Xóa công việc thành công',
+                        text: 'Xóa nhân viên thành công',
                       ),
                       backgroundColor: Colors.green,
                     ),
@@ -298,42 +303,60 @@ class _CareerPageState extends State<CareerPage> {
   }
 }
 
-class _AddJobDialog extends StatefulWidget {
-  final Job? job;
+class _AddEmployeeDialog extends StatefulWidget {
+  final Employee? employee;
 
-  const _AddJobDialog({this.job});
+  const _AddEmployeeDialog({this.employee});
 
   @override
-  State<_AddJobDialog> createState() => _AddJobDialogState();
+  State<_AddEmployeeDialog> createState() => _AddEmployeeDialogState();
 }
 
-class _AddJobDialogState extends State<_AddJobDialog> {
+class _AddEmployeeDialogState extends State<_AddEmployeeDialog> {
   final _formKey = GlobalKey<FormState>();
-  final _titleController = TextEditingController();
-  final _salaryController = TextEditingController();
-  final _deadlineController = TextEditingController();
-  final _linkController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _positionController = TextEditingController();
+  final _descriptionController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _experienceController = TextEditingController();
+  final _avatarUrlController = TextEditingController();
+  final _cvUrlController = TextEditingController();
+
+  String _selectedStatus = 'Active';
+  final List<String> _statusOptions = ['Active', 'Inactive', 'On Leave'];
 
   bool _isLoading = false;
-  bool get _isEditing => widget.job != null;
+  bool get _isEditing => widget.employee != null;
 
   @override
   void initState() {
     super.initState();
     if (_isEditing) {
-      _titleController.text = widget.job!.title;
-      _salaryController.text = widget.job!.salary;
-      _deadlineController.text = widget.job!.deadlineTime;
-      _linkController.text = widget.job!.link;
+      _nameController.text = widget.employee!.name;
+      _positionController.text = widget.employee!.position;
+      _descriptionController.text = widget.employee!.description;
+      _emailController.text = widget.employee!.email;
+      _phoneController.text = widget.employee!.phone;
+      _experienceController.text = widget.employee!.experience;
+      _avatarUrlController.text = widget.employee!.avatarUrl;
+      _cvUrlController.text = widget.employee!.cvUrl ?? '';
+      _selectedStatus = widget.employee!.status.isNotEmpty
+          ? widget.employee!.status
+          : 'Active';
     }
   }
 
   @override
   void dispose() {
-    _titleController.dispose();
-    _salaryController.dispose();
-    _deadlineController.dispose();
-    _linkController.dispose();
+    _nameController.dispose();
+    _positionController.dispose();
+    _descriptionController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    _experienceController.dispose();
+    _avatarUrlController.dispose();
+    _cvUrlController.dispose();
     super.dispose();
   }
 
@@ -367,8 +390,8 @@ class _AddJobDialogState extends State<_AddJobDialog> {
                     children: [
                       CustomSelectableText(
                         text: _isEditing
-                            ? 'Chỉnh sửa công việc'
-                            : 'Thêm công việc mới',
+                            ? 'Chỉnh sửa thông tin nhân viên'
+                            : 'Thêm nhân viên mới',
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -388,8 +411,8 @@ class _AddJobDialogState extends State<_AddJobDialog> {
                   ),
                   CustomSelectableText(
                     text: _isEditing
-                        ? 'Chỉnh sửa thông tin công việc'
-                        : 'Tạo một tin tuyển dụng mới cho công ty',
+                        ? 'Chỉnh sửa thông tin nhân viên'
+                        : 'Tạo thông tin nhân viên mới cho công ty',
                     style: TextStyle(color: Colors.grey[600], fontSize: 14),
                   ),
                 ],
@@ -405,15 +428,15 @@ class _AddJobDialogState extends State<_AddJobDialog> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Title Field
+                      // Name Field
                       _buildTextField(
-                        label: 'Tiêu đề',
-                        controller: _titleController,
-                        hintText: 'Tiêu đề công việc',
+                        label: 'Tên nhân viên',
+                        controller: _nameController,
+                        hintText: 'Ví dụ: Nguyễn Văn A',
                         isRequired: true,
                         validator: (value) {
                           if (value?.trim().isEmpty ?? true) {
-                            return 'Vui lòng nhập tiêu đề công việc';
+                            return 'Vui lòng nhập tên nhân viên';
                           }
                           return null;
                         },
@@ -421,15 +444,15 @@ class _AddJobDialogState extends State<_AddJobDialog> {
 
                       const SizedBox(height: 16),
 
-                      // Salary field
+                      // Position field
                       _buildTextField(
-                        label: 'Lương',
-                        controller: _salaryController,
-                        hintText: 'Ví dụ: 10-15 triệu VND',
+                        label: 'Vị trí công việc',
+                        controller: _positionController,
+                        hintText: 'Ví dụ: Flutter Developer',
                         isRequired: true,
                         validator: (value) {
                           if (value?.trim().isEmpty ?? true) {
-                            return 'Vui lòng nhập mức lương';
+                            return 'Vui lòng nhập vị trí công việc';
                           }
                           return null;
                         },
@@ -437,15 +460,20 @@ class _AddJobDialogState extends State<_AddJobDialog> {
 
                       const SizedBox(height: 16),
 
-                      // Deadline field
-                      _buildDateField(
-                        label: 'Hạn ứng tuyển',
-                        controller: _deadlineController,
-                        hintText: 'Chọn ngày hạn ứng tuyển',
+                      // Email field
+                      _buildTextField(
+                        label: 'Email',
+                        controller: _emailController,
+                        hintText: 'example@company.com',
                         isRequired: true,
                         validator: (value) {
                           if (value?.trim().isEmpty ?? true) {
-                            return 'Vui lòng chọn hạn ứng tuyển';
+                            return 'Vui lòng nhập email';
+                          }
+                          if (!RegExp(
+                            r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                          ).hasMatch(value!)) {
+                            return 'Email không hợp lệ';
                           }
                           return null;
                         },
@@ -453,11 +481,82 @@ class _AddJobDialogState extends State<_AddJobDialog> {
 
                       const SizedBox(height: 16),
 
-                      // Link field
+                      // Phone field
                       _buildTextField(
-                        label: 'Link chi tiết',
-                        controller: _linkController,
-                        hintText: 'https://www.abc.com/',
+                        label: 'Số điện thoại',
+                        controller: _phoneController,
+                        hintText: '0123456789',
+                        isRequired: true,
+                        validator: (value) {
+                          if (value?.trim().isEmpty ?? true) {
+                            return 'Vui lòng nhập số điện thoại';
+                          }
+                          return null;
+                        },
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      // Status dropdown
+                      _buildDropdownField(
+                        label: 'Trạng thái',
+                        hintText: 'Chọn trạng thái',
+                        value: _selectedStatus,
+                        items: _statusOptions,
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedStatus = value!;
+                          });
+                        },
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      // Experience field
+                      _buildTextField(
+                        label: 'Kinh nghiệm',
+                        controller: _experienceController,
+                        hintText: 'Ví dụ: 2 năm kinh nghiệm Flutter',
+                        isRequired: false,
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      // Description field
+                      _buildTextField(
+                        label: 'Mô tả',
+                        controller: _descriptionController,
+                        hintText: 'Mô tả chi tiết về nhân viên',
+                        maxLines: 3,
+                        isRequired: false,
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      // Avatar URL field
+                      _buildTextField(
+                        label: 'Avatar URL',
+                        controller: _avatarUrlController,
+                        hintText: 'https://example.com/avatar.jpg',
+                        isRequired: false,
+                        validator: (value) {
+                          if (value != null && value.trim().isNotEmpty) {
+                            final uri = Uri.tryParse(value);
+                            if (uri == null || !uri.hasAbsolutePath) {
+                              return 'Vui lòng nhập URL hợp lệ';
+                            }
+                          }
+                          return null;
+                        },
+                      ),
+
+                      const SizedBox(height: 16),
+
+                      // CV URL field
+                      _buildTextField(
+                        label: 'CV URL',
+                        controller: _cvUrlController,
+                        hintText: 'https://example.com/cv.pdf',
                         isRequired: false,
                         validator: (value) {
                           if (value != null && value.trim().isNotEmpty) {
@@ -493,7 +592,7 @@ class _AddJobDialogState extends State<_AddJobDialog> {
                   ),
                   const SizedBox(width: 12),
                   ElevatedButton(
-                    onPressed: _isLoading ? null : _saveJob,
+                    onPressed: _isLoading ? null : _saveEmployee,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppStyles.primaryColor,
                       foregroundColor: Colors.white,
@@ -515,7 +614,9 @@ class _AddJobDialogState extends State<_AddJobDialog> {
                             ),
                           )
                         : Text(
-                            _isEditing ? 'Cập nhật' : 'Thêm công việc',
+                            _isEditing
+                                ? 'Cập nhật nhân viên'
+                                : 'Thêm nhân viên',
                             style: TextStyle(fontSize: 18),
                           ),
                   ),
@@ -582,38 +683,26 @@ class _AddJobDialogState extends State<_AddJobDialog> {
     );
   }
 
-  Widget _buildDateField({
+  Widget _buildDropdownField({
     required String label,
-    required TextEditingController controller,
     required String hintText,
-    bool isRequired = false,
-    String? Function(String?)? validator,
+    required String value,
+    required List<String> items,
+    required ValueChanged<String?> onChanged,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            CustomSelectableText(
-              text: label,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-            ),
-            if (isRequired)
-              const CustomSelectableText(
-                text: ' *',
-                style: TextStyle(color: Colors.red),
-              ),
-          ],
+        CustomSelectableText(
+          text: label,
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
         ),
         const SizedBox(height: 8),
-        TextFormField(
-          controller: controller,
-          readOnly: true,
-          onTap: () => _selectDate(),
+        DropdownButtonFormField<String>(
+          value: value,
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(color: Colors.grey[400]),
-            suffixIcon: const Icon(Icons.calendar_today),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6),
               borderSide: BorderSide(color: Colors.grey[300]!),
@@ -631,30 +720,16 @@ class _AddJobDialogState extends State<_AddJobDialog> {
               vertical: 10,
             ),
           ),
-          validator: validator,
+          items: items
+              .map((item) => DropdownMenuItem(value: item, child: Text(item)))
+              .toList(),
+          onChanged: onChanged,
         ),
       ],
     );
   }
 
-  Future<void> _selectDate() async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2030),
-      locale: const Locale('vi', 'VN'),
-    );
-
-    if (picked != null) {
-      setState(() {
-        _deadlineController.text =
-            '${picked.day.toString().padLeft(2, '0')}/${picked.month.toString().padLeft(2, '0')}/${picked.year}';
-      });
-    }
-  }
-
-  Future<void> _saveJob() async {
+  Future<void> _saveEmployee() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
@@ -664,18 +739,25 @@ class _AddJobDialogState extends State<_AddJobDialog> {
     });
 
     try {
-      final job = Job(
-        id: _isEditing ? widget.job!.id : '',
-        title: _titleController.text.trim(),
-        salary: _salaryController.text.trim(),
-        deadlineTime: _deadlineController.text.trim(),
-        link: _linkController.text.trim(),
+      final employee = Employee(
+        id: _isEditing ? widget.employee!.id : '',
+        name: _nameController.text.trim(),
+        position: _positionController.text.trim(),
+        description: _descriptionController.text.trim(),
+        email: _emailController.text.trim(),
+        phone: _phoneController.text.trim(),
+        status: _selectedStatus,
+        experience: _experienceController.text.trim(),
+        avatarUrl: _avatarUrlController.text.trim(),
+        cvUrl: _cvUrlController.text.trim().isNotEmpty
+            ? _cvUrlController.text.trim()
+            : null,
       );
 
       if (_isEditing) {
-        await JobService.updateJob(job);
+        await EmployeeService.updateEmployee(employee);
       } else {
-        await JobService.addJob(job);
+        await EmployeeService.addEmployee(employee);
       }
 
       if (mounted) {
@@ -683,8 +765,8 @@ class _AddJobDialogState extends State<_AddJobDialog> {
           SnackBar(
             content: CustomSelectableText(
               text: _isEditing
-                  ? 'Cập nhật công việc thành công!'
-                  : 'Thêm công việc thành công!',
+                  ? 'Cập nhật nhân viên thành công!'
+                  : 'Thêm nhân viên thành công!',
             ),
             backgroundColor: Colors.green,
           ),

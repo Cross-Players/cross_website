@@ -719,8 +719,8 @@ class _AboutNewState extends State<AboutNew> {
       div(classes: 'quote-icon', [
         img(src: imagePath, alt: 'Philosophy Icon', width: 90, height: 70),
       ]),
-      blockquote(classes: 'quote-text', [text("$quote")]),
-      p(classes: 'quote-author', [text('$author')]),
+      blockquote(classes: 'quote-text', [text(quote)]),
+      p(classes: 'quote-author', [text(author)]),
     ]);
   }
 
