@@ -1,4 +1,5 @@
 import 'package:cross_website_admin/constants/app_styles.dart';
+import 'package:cross_website_admin/constants/app_utils.dart';
 import 'package:cross_website_admin/constants/custom_selectable_text.dart';
 import 'package:flutter/material.dart';
 import '../models/job.dart';
@@ -160,14 +161,18 @@ class _CareerPageState extends State<CareerPage> {
                               ),
                               const SizedBox(width: 6),
                               Expanded(
-                                child: Text(
-                                  job.link,
-                                  style: const TextStyle(
-                                    color: Colors.blue,
-                                    decoration: TextDecoration.underline,
-                                    fontSize: 14,
+                                child: InkWell(
+                                  onTap: () =>
+                                      AppUtils().appLaunchUrl(job.link),
+                                  child: Text(
+                                    job.link,
+                                    style: const TextStyle(
+                                      color: Colors.blue,
+                                      decoration: TextDecoration.underline,
+                                      fontSize: 14,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ],

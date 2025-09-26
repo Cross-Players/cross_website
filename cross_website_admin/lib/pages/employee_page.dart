@@ -143,7 +143,7 @@ class _EmployeePageState extends State<EmployeePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Employee title
+                // Employee name
                 CustomSelectableText(
                   text: employee.name,
                   style: const TextStyle(
@@ -155,13 +155,43 @@ class _EmployeePageState extends State<EmployeePage> {
                 const SizedBox(height: 12),
                 // Employee details
                 _buildEmployeeDetail(
-                  Icons.circle,
-                  "Lương: ${employee.description} triệu VND",
+                  Icons.work,
+                  "Vị trí: ${employee.position}",
                 ),
-                const SizedBox(width: 24),
-                _buildEmployeeDetail(Icons.circle, 'Hạn: ${employee.phone}'),
+                const SizedBox(height: 8),
+                // Email
+                _buildEmployeeDetail(Icons.email, "Email: ${employee.email}"),
+                const SizedBox(height: 8),
+                // Phone
+                _buildEmployeeDetail(
+                  Icons.phone,
+                  "Điện thoại: ${employee.phone}",
+                ),
+                const SizedBox(height: 8),
+                // Status
+                _buildEmployeeDetail(
+                  Icons.info,
+                  "Trạng thái: ${employee.status}",
+                ),
+                if (employee.experience.isNotEmpty) ...[
+                  const SizedBox(height: 8),
+                  // Experience
+                  _buildEmployeeDetail(
+                    Icons.timeline,
+                    "Kinh nghiệm: ${employee.experience}",
+                  ),
+                ],
+                if (employee.description.isNotEmpty) ...[
+                  const SizedBox(height: 8),
+                  // Description
+                  _buildEmployeeDetail(
+                    Icons.description,
+                    "Mô tả: ${employee.description}",
+                  ),
+                ],
                 if (employee.cvUrl != null && employee.cvUrl!.isNotEmpty) ...[
                   const SizedBox(height: 8),
+                  // CV URL
                   Row(
                     children: [
                       const Icon(Icons.link, size: 16, color: Colors.blue),
@@ -186,7 +216,7 @@ class _EmployeePageState extends State<EmployeePage> {
               ],
             ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           // Action menu
           PopupMenuButton<String>(
             color: Colors.white,
