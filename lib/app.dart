@@ -3,6 +3,7 @@ import 'package:cross_website/language/language_manager.dart';
 import 'package:cross_website/pages/about_new.dart';
 import 'package:cross_website/pages/admin.dart';
 import 'package:cross_website/pages/career.dart';
+import 'package:cross_website/pages/policy/gplx_policy.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 import 'package:jaspr_router/jaspr_router.dart';
@@ -76,6 +77,11 @@ class AppState extends State<App> {
               path: '/adminQuyenAnh',
               title: 'Admin',
               builder: (context, state) => const Admin(),
+            ),
+            Route(
+              path: '/gplx/policy',
+              title: 'GPLX Policy',
+              builder: (context, state) => const GPLXPolicy(),
             ),
           ],
         ),
