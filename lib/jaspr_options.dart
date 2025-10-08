@@ -28,12 +28,13 @@ import 'package:cross_website/components/home_page/list_logo.dart' as prefix11;
 import 'package:cross_website/components/header.dart' as prefix12;
 import 'package:cross_website/constants/app_colors.dart' as prefix13;
 import 'package:cross_website/constants/theme_toogle.dart' as prefix14;
-import 'package:cross_website/pages/about_new.dart' as prefix15;
-import 'package:cross_website/pages/admin.dart' as prefix16;
-import 'package:cross_website/pages/career.dart' as prefix17;
-import 'package:cross_website/pages/home.dart' as prefix18;
-import 'package:cross_website/pages/loading_screen.dart' as prefix19;
-import 'package:cross_website/app.dart' as prefix20;
+import 'package:cross_website/pages/policy/gplx_policy.dart' as prefix15;
+import 'package:cross_website/pages/about_new.dart' as prefix16;
+import 'package:cross_website/pages/admin.dart' as prefix17;
+import 'package:cross_website/pages/career.dart' as prefix18;
+import 'package:cross_website/pages/home.dart' as prefix19;
+import 'package:cross_website/pages/loading_screen.dart' as prefix20;
+import 'package:cross_website/app.dart' as prefix21;
 
 /// Default [JasprOptions] for use with your jaspr project.
 ///
@@ -53,15 +54,19 @@ import 'package:cross_website/app.dart' as prefix20;
 /// ```
 JasprOptions get defaultJasprOptions => JasprOptions(
   clients: {
-    prefix20.App: ClientTarget<prefix20.App>('app'),
+    prefix21.App: ClientTarget<prefix21.App>('app'),
 
-    prefix15.AboutNew: ClientTarget<prefix15.AboutNew>('pages/about_new'),
+    prefix16.AboutNew: ClientTarget<prefix16.AboutNew>('pages/about_new'),
 
-    prefix16.Admin: ClientTarget<prefix16.Admin>('pages/admin'),
+    prefix17.Admin: ClientTarget<prefix17.Admin>('pages/admin'),
 
-    prefix17.Career: ClientTarget<prefix17.Career>('pages/career'),
+    prefix18.Career: ClientTarget<prefix18.Career>('pages/career'),
 
-    prefix18.Home: ClientTarget<prefix18.Home>('pages/home'),
+    prefix19.Home: ClientTarget<prefix19.Home>('pages/home'),
+
+    prefix15.GPLXPolicy: ClientTarget<prefix15.GPLXPolicy>(
+      'pages/policy/gplx_policy',
+    ),
   },
   styles: () => [
     ...prefix0.ButtonPrimaryBlack.styles,
@@ -80,11 +85,12 @@ JasprOptions get defaultJasprOptions => JasprOptions(
     ...prefix12.HeaderState.styles,
     ...prefix13.root,
     ...prefix14.ThemeToggleState.styles,
-    ...prefix15.AboutNew.styles,
-    ...prefix17.Career.styles,
-    ...prefix18.HomeState.styles,
-    ...prefix19.LoadingScreen.styles,
+    ...prefix15.GPLXPolicy.styles,
+    ...prefix16.AboutNew.styles,
+    ...prefix18.Career.styles,
+    ...prefix19.HomeState.styles,
+    ...prefix20.LoadingScreen.styles,
 
-    ...prefix20.AppState.styles,
+    ...prefix21.AppState.styles,
   ],
 );

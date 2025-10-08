@@ -24,47 +24,8 @@
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script type="module" src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"></script>
     <!--$-->
-    <title>About</title>
+    <title>GPLX Policy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <script id="theme-script">
-        (function() {
-          // Function to get cookie by name
-          function getCookie(name) {
-            let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-            return match ? match[2] : null;
-          }
-          
-          // Function to set cookie
-          function setCookie(name, value, days) {
-            let expires = "";
-            if (days) {
-              let date = new Date();
-              date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-              expires = "; expires=" + date.toUTCString();
-            }
-            document.cookie = name + "=" + value + expires + "; path=/";
-          }
-          
-          // Load the saved theme from cookies or use system preference
-          let userTheme = getCookie('active-theme');
-      
-          if (userTheme) {
-            document.documentElement.className = userTheme; // Apply stored theme
-          } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.className = 'dark'; // Use system dark mode
-          } else {
-            document.documentElement.className = 'light'; // Default to light mode
-          }
-      
-          // Function to toggle theme and save to cookies
-          window.toggleTheme = function() {
-            let currentTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-            document.documentElement.className = currentTheme;
-            setCookie('active-theme', currentTheme, 365); // Save for 1 year
-          };
-        })();
-        
-    </script>
     <!--/-->
     <script src="main.clients.dart.js" defer></script>
     <style>
@@ -1240,207 +1201,65 @@
     <!--@app-->
     <!--${}-->
     <div class="main">
-      <div class="about-new-page">
-        <header>
-          <a href="/">
-            <img style="padding: 0.7rem; margin-left: 5%; width: 120px; height: 120px; border-radius: 8px; color: var(--textBlack)" src="images/x_cross.png"/>
-          </a>
-          <nav class="nav-menu">
-            <div class="nav-item"><a href="/">Translation not found</a></div>
-            <div class="nav-item"><a href="/about">Translation not found</a></div>
-            <div class="nav-item"><a href="/careers">Translation not found</a></div>
-            <div class="language-header">
-              <div class="custom-select-display" style="padding-left: 8px; padding-right: 8px; display: flex; cursor: pointer; align-items: center"><img style="width: 35px; height: 25px" src="images/flags/us.svg"/></div>
-              <select style="width: 50px; height: 30px; opacity: 0.0; position: absolute; z-index: 1; cursor: pointer">
-                <option style="padding: 2px 1px; display: flex; color: var(--textBlack); align-items: center" value="en" selected>
-                  <img style="margin-right: 12px; width: 20px; height: 15px" src="images/flags/us.svg"/>
-                  <span style="flex-grow: 1">English</span>
-                </option>
-                <option style="padding: 2px 1px; display: flex; color: var(--textBlack); align-items: center" value="vi">
-                  <img style="margin-right: 12px; width: 20px; height: 15px" src="images/flags/vn.svg"/>
-                  <span style="flex-grow: 1">Tiếng Việt</span>
-                </option>
-                <option style="padding: 2px 1px; display: flex; color: var(--textBlack); align-items: center" value="ko">
-                  <img style="margin-right: 12px; width: 20px; height: 15px" src="images/flags/kr.svg"/>
-                  <span style="flex-grow: 1">한국어</span>
-                </option>
-                <option style="padding: 2px 1px; display: flex; color: var(--textBlack); align-items: center" value="ja">
-                  <img style="margin-right: 12px; width: 20px; height: 15px" src="images/flags/jp.svg"/>
-                  <span style="flex-grow: 1">日本語</span>
-                </option>
-              </select>
-            </div>
-            <div class="theme_toggle">
-              <button class="theme-toggle" style="visibility: hidden" aria-label="Theme Toggle"><img src="images/sun.svg"/></button>
-            </div>
-          </nav>
-          <button class="menu-toggle" aria-label="Menu Toggle"><img style="width: 40px; height: 40px" src="images/menu-svgrepo-com.svg"/></button>
-        </header>
-        <section class="hero"><div class="container"><h1 class="hero-title">Cross Technology and Education</h1></div></section>
-        <section class="section">
-          <div class="container">
-            <div class="grid grid-2">
-              <div>
-                <h2 class="section-title">Translation not found</h2>
-                <div class="space-y"><p class="description-text">Translation not found</p></div>
-              </div>
-              <div class="image-container">
-                <img class="team-image" alt="Đội ngũ Cross Tech" src="images/office1.jpg"/>
-                <div class="image-overlay"></div>
-              </div>
-            </div>
+      <div style="max-width: 100%">
+        <div style="padding-right: 16px; margin-top: 16px; display: flex; width: 100%; justify-content: end">
+          <button style="padding:8px; margin-bottom:16px; cursor:pointer; border-radius:6px; border:1px solid #ccc; background:#f7f7f7;">English</button>
+        </div>
+        <div style="padding: 20px; height: 100vh; max-width: 100%">
+          <h2>Chính Sách Quyền Riêng Tư</h2>
+          <div style="height: 15px"></div>
+          <h2>Ứng dụng: Học Giấy Phép Lái Xe Vạn Xuân</h2>
+          <div style="height: 15px"></div>
+          <p>
+            Ứng dụng
+            <strong> Học Giấy Phép Lái Xe Vạn Xuân </strong>
+            được phát triển nhằm hỗ trợ người dùng ôn luyện và kiểm tra kiến thức cho kỳ thi giấy phép lái xe tại Việt Nam. Chúng tôi tôn trọng và cam kết bảo vệ quyền riêng tư của bạn.
+          </p>
+          <div>
+            <h3 style="font-size:1.2rem; margin-top:24px; margin-bottom:8px;">1. Thông tin thu thập</h3>
+            <div style="height: 10px"></div>
+            <ul style="margin-left: 20px; margin-bottom: 6px">
+              <li style="font-size:1rem; color:#333; margin-bottom:4px;">Dữ liệu thiết bị (phiên bản hệ điều hành, ngôn ngữ, loại thiết bị) để cải thiện trải nghiệm.</li>
+              <li style="font-size:1rem; color:#333; margin-bottom:4px;">
+                Thông tin sử dụng ứng dụng (số lần làm bài, thời gian học, kết quả quiz) nhằm phân tích và tối ưu nội dung.
+              </li>
+            </ul>
+            <div style="height: 10px"></div>
+            <p style="font-size:1rem; color:#333; margin-bottom:8px;">
+              Ứng dụng không yêu cầu, lưu trữ hoặc chia sẻ thông tin cá nhân nhạy cảm như họ tên, số điện thoại, email hoặc vị trí trừ khi bạn chủ động cung cấp.
+            </p>
           </div>
-        </section>
-        <section class="section section-alt">
-          <div class="container">
-            <div class="vision-card">
-              <div class="vision-icon"><img width="80" height="80" src="images/vision.png"/></div>
-              <h2 class="vision-title">Translation not found</h2>
-              <blockquote class="vision-text">Translation not found</blockquote>
-            </div>
+          <div>
+            <h3 style="font-size:1.2rem; margin-top:24px; margin-bottom:8px;">2. Cách sử dụng thông tin</h3>
+            <div style="height: 10px"></div>
+            <ul style="margin-left: 20px; margin-bottom: 6px">
+              <li style="font-size:1rem; color:#333; margin-bottom:4px;">Nâng cao chất lượng câu hỏi và giao diện.</li>
+              <li style="font-size:1rem; color:#333; margin-bottom:4px;">Cải thiện tính năng ôn tập và đề xuất nội dung phù hợp.</li>
+            </ul>
+            <div style="height: 10px"></div>
+            <p style="font-size:1rem; color:#333; margin-bottom:8px;">Chúng tôi không bán, chia sẻ hay tiết lộ thông tin người dùng cho bên thứ ba.</p>
           </div>
-        </section>
-        <section class="section">
-          <div class="container">
-            <div class="vision-card">
-              <div class="vision-icon purple-icon"><img width="80" height="80" src="images/mission.png"/></div>
-              <h2 class="vision-title">Translation not found</h2>
-              <blockquote class="vision-text">Translation not found</blockquote>
-            </div>
+          <div>
+            <h3 style="font-size:1.2rem; margin-top:24px; margin-bottom:8px;">3. Quyền của người dùng</h3>
+            <div style="height: 10px"></div>
+            <ul style="margin-left: 20px; margin-bottom: 6px">
+              <li style="font-size:1rem; color:#333; margin-bottom:4px;">Bạn có thể xóa dữ liệu học tập trong ứng dụng bất cứ lúc nào.</li>
+              <li style="font-size:1rem; color:#333; margin-bottom:4px;">Bạn có quyền ngừng sử dụng ứng dụng nếu không đồng ý với chính sách này.</li>
+            </ul>
+            <div style="height: 10px"></div>
           </div>
-        </section>
-        <section class="section section-alt">
-          <div class="container">
-            <div class="section-header"><h2 class="section-title">Translation not found</h2></div>
-            <div class="grid grid-2">
-              <div class="quote-card">
-                <div class="quote-icon"><img alt="Philosophy Icon" width="90" height="70" src="images/philosophy.png"/></div>
-                <blockquote class="quote-text">Translation not found</blockquote>
-                <p class="quote-author">Translation not found</p>
-              </div>
-            </div>
+          <div>
+            <h3 style="font-size:1.2rem; margin-top:24px; margin-bottom:8px;">4. Thay đổi chính sách</h3>
+            <div style="height: 10px"></div>
+            <p style="font-size:1rem; color:#333; margin-bottom:8px;">Chính sách này có thể được cập nhật định kỳ. Mọi thay đổi sẽ được thông báo trong ứng dụng.</p>
           </div>
-        </section>
-        <section class="section">
-          <div class="container">
-            <div class="section-header"><h2 class="section-title">Translation not found</h2></div>
-            <section id="customs">
-              <div class="custom-grid">
-                <div class="card card-center">
-                  <div class="card-icon card-icon-cyan">🎯</div>
-                  <h3 class="card-title cyan-text">Translation not found</h3>
-                  <p class="card-description">Translation not found</p>
-                </div>
-                <div class="card card-center">
-                  <div class="card-icon card-icon-purple">⭐</div>
-                  <h3 class="card-title purple-text">Translation not found</h3>
-                  <p class="card-description">Translation not found</p>
-                </div>
-                <div class="card card-center">
-                  <div class="card-icon card-icon-blue">🤝</div>
-                  <h3 class="card-title blue-text">Translation not found</h3>
-                  <p class="card-description">Translation not found</p>
-                </div>
-                <div class="card card-center">
-                  <div class="card-icon card-icon-green">🌱</div>
-                  <h3 class="card-title green-text">Translation not found</h3>
-                  <p class="card-description">Translation not found</p>
-                </div>
-                <div class="card card-center">
-                  <div class="card-icon card-icon-pink">😊</div>
-                  <h3 class="card-title pink-text">Translation not found</h3>
-                  <p class="card-description">Translation not found</p>
-                </div>
-              </div>
-            </section>
+          <div>
+            <h3 style="font-size:1.2rem; margin-top:24px; margin-bottom:8px;">Liên hệ hỗ trợ</h3>
+            <div style="height: 10px"></div>
+            <p style="font-size:1rem; color:#333; margin-bottom:8px;">support@vanxuanquiz.vn</p>
           </div>
-        </section>
-        <section class="section section-alt">
-          <div class="container">
-            <div class="section-header">
-              <h2 class="section-title">Translation not found</h2>
-              <p class="section-subtitle">Translation not found</p>
-            </div>
-            <div class="grid grid-2 culture-main">
-              <div>
-                <div class="culture-features"><div class="culture-feature"><div><h4 class="feature-title">Translation not found</h4></div></div></div>
-              </div>
-              <div class="image-container">
-                <img class="culture-image" alt="Văn hóa công ty" src="images/office.jpg"/>
-                <div class="image-overlay purple-overlay"></div>
-              </div>
-            </div>
-            <div class="grid grid-3">
-              <div class="quote-card">
-                <div class="quote-icon">🎉</div>
-                <h3 class="card-title">Translation not found</h3>
-                <p class="card-description">Translation not found</p>
-              </div>
-              <div class="quote-card">
-                <div class="quote-icon">🏆</div>
-                <h3 class="card-title">Translation not found</h3>
-                <p class="card-description">Translation not found</p>
-              </div>
-              <div class="quote-card">
-                <div class="quote-icon">💪</div>
-                <h3 class="card-title">Translation not found</h3>
-                <p class="card-description">Translation not found</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <div style="background: var(--footerAltBackground)">
-          <div style="max-width: 100%">
-            <div class="footer_block">
-              <div class="footer_header">
-                <div style="display: flex; flex-direction: row; align-items: center">
-                  <img width="40" height="40" src="images/x_cross.png"/>
-                  <div style="width: 6px"></div>
-                  <div style="color: white; font-size: 30px; font-weight: 500">Translation not found</div>
-                </div>
-                <div style="display: flex; color: white; font-size: 18px; font-weight: 400; text-decoration: underline; flex-direction: row">
-                  Translation not found
-                  <div style="width: 20px"></div>
-                  Translation not found
-                  <div style="width: 20px"></div>
-                  Translation not found
-                  <div style="width: 20px"></div>
-                  Translation not found
-                </div>
-                <div style="display: flex; flex-direction: row">
-                  <img width="30" height="30" src="images/instagram_icon.png"/>
-                  <div style="width: 20px"></div>
-                  <img width="30" height="30" src="images/facebook_icon.png"/>
-                  <div style="width: 20px"></div>
-                  <img width="30" height="30" src="images/twitter_icon.png"/>
-                </div>
-              </div>
-              <div style="height: 20px"></div>
-              <div class="footer_body">
-                <div class="footer_content_us">
-                  <div style="padding: 5px; display: flex; width: 120px; border-radius: 14px; color: black; text-align: center; background-color: var(--greenPrimary); flex-wrap: wrap; justify-content: center">Translation not found</div>
-                  <div style="height: 20px"></div>
-                  <div>
-                    <a style="color: white; text-decoration: none" href="mailto:crosstechedu@gmail.com">Translation not found</a>
-                  </div>
-                  <div style="height: 20px"></div>
-                  <div><a style="color: white; text-decoration: none" href="tel:0338305895">Translation not found</a></div>
-                  <div style="height: 20px"></div>
-                  <div>
-                    <a style="color: white; text-decoration: none" href="https://maps.app.goo.gl/8RR39Ge1WESWiPcj6" target="_blank">Translation not found</a>
-                  </div>
-                </div>
-                <div class="footer_map">
-                  <iframe class="map" style="width: 100%; height: 100%; border: none" frameborder="0" style="border:0;" allowfullscreen aria-hidden="false" tabindex="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3722.8291308260964!2d105.80479707504539!3d21.079485680582636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abe65144a209%3A0xaf7eeca92c256d9e!2sCross%20Technology%20%26%20Education!5e0!3m2!1sen!2sus!4v1747126150721!5m2!1sen!2sus"></iframe>
-                </div>
-              </div>
-              <div style="height: 20px"></div>
-              <div style="padding-top: 50px; display: flex; border-top-style: solid; border-top-color: white; border-top-width: 1px; color: white">
-                Translation not found
-                <div style="width: 40px"></div>
-                <div style="text-decoration: underline">Translation not found</div>
-              </div>
-            </div>
+          <div>
+            <p style="color:#aaa; font-size:14px; text-align:center; margin-top:32px;">© Van Xuan Quiz. All rights reserved.</p>
           </div>
         </div>
       </div>
