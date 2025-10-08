@@ -131,7 +131,7 @@ class _PrivacyPolicyVN extends StatelessComponent {
           ..._sectionVN('4. Thay đổi chính sách',
               subTitle:
                   'Chính sách này có thể được cập nhật định kỳ. Mọi thay đổi sẽ được thông báo trong ứng dụng.'),
-          ..._sectionVN('Liên hệ hỗ trợ', subTitle: 'support@vanxuanquiz.vn'),
+          ..._sectionVN('Liên hệ hỗ trợ', subTitle: 'crosstechedu@gmail.com'),
           div([
             p(attributes: {
               'style':
@@ -219,7 +219,7 @@ class _PrivacyPolicyEN extends StatelessComponent {
           ..._sectionEN('4. Changes to This Policy',
               subTitle:
                   'This privacy policy may be updated periodically to reflect app improvements or legal changes. The latest version will be available within the app.'),
-          ..._sectionEN('Contact Us', subTitle: 'support@vanxuanquiz.vn'),
+          ..._sectionEN('Contact Us', subTitle: 'crosstechedu@gmail.com'),
           div([
             p(attributes: {
               'style':
