@@ -1,13 +1,17 @@
-import 'package:jaspr/jaspr.dart';
 import 'package:cross_website/constants/image_constant.dart';
+import 'package:jaspr/dom.dart';
+import 'package:jaspr/jaspr.dart';
 
 class ListLogo extends StatelessComponent {
   const ListLogo({super.key});
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield div(classes: 'list-logo-container', [
+  Component build(BuildContext context) {
+    return div(classes: 'list-logo-container', [
       div(classes: 'list-logo-content', [
+        a(href: 'https://jvb-corp.com/vi/', target: Target.blank, [
+          img(src: Images.jvbLogo),
+        ]),
         a(href: 'https://ited.edu.vn/', target: Target.blank, [
           img(src: Images.itedLogo),
         ]),

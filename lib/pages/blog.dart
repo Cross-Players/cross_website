@@ -1,3 +1,4 @@
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 class Blog extends StatelessComponent {
@@ -35,8 +36,8 @@ class Blog extends StatelessComponent {
   ];
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield div(
+  Component build(BuildContext context) {
+    return div(
         styles: Styles(
           display: Display.flex,
           width: 100.vw,
@@ -67,7 +68,7 @@ class Blog extends StatelessComponent {
                     fontWeight: FontWeight.bold,
                     backgroundColor: Color.rgb(18, 32, 63),
                   ),
-                  [text('All tags')],
+                  [Component.text('All tags')],
                 ),
                 ...tags.map((tag) => button(
                       styles: Styles(
@@ -80,7 +81,7 @@ class Blog extends StatelessComponent {
                         fontWeight: FontWeight.bold,
                         backgroundColor: Color.rgb(51, 102, 255),
                       ),
-                      [text(tag)],
+                      [Component.text(tag)],
                     )),
               ]),
           // Main content
@@ -125,7 +126,7 @@ class Blog extends StatelessComponent {
                                 lineHeight: 1.2.em,
                               ),
                               href: '#',
-                              [text(post['title']!)],
+                              [Component.text(post['title']!)],
                             ),
                             div(
                               styles: Styles(margin: Spacing.only(top: 12.px)),
@@ -135,7 +136,7 @@ class Blog extends StatelessComponent {
                                       color: Color.rgb(100, 100, 100),
                                       fontSize: 16.px),
                                   [
-                                    text('👤  ${post['author']}'),
+                                    Component.text('👤  ${post['author']}'),
                                   ],
                                 ),
                                 span(
@@ -143,7 +144,7 @@ class Blog extends StatelessComponent {
                                       color: Color.rgb(180, 180, 180),
                                       fontSize: 16.px),
                                   [
-                                    text('  •  ${post['date']}'),
+                                    Component.text('  •  ${post['date']}'),
                                   ],
                                 ),
                               ],

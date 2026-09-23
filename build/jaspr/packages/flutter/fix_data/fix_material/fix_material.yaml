@@ -26,6 +26,26 @@
 #     * WidgetState: fix_widget_state.yaml
 version: 1
 transforms:
+  # TODO(Piinks): Link eventual deprecation PR, add testing support once available.
+  - title: 'Migrate from flutter/material.dart to material_ui/material_ui.dart.'
+    date: 2026-07-08
+    library: 'package:flutter/material.dart'
+    changes:
+      - kind: 'replacedBy'
+        newLibrary: 'package:material_ui/material_ui.dart'
+
+  # Changes made in https://github.com/flutter/flutter/pull/179776
+  - title: 'Replaced by cupertino CupertinoPageTransitionsBuilder'
+    date: 2026-01-15
+    element:
+      uris: ['material.dart']
+      class: 'CupertinoPageTransitionsBuilder'
+    changes:
+    - kind: 'replacedBy'
+      newElement:
+        uris: ['cupertino.dart']
+        class: 'CupertinoPageTransitionsBuilder'
+
   # Changes made in https://github.com/flutter/flutter/pull/15303
   - title: "Replace 'child' with 'builder'"
     date: 2020-12-17
@@ -523,14 +543,14 @@ transforms:
         name: 'disabledForegroundColor'
         style: optional_named
         argumentValue:
-          expression: '{% onSurface %}.withOpacity(0.38)'
+          expression: '{% onSurface %}.withValues(alpha: 0.38)'
           requiredIf: "onSurface != ''"
       - kind: 'addParameter'
         index: 3
         name: 'disabledBackgroundColor'
         style: optional_named
         argumentValue:
-          expression: '{% onSurface %}.withOpacity(0.12)'
+          expression: '{% onSurface %}.withValues(alpha: 0.12)'
           requiredIf: "onSurface != ''"
       - kind: 'removeParameter'
         name: 'onSurface'
@@ -574,7 +594,7 @@ transforms:
         name: 'disabledForegroundColor'
         style: optional_named
         argumentValue:
-          expression: '{% onSurface %}.withOpacity(0.38)'
+          expression: '{% onSurface %}.withValues(alpha: 0.38)'
           requiredIf: "onSurface != ''"
       - kind: 'removeParameter'
         name: 'onSurface'
@@ -618,7 +638,7 @@ transforms:
         name: 'disabledForegroundColor'
         style: optional_named
         argumentValue:
-          expression: '{% onSurface %}.withOpacity(0.38)'
+          expression: '{% onSurface %}.withValues(alpha: 0.38)'
           requiredIf: "onSurface != ''"
       - kind: 'removeParameter'
         name: 'onSurface'
@@ -738,4 +758,41 @@ transforms:
           field: legacyDecelerate
           inClass: Easing
 
+  # Change made in https://github.com/flutter/flutter/pull/162223
+  - title: "Migrate 'ShowValueIndicator.always' to 'ShowValueIndicator.onDrag'"
+    date: 2025-03-18
+    element:
+      uris: [ 'material.dart' ]
+      constant: 'always'
+      inEnum: 'ShowValueIndicator'
+    changes:
+      - kind: 'replacedBy'
+        newElement:
+          uris: ['material.dart']
+          constant: 'onDrag'
+          inEnum: 'ShowValueIndicator'
+
+  # Changes made in https://github.com/flutter/flutter/pull/166382
+  - title: "Migrate to 'activeThumbColor'"
+    date: 2025-04-03
+    element:
+      uris: [ 'material.dart' ]
+      constructor: ''
+      inClass: 'Switch'
+    changes:
+      - kind: 'renameParameter'
+        oldName: 'activeColor'
+        newName: 'activeThumbColor'
+
+  # Changes made in https://github.com/flutter/flutter/pull/166382
+  - title: "Migrate to 'activeThumbColor'"
+    date: 2025-04-03
+    element:
+      uris: [ 'material.dart' ]
+      constructor: ''
+      inClass: 'SwitchListTile'
+    changes:
+      - kind: 'renameParameter'
+        oldName: 'activeColor'
+        newName: 'activeThumbColor'
 # Before adding a new fix: read instructions at the top of this file.

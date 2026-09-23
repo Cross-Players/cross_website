@@ -5,7 +5,7 @@ import 'package:cross_website/constants/app_colors.dart';
 import 'package:cross_website/constants/image_constant.dart';
 import 'package:cross_website/constants/theme_toogle.dart';
 import 'package:cross_website/language/language_manager.dart';
-import 'package:cross_website/utils/events.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 import 'package:jaspr_router/jaspr_router.dart';
@@ -40,7 +40,6 @@ class HeaderState extends State<Header> {
 
   void resizedWebsite() {
     if (!kIsWeb) return;
-    captureVisit();
     screenSizeSub =
         web.EventStreamProviders.resizeEvent.forTarget(web.window).listen((e) {
       if (menuOpen && web.window.innerWidth > mobileBreakpoint) {
@@ -67,7 +66,7 @@ class HeaderState extends State<Header> {
   }
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
+  Component build(BuildContext context) {
     final selectedLang =
         context.watch(LanguageManager.selectedLanguageProvider);
 
@@ -93,7 +92,7 @@ class HeaderState extends State<Header> {
 
     final currentPath = Uri.parse(currentUrl).path;
 
-    var content = Fragment(key: contentKey, children: [
+    var content = Component.fragment(key: contentKey, [
       nav(classes: 'nav-menu', [
         for (var route in [
           if (currentPath != '/') ...[
@@ -129,7 +128,11 @@ class HeaderState extends State<Header> {
                 route.path == '/careers')
               Link(
                 to: route.path,
+<<<<<<< HEAD
                 child: text(route.label),
+=======
+                children: [Component.text(route.label)],
+>>>>>>> 23d32c0 (upgrade jaspr ver)
               )
             else
               div(
@@ -143,14 +146,14 @@ class HeaderState extends State<Header> {
                     },
                   },
                   [
-                    text(route.label)
+                    Component.text(route.label)
                   ]),
           ]),
-        Builder(builder: (context) sync* {
+        Builder(builder: (context) {
           final selectedLang =
               context.watch(LanguageManager.selectedLanguageProvider);
 
-          yield div(classes: "language-header", [
+          return div(classes: "language-header", [
             div(
               classes: "custom-select-display",
               styles: Styles(
@@ -216,7 +219,7 @@ class HeaderState extends State<Header> {
                         styles: Styles(
                           flex: Flex(grow: 1),
                         ),
-                        [text(lang.value)],
+                        [Component.text(lang.value)],
                       ),
                     ],
                   ),
@@ -230,7 +233,7 @@ class HeaderState extends State<Header> {
       ]),
     ]);
 
-    yield header([
+    return header([
       a(href: '/', [
         img(
           src: Images.crossLogo,

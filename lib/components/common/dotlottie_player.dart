@@ -1,3 +1,4 @@
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 class DotLottiePlayer extends StatelessComponent {
@@ -22,8 +23,8 @@ class DotLottiePlayer extends StatelessComponent {
     this.className,
   });
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield DomComponent(
+  Component build(BuildContext context) {
+    return Component.element(
       tag: 'dotlottie-player',
       attributes: {
         'src': src,
@@ -36,7 +37,6 @@ class DotLottiePlayer extends StatelessComponent {
         width: width != null ? Unit.pixels(width!) : null,
         height: height != null ? Unit.pixels(height!) : null,
       ),
-      child: div([]),
     );
   }
 }

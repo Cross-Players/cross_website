@@ -1,6 +1,7 @@
 import 'package:cross_website/components/common/button_primary_black.dart';
 import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/language/language_manager.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:cross_website/components/header.dart';
 import 'package:cross_website/constants/app_colors.dart';
@@ -11,20 +12,20 @@ class HeaderHomePage extends StatelessComponent {
   const HeaderHomePage({super.key});
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
+  Component build(BuildContext context) {
     final selectedLang =
         context.watch(LanguageManager.selectedLanguageProvider);
 
-    yield div(classes: 'header-web', [
+    return div(classes: 'header-web', [
       div(classes: 'header-web-padding', [
         div(classes: 'text-header-web', [
           div(classes: 'w500-60-custom', [
-            text(LanguageManager.translate(
+            Component.text(LanguageManager.translate(
                 'header_home_page_title', selectedLang)),
           ]),
           SizeBoxComponent(height: 35),
           div(classes: 'w400-20-custom', [
-            text(LanguageManager.translate(
+            Component.text(LanguageManager.translate(
                 'header_home_page_subtitle', selectedLang)),
           ]),
           SizeBoxComponent(height: 35),

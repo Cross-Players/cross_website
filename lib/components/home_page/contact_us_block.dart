@@ -5,6 +5,7 @@ import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/constants/app_colors.dart';
 import 'package:cross_website/constants/image_constant.dart';
 import 'package:cross_website/language/language_manager.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 import 'package:http/http.dart' as http;
@@ -106,11 +107,11 @@ class ContactUsBlockState extends State<ContactUsBlock> {
   }
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
+  Component build(BuildContext context) {
     final selectedLang =
         context.watch(LanguageManager.selectedLanguageProvider);
 
-    yield div(
+    return div(
       id: 'contact',
       styles: Styles(
         maxWidth: 100.percent,
@@ -151,8 +152,8 @@ class ContactUsBlockState extends State<ContactUsBlock> {
         justifyContent: JustifyContent.spaceBetween,
       ),
       [
-        text(LanguageManager.translate('contact_us_name_label', lang)),
-        input(
+        Component.text(LanguageManager.translate('contact_us_name_label', lang)),
+        input<String>(
           type: InputType.text,
           value: nameValue,
           onInput: (value) {
@@ -183,8 +184,8 @@ class ContactUsBlockState extends State<ContactUsBlock> {
         justifyContent: JustifyContent.spaceBetween,
       ),
       [
-        text(LanguageManager.translate('contact_us_email_label', lang)),
-        input(
+        Component.text(LanguageManager.translate('contact_us_email_label', lang)),
+        input<String>(
           type: InputType.text,
           value: emailValue,
           onInput: (value) {
@@ -215,8 +216,8 @@ class ContactUsBlockState extends State<ContactUsBlock> {
         justifyContent: JustifyContent.spaceBetween,
       ),
       [
-        text(LanguageManager.translate('contact_us_title_label', lang)),
-        input(
+        Component.text(LanguageManager.translate('contact_us_title_label', lang)),
+        input<String>(
           type: InputType.text,
           value: titleValue,
           onInput: (value) {
@@ -247,9 +248,9 @@ class ContactUsBlockState extends State<ContactUsBlock> {
         justifyContent: JustifyContent.spaceBetween,
       ),
       [
-        text(LanguageManager.translate('contact_us_message_label', lang)),
+        Component.text(LanguageManager.translate('contact_us_message_label', lang)),
         SizeBoxComponent(height: 6),
-        input(
+        input<String>(
           type: InputType.text,
           value: messageValue,
           onInput: (value) {
@@ -309,7 +310,7 @@ class ContactUsBlockState extends State<ContactUsBlock> {
                 fontSize: 16.px,
                 fontWeight: FontWeight.w500,
               ),
-              [text(successMessage!)],
+              [Component.text(successMessage!)],
             ),
           ],
         ),
@@ -357,7 +358,7 @@ class ContactUsBlockState extends State<ContactUsBlock> {
                 }
               },
         [
-          text(LanguageManager.translate('contact_us_issubmit', lang)),
+          Component.text(LanguageManager.translate('contact_us_issubmit', lang)),
         ],
       ),
     ]);

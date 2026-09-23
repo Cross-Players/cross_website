@@ -1,9 +1,13 @@
 import 'package:cross_website/constants/app_colors.dart';
 import 'package:cross_website/language/language_manager.dart';
 import 'package:cross_website/pages/about_new.dart';
+<<<<<<< HEAD
 import 'package:cross_website/pages/admin.dart';
 import 'package:cross_website/pages/career.dart';
 import 'package:cross_website/pages/policy/gplx_policy.dart';
+=======
+import 'package:jaspr/dom.dart';
+>>>>>>> 23d32c0 (upgrade jaspr ver)
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 import 'package:jaspr_router/jaspr_router.dart';
@@ -24,37 +28,15 @@ class App extends StatefulComponent {
 }
 
 class AppState extends State<App> {
-  bool _isLoading = true;
-  bool _hasError = false;
-
-  Future<void> _loadTranslations() async {
-    try {
-      final success = await LanguageManager.loadTranslations();
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-          _hasError = !success;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-          _hasError = true;
-        });
-      }
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    _loadTranslations();
+    LanguageManager.ensureLoaded();
   }
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield ProviderScope(
+  Component build(BuildContext context) {
+    return ProviderScope(
       child: div(classes: 'main', [
         Router(
           routes: [

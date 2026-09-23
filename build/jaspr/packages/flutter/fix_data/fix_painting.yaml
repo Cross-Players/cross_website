@@ -116,6 +116,7 @@ transforms:
     changes:
       - kind: 'rename'
         newName: 'fromViewPadding'
+<<<<<<< HEAD
 
   - title: "Rename from 'opacity' to 'a'"
     date: 2024-09-10
@@ -162,4 +163,6 @@ transforms:
       opacity:
         kind: 'fragment'
         value: 'arguments[0]'
+=======
+>>>>>>> 23d32c0 (upgrade jaspr ver)
 # Before adding a new fix: read instructions at the top of this file.

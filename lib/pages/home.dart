@@ -13,10 +13,10 @@ import 'package:cross_website/components/home_page/our_service.dart';
 import 'package:cross_website/components/home_page/process_block.dart';
 import 'package:cross_website/language/language_manager.dart';
 import 'package:cross_website/pages/loading_screen.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 
-@client
 class Home extends StatefulComponent {
   const Home({super.key});
 
@@ -32,38 +32,21 @@ class HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    _loadTranslations();
-  }
-
-  Future<void> _loadTranslations() async {
-    try {
-      final success = await LanguageManager.loadTranslations();
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-          _hasError = !success;
-        });
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-          _hasError = true;
-        });
-      }
-    }
+    _isLoading = false;
+    _hasError = !LanguageManager.ensureLoaded();
   }
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
+  Component build(BuildContext context) {
     final selectedLang =
         context.watch(LanguageManager.selectedLanguageProvider);
+    final children = <Component>[];
     if (_isLoading) {
-      yield LoadingScreen();
+      children.add(LoadingScreen());
     } else if (_hasError) {
-      text('Error');
+      Component.text('Error');
     } else {
-      yield div(
+      children.add(div(
           styles: Styles(
             raw: {
               'background': 'var(--gradientBackground)',
@@ -122,8 +105,9 @@ class HomeState extends State<Home> {
             ]),
             SizeBoxComponent(height: 140),
             FooterBlock(),
-          ]);
+          ]));
     }
+    return Component.fragment(children);
   }
 
   @css

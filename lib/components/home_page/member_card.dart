@@ -1,5 +1,6 @@
 import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/constants/app_colors.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 class MemberCard extends StatelessComponent {
@@ -21,8 +22,8 @@ class MemberCard extends StatelessComponent {
   });
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield navigateLink != null
+  Component build(BuildContext context) {
+    return navigateLink != null
         ? a(
             href: navigateLink!,
             target: Target.blank,
@@ -98,14 +99,14 @@ class MemberCard extends StatelessComponent {
                             fontSize: 20.px,
                             fontWeight: FontWeight.w500,
                           ),
-                          [Text(name)]),
+                          [Component.text(name)]),
                       div(
                           styles: Styles(
                               color: AppColors.textBlack,
                               textAlign: TextAlign.start,
                               fontSize: 18.px,
                               fontWeight: FontWeight.w400),
-                          [Text(position)]),
+                          [Component.text(position)]),
                     ])
               ]),
         ]);
@@ -128,6 +129,6 @@ class MemberCard extends StatelessComponent {
           fontSize: 18.px,
           fontWeight: FontWeight.w400,
         ),
-        [Text(content)]);
+        [Component.text(content)]);
   }
 }

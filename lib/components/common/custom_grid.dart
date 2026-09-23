@@ -1,3 +1,4 @@
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 class CustomGrid extends StatelessComponent {
@@ -5,8 +6,8 @@ class CustomGrid extends StatelessComponent {
   CustomGrid({required this.children, super.key});
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield section(id: 'customs', [
+  Component build(BuildContext context) {
+    return section(id: 'customs', [
       div(classes: 'custom-grid', children),
     ]);
   }

@@ -1,14 +1,15 @@
 import 'package:cross_website/components/common/dotlottie_player.dart';
 import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/constants/app_colors.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 class LoadingScreen extends StatelessComponent {
   const LoadingScreen({super.key});
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield div(classes: 'loading-container', [
+  Component build(BuildContext context) {
+    return div(classes: 'loading-container', [
       div(classes: 'loading-spinner', [
         DotLottiePlayer(
           src:
@@ -27,7 +28,7 @@ class LoadingScreen extends StatelessComponent {
             fontSize: 16.px,
             fontWeight: FontWeight.w500,
           ),
-          [text('Loading...')],
+          [Component.text('Loading...')],
         ),
       ]),
     ]);

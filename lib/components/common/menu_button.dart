@@ -1,3 +1,4 @@
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:cross_website/components/header.dart';
 import 'package:cross_website/constants/app_colors.dart';
@@ -10,22 +11,24 @@ class MenuButton extends StatelessComponent {
   final Component? child;
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield button(
-        classes: 'menu-toggle',
-        attributes: {'aria-label': 'Menu Toggle'},
-        onClick: onClick,
-        [
-          img(
-              src: child != null ? Images.closeIcon : Images.drawerIcon,
-              styles: Styles(width: 40.px, height: 40.px))
-        ]);
-    if (child != null) {
-      yield div(
-        classes: 'menu-overlay',
-        [child!],
-      );
-    }
+  Component build(BuildContext context) {
+    return Component.fragment([
+      button(
+          classes: 'menu-toggle',
+          attributes: {'aria-label': 'Menu Toggle'},
+          onClick: onClick,
+          [
+            img(
+                src: child != null ? Images.closeIcon : Images.drawerIcon,
+                styles: Styles(width: 40.px, height: 40.px))
+          ]),
+      if (child != null) 
+        div(
+          classes: 'menu-overlay',
+          [child!],
+        ),
+      
+    ]);
   }
 
   @css

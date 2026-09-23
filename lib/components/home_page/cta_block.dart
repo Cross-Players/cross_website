@@ -3,6 +3,7 @@ import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/constants/app_colors.dart';
 import 'package:cross_website/constants/image_constant.dart';
 import 'package:cross_website/language/language_manager.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 import 'package:universal_web/web.dart' as web;
@@ -11,11 +12,11 @@ class CtaBlock extends StatelessComponent {
   const CtaBlock({super.key});
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
+  Component build(BuildContext context) {
     final selectedLang =
         context.watch(LanguageManager.selectedLanguageProvider);
 
-    yield div(classes: 'cta_overall', [
+    return div(classes: 'cta_overall', [
       div(classes: 'cta_block', [
         div(classes: 'cta_text', [
           div(
@@ -25,7 +26,7 @@ class CtaBlock extends StatelessComponent {
               fontWeight: FontWeight.w500,
             ),
             [
-              text(LanguageManager.translate('cta_title', selectedLang)),
+              Component.text(LanguageManager.translate('cta_title', selectedLang)),
             ],
           ),
           SizeBoxComponent(height: 20),
@@ -36,7 +37,7 @@ class CtaBlock extends StatelessComponent {
               fontWeight: FontWeight.w400,
             ),
             [
-              text(LanguageManager.translate('cta_description', selectedLang)),
+              Component.text(LanguageManager.translate('cta_description', selectedLang)),
             ],
           ),
           SizeBoxComponent(height: 20),

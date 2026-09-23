@@ -1,4 +1,5 @@
 import 'package:cross_website/constants/app_colors.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 class CardProcessBlock extends StatefulComponent {
@@ -21,8 +22,8 @@ class CardProcessBlockState extends State<CardProcessBlock> {
   bool _isShowMoore = false;
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield button(
+  Component build(BuildContext context) {
+    return button(
         onClick: () => setState(
               () => _isShowMoore = !_isShowMoore,
             ),
@@ -48,10 +49,10 @@ class CardProcessBlockState extends State<CardProcessBlock> {
               ),
               [
                 div(classes: 'card_process_index', [
-                  Text(component.index),
+                  Component.text(component.index),
                 ]),
                 div(classes: 'card_process_title', [
-                  Text(component.title),
+                  Component.text(component.title),
                 ]),
                 _iconShowMore(),
               ]),
@@ -65,14 +66,14 @@ class CardProcessBlockState extends State<CardProcessBlock> {
                       fontWeight: FontWeight.w400),
                   [
                     // TODO(anyone): make content lign left
-                    Text(component.content),
+                    Component.text(component.content),
                   ])
             ])
         ]);
   }
 
   Component _iconShowMore() {
-    return div(classes: 'icon-show-more', [text(_isShowMoore ? "-" : "+")]);
+    return div(classes: 'icon-show-more', [Component.text(_isShowMoore ? "-" : "+")]);
   }
 
   Component _line() {

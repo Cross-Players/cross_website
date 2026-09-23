@@ -1,4 +1,5 @@
 import 'package:cross_website/constants/app_colors.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 class ButtonPrimaryBlack extends StatelessComponent {
@@ -8,12 +9,12 @@ class ButtonPrimaryBlack extends StatelessComponent {
   const ButtonPrimaryBlack({required this.text, this.onClick, super.key});
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield div(classes: 'btn-container', [
+  Component build(BuildContext context) {
+    return div(classes: 'btn-container', [
       div(
           classes: 'btn-primary-black',
           events: {'click': (_) => onClick?.call()},
-          [Text(text)])
+          [Component.text(text)])
     ]);
   }
 

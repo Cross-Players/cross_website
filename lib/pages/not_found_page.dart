@@ -1,3 +1,4 @@
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 @client
@@ -5,13 +6,13 @@ class NotFoundPage extends StatelessComponent {
   const NotFoundPage();
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield section(classes: 'not-found', [
-      h1([text('404 - Page Not Found')]),
-      p([text('Sorry, the page you are looking for does not exist.')]),
+  Component build(BuildContext context) {
+    return section(classes: 'not-found', [
+      h1([Component.text('404 - Page Not Found')]),
+      p([Component.text('Sorry, the page you are looking for does not exist.')]),
       a(
         href: '/',
-        [text('← Go back to homepage')],
+        [Component.text('← Go back to homepage')],
       ),
     ]);
   }

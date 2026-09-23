@@ -1,3 +1,4 @@
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/constants/app_colors.dart';
@@ -29,8 +30,8 @@ class ItemServices extends StatelessComponent {
       super.key});
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield div(
+  Component build(BuildContext context) {
+    return div(
         styles: Styles(
             display: Display.flex,
             width: 100.percent,
@@ -58,7 +59,7 @@ class ItemServices extends StatelessComponent {
                       fontWeight: FontWeight.w500,
                       backgroundColor: backgroundText ?? AppColors.greenPrimary,
                     ),
-                    [Text(word)],
+                    [Component.text(word)],
                   ),
               ],
             ),
@@ -86,7 +87,7 @@ class ItemServices extends StatelessComponent {
                           textAlign: TextAlign.start,
                           fontSize: 20.px,
                           fontWeight: FontWeight.w400),
-                      [Text(content ?? "")])
+                      [Component.text(content ?? "")])
                 ])
           ]),
           itemBig != null

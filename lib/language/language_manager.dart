@@ -1,9 +1,10 @@
-import 'dart:convert';
 import 'package:csv/csv.dart';
-import 'package:http/http.dart' as http;
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
+import 'package:jaspr_riverpod/legacy.dart';
 import 'package:universal_web/web.dart' as web;
+
+import '../locales/translations_data.dart';
 
 enum SupportLanguage {
   en,
@@ -14,11 +15,7 @@ enum SupportLanguage {
 
 class LanguageManager {
   static Map<String, Map<String, String>> translations = {};
-  static Future<bool>? _loadFuture;
   static const _languageKey = 'lang';
-  static const _cacheKey = 'translations_cache';
-  static const _cacheTimestampKey = 'translations_cache_timestamp';
-  static const _cacheDuration = Duration(hours: 24);
   static Map<String, dynamic> langAssets = {};
   static bool _hasCookieConsent = getCookieConsent();
   static bool get hasCookieConsent => _hasCookieConsent;
@@ -34,9 +31,6 @@ class LanguageManager {
     }
     return null;
   });
-
-  static const csvUrl =
-      'https://docs.google.com/spreadsheets/d/1DJ2ViLI_pEUuDvSK80m5VY-Ksdhx47NsVokixHmKRtY/export?format=csv&gid=0';
 
   static bool get isClient => kIsWeb;
 
@@ -166,49 +160,25 @@ class LanguageManager {
     'ja': '日本語',
   };
 
-  static Future<bool> loadTranslations({bool forceRefresh = false}) async {
-    if (_loadFuture != null && !forceRefresh) {
-      return _loadFuture!;
+  static bool _isLoaded = false;
+
+  /// Parses the bundled translations CSV into [translations].
+  ///
+  /// Synchronous because the data is a compiled-in constant. Safe to call
+  /// from `initState` directly (unlike `setState`, which can't run before
+  /// the first `build`).
+  static bool ensureLoaded({bool forceRefresh = false}) {
+    if (_isLoaded && !forceRefresh) {
+      return true;
     }
 
-    if (!forceRefresh && isClient) {
-      final cachedTranslations = _getCachedTranslations();
-      if (cachedTranslations != null && !_isCacheExpired()) {
-        translations = cachedTranslations;
-        return Future.value(true);
-      }
-    }
-
-    _loadFuture = _loadTranslationsImpl();
     try {
-      final result = await _loadFuture!;
-      _loadFuture = null;
-      return result;
-    } catch (e) {
-      _loadFuture = null;
-      print('Error in loadTranslations: $e');
-      return false;
-    }
-  }
-
-  static Future<bool> _loadTranslationsImpl() async {
-    try {
-      final response = await http.get(Uri.parse(csvUrl));
-      if (response.statusCode != 200) {
-        throw Exception('Failed to load CSV: ${response.statusCode}');
-      }
-
-      final utf8Body = utf8.decode(response.bodyBytes);
-      final rows = const CsvToListConverter().convert(utf8Body);
-
+      // Dart normalizes \r\n to \n when tokenizing raw string literals in
+      // source files, so the embedded CSV is LF-only regardless of the
+      // original file's line endings.
+      final rows = const CsvToListConverter(eol: '\n').convert(translationsCsv);
       if (rows.isEmpty) {
-        final cachedTranslations = _getCachedTranslations();
-        if (cachedTranslations != null) {
-          print('Using cached translations as fallback (empty CSV)');
-          translations = cachedTranslations;
-          return true;
-        }
-        print('No translations available: CSV is empty and no cache found');
+        print('No translations available: bundled CSV is empty');
         return false;
       }
 
@@ -225,65 +195,16 @@ class LanguageManager {
         }
       }
 
-      if (isClient) {
-        _saveToCache(translations);
-      }
+      _isLoaded = true;
       return true;
     } catch (e) {
-      final cachedTranslations = _getCachedTranslations();
-      if (cachedTranslations != null) {
-        print('Using cached translations as fallback (error: $e)');
-        translations = cachedTranslations;
-        return true;
-      }
-      print('Error loading translations: $e');
+      print('Error parsing bundled translations: $e');
       return false;
     }
   }
 
-  static Map<String, Map<String, String>>? _getCachedTranslations() {
-    if (!isClient || !_hasCookieConsent) {
-      print('No cookie consent or not client, skipping cache read');
-      return null;
-    }
-    try {
-      final cachedData = web.window.localStorage[_cacheKey];
-      if (cachedData != null) {
-        final decoded = jsonDecode(cachedData) as Map<String, dynamic>;
-        return decoded.map((key, value) => MapEntry(
-              key,
-              (value as Map)
-                  .map((k, v) => MapEntry(k.toString(), v.toString())),
-            ));
-      }
-    } catch (e) {
-      print('Error reading cache: $e');
-    }
-    return null;
-  }
-
-  static void _saveToCache(Map<String, Map<String, String>> translations) {
-    if (!isClient) return;
-    try {
-      web.window.localStorage[_cacheKey] = jsonEncode(translations);
-      web.window.localStorage[_cacheTimestampKey] =
-          DateTime.now().toIso8601String();
-    } catch (e) {
-      print('Error saving to cache: $e');
-    }
-  }
-
-  static bool _isCacheExpired() {
-    if (!isClient) return true;
-    try {
-      final timestampStr = web.window.localStorage[_cacheTimestampKey];
-      if (timestampStr == null) return true;
-      final timestamp = DateTime.parse(timestampStr);
-      return DateTime.now().difference(timestamp) > _cacheDuration;
-    } catch (e) {
-      print('Error checking cache expiration: $e');
-      return true;
-    }
+  static Future<bool> loadTranslations({bool forceRefresh = false}) async {
+    return ensureLoaded(forceRefresh: forceRefresh);
   }
 
   static String translate(String key, [String? langCode]) {

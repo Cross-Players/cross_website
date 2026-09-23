@@ -3,6 +3,7 @@ import 'package:cross_website/components/common/custom_grid.dart';
 import 'package:cross_website/components/home_page/member_card.dart';
 import 'package:cross_website/constants/image_constant.dart';
 import 'package:cross_website/language/language_manager.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 
@@ -57,13 +58,13 @@ class GroupOfCard extends StatelessComponent {
   }
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
+  Component build(BuildContext context) {
     final selectedLang =
         context.watch(LanguageManager.selectedLanguageProvider);
 
     final members = getListMemberCard(selectedLang);
 
-    yield div(
+    return div(
       styles: Styles(
         maxWidth: 100.percent,
       ),

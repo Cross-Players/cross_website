@@ -2,6 +2,7 @@ import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/constants/app_colors.dart';
 import 'package:cross_website/constants/image_constant.dart';
 import 'package:cross_website/language/language_manager.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 
@@ -9,11 +10,11 @@ class CaseStudiesBlock extends StatelessComponent {
   const CaseStudiesBlock({super.key});
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
+  Component build(BuildContext context) {
     final selectedLang =
         context.watch(LanguageManager.selectedLanguageProvider);
 
-    yield div(classes: 'case_studies_block', [
+    return div(classes: 'case_studies_block', [
       div(classes: 'inner_block', [
         _item(
           content: LanguageManager.translate(
@@ -34,11 +35,11 @@ class CaseStudiesBlock extends StatelessComponent {
   }
 
   Component _item({required String content}) {
-    return Builder(builder: (context) sync* {
+    return Builder(builder: (context) {
       final selectedLang =
           context.watch(LanguageManager.selectedLanguageProvider);
 
-      yield div(
+      return div(
         styles: Styles(
           display: Display.flex,
           flexDirection: FlexDirection.column,
@@ -50,7 +51,7 @@ class CaseStudiesBlock extends StatelessComponent {
               fontSize: 18.px,
               fontWeight: FontWeight.w400,
             ),
-            [Text(content)],
+            [Component.text(content)],
           ),
           SizeBoxComponent(height: 20),
           div(
@@ -66,7 +67,7 @@ class CaseStudiesBlock extends StatelessComponent {
                   fontWeight: FontWeight.w400,
                 ),
                 [
-                  Text(LanguageManager.translate(
+                  Component.text(LanguageManager.translate(
                       'case_studies_learn_more', selectedLang)),
                 ],
               ),

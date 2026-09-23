@@ -1,3 +1,4 @@
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 class SizeBoxComponent extends StatelessComponent {
@@ -7,8 +8,8 @@ class SizeBoxComponent extends StatelessComponent {
   const SizeBoxComponent({super.key, this.height, this.width});
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield div(
+  Component build(BuildContext context) {
+    return div(
         styles: Styles(
           width: width != null ? Unit.pixels(width!) : null,
           height: height != null ? Unit.pixels(height!) : null,

@@ -2,11 +2,11 @@ import 'package:cross_website/components/common/custom_grid.dart';
 import 'package:cross_website/components/header.dart';
 import 'package:cross_website/components/home_page/footer_block.dart';
 import 'package:cross_website/constants/app_colors.dart';
+import 'package:cross_website/language/language_manager.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
-import 'package:cross_website/language/language_manager.dart';
 
-@client
 class AboutNew extends StatefulComponent {
   const AboutNew({super.key});
   @css
@@ -552,10 +552,10 @@ class _AboutNewState extends State<AboutNew> {
   }
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
+  Component build(BuildContext context) {
     final selectedLang =
         context.watch(LanguageManager.selectedLanguageProvider);
-    yield div(classes: 'about-new-page', [
+    return div(classes: 'about-new-page', [
       const Header(),
       // Hero Section
       _buildHeroSection(),
@@ -590,7 +590,9 @@ class _AboutNewState extends State<AboutNew> {
   Component _buildHeroSection() {
     return section(classes: 'hero', [
       div(classes: 'container', [
-        h1(classes: 'hero-title', [text('Cross Technology and Education')]),
+        h1(
+            classes: 'hero-title',
+            [Component.text('Cross Technology and Education')]),
         // p(classes: 'hero-subtitle', [text('Sologan')]),
         // p(classes: 'hero-description', [
         //   text(
@@ -606,12 +608,13 @@ class _AboutNewState extends State<AboutNew> {
       div(classes: 'container', [
         div(classes: 'grid grid-2', [
           div([
-            h2(
-                classes: 'section-title',
-                [text(LanguageManager.translate('about_title', selectedLang))]),
+            h2(classes: 'section-title', [
+              Component.text(
+                  LanguageManager.translate('about_title', selectedLang))
+            ]),
             div(classes: 'space-y', [
               p(classes: 'description-text', [
-                text(LanguageManager.translate(
+                Component.text(LanguageManager.translate(
                     'about_description', selectedLang))
               ]),
             ]),
@@ -652,11 +655,13 @@ class _AboutNewState extends State<AboutNew> {
           div(classes: 'vision-icon', [
             img(src: 'images/vision.png', width: 80, height: 80),
           ]),
-          h2(
-              classes: 'vision-title',
-              [text(getLanguageText('about_goal_vision_title', selectedLang))]),
+          h2(classes: 'vision-title', [
+            Component.text(
+                getLanguageText('about_goal_vision_title', selectedLang))
+          ]),
           blockquote(classes: 'vision-text', [
-            text(getLanguageText('about_goal_vision_description', selectedLang))
+            Component.text(
+                getLanguageText('about_goal_vision_description', selectedLang))
           ]),
         ]),
       ]),
@@ -671,10 +676,11 @@ class _AboutNewState extends State<AboutNew> {
             img(src: 'images/mission.png', width: 80, height: 80),
           ]),
           h2(classes: 'vision-title', [
-            text(getLanguageText('about_goal_mission_title', selectedLang))
+            Component.text(
+                getLanguageText('about_goal_mission_title', selectedLang))
           ]),
           blockquote(classes: 'vision-text', [
-            text(
+            Component.text(
                 getLanguageText('about_goal_mission_description', selectedLang))
           ]),
         ]),
@@ -687,7 +693,8 @@ class _AboutNewState extends State<AboutNew> {
       div(classes: 'container', [
         div(classes: 'section-header', [
           h2(classes: 'section-title', [
-            text(getLanguageText('about_goal_philosophy_title', selectedLang))
+            Component.text(
+                getLanguageText('about_goal_philosophy_title', selectedLang))
           ]),
         ]),
         div(classes: 'grid grid-2', [
@@ -719,8 +726,8 @@ class _AboutNewState extends State<AboutNew> {
       div(classes: 'quote-icon', [
         img(src: imagePath, alt: 'Philosophy Icon', width: 90, height: 70),
       ]),
-      blockquote(classes: 'quote-text', [text(quote)]),
-      p(classes: 'quote-author', [text(author)]),
+      blockquote(classes: 'quote-text', [Component.text("$quote")]),
+      p(classes: 'quote-author', [Component.text('$author')]),
     ]);
   }
 
@@ -728,9 +735,10 @@ class _AboutNewState extends State<AboutNew> {
     return section(classes: 'section', [
       div(classes: 'container', [
         div(classes: 'section-header', [
-          h2(
-              classes: 'section-title',
-              [text(getLanguageText('about_key_value_title', selectedLang))]),
+          h2(classes: 'section-title', [
+            Component.text(
+                getLanguageText('about_key_value_title', selectedLang))
+          ]),
           // p(classes: 'section-subtitle', [
           //   text('Những giá trị định hình văn hóa và hành động của chúng tôi')
           // ]),
@@ -776,9 +784,9 @@ class _AboutNewState extends State<AboutNew> {
   Component _buildValueCard(
       String icon, String title, String description, String color) {
     return div(classes: 'card card-center', [
-      div(classes: 'card-icon card-icon-$color', [text(icon)]),
-      h3(classes: 'card-title $color-text', [text(title)]),
-      p(classes: 'card-description', [text(description)]),
+      div(classes: 'card-icon card-icon-$color', [Component.text(icon)]),
+      h3(classes: 'card-title $color-text', [Component.text(title)]),
+      p(classes: 'card-description', [Component.text(description)]),
     ]);
   }
 
@@ -786,12 +794,13 @@ class _AboutNewState extends State<AboutNew> {
     return section(classes: 'section section-alt', [
       div(classes: 'container', [
         div(classes: 'section-header', [
-          h2(
-              classes: 'section-title',
-              [text(getLanguageText('about_culture_title', selectedLang))]),
-          p(
-              classes: 'section-subtitle',
-              [text(getLanguageText('about_culture_sub_title', selectedLang))]),
+          h2(classes: 'section-title', [
+            Component.text(getLanguageText('about_culture_title', selectedLang))
+          ]),
+          p(classes: 'section-subtitle', [
+            Component.text(
+                getLanguageText('about_culture_sub_title', selectedLang))
+          ]),
         ]),
         div(classes: 'grid grid-2 culture-main', [
           div([
@@ -837,16 +846,16 @@ class _AboutNewState extends State<AboutNew> {
   Component _buildCultureFeature(String title) {
     return div(classes: 'culture-feature', [
       div([
-        h4(classes: 'feature-title', [text(title)]),
+        h4(classes: 'feature-title', [Component.text(title)]),
       ]),
     ]);
   }
 
   Component _buildCultureCard(String icon, String title, String description) {
     return div(classes: 'quote-card', [
-      div(classes: 'quote-icon', [text(icon)]),
-      h3(classes: 'card-title', [text(title)]),
-      p(classes: 'card-description', [text(description)]),
+      div(classes: 'quote-icon', [Component.text(icon)]),
+      h3(classes: 'card-title', [Component.text(title)]),
+      p(classes: 'card-description', [Component.text(description)]),
     ]);
   }
 }

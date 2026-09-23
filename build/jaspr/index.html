@@ -7,10 +7,10 @@
       @import url(https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap);
       @import url(https://fonts.googleapis.com/css?family=Roboto);
       html, body {
-        padding: 0;
-        margin: 0;
         width: 100%;
         min-height: 100vh;
+        padding: 0;
+        margin: 0;
         font-family: 'Space Grotesk', 'Andale Mono';
       }
       h1 {
@@ -19,611 +19,58 @@
       }
     </style>
     <link href="manifest.json" rel="manifest"/>
-    <script async src="flutter_bootstrap.js"></script>
     <link href="images/x_cross.png" rel="icon" type="image/png"/>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script type="module" src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"></script>
     <!--$-->
     <title>Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script id="theme-script">
+          (function() {
+            // Function to get cookie by name
+            function getCookie(name) {
+              let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+              return match ? match[2] : null;
+            }
+            
+            // Function to set cookie
+            function setCookie(name, value, days) {
+              let expires = "";
+              if (days) {
+                let date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+              }
+              document.cookie = name + "=" + value + expires + "; path=/";
+            }
+            
+            // Load the saved theme from cookies or use system preference
+            let userTheme = getCookie('active-theme');
+        
+            if (userTheme) {
+              document.documentElement.className = userTheme; // Apply stored theme
+            } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+              document.documentElement.className = 'dark'; // Use system dark mode
+            } else {
+              document.documentElement.className = 'light'; // Default to light mode
+            }
+        
+            // Function to toggle theme and save to cookies
+            window.toggleTheme = function() {
+              let currentTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+              document.documentElement.className = currentTheme;
+              setCookie('active-theme', currentTheme, 365); // Save for 1 year
+            };
+          })();
+          
+    </script>
     <!--/-->
-    <script src="main.clients.dart.js" defer></script>
+    <script src="main.client.dart.js" defer></script>
     <style>
-      @import url(https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap);
-      @import url(https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap);
-      @import url(https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap);
       @import url(font/lucide/lucide.css);
-      .btn-container {
-        display: flex;
-        cursor: pointer;
-      }
-      .btn-primary-black {
-        padding: 20px 20px;
-        border-radius: 14px;
-        color: var(--backgroundWhite);
-        font-family: 'Space Grotesk', 'Andale Mono';
-        font-size: 20px;
-        text-align: center;
-        background-color: var(--textBlack);
-        align-items: center;
-      }
-      #customs {
-        display: flex;
-        text-align: center;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-      }
-      #customs .custom-grid {
-        margin-bottom: 1.5rem;
-        display: flex;
-        max-width: 100rem;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-      }
-      #customs .custom-grid > * {
-        box-sizing: border-box;
-        flex-grow: 1;
-        flex-shrink: 0;
-        flex-basis: 15rem;
-      }
-      .menu-toggle {
-        padding: 0.7rem;
-        margin-right: 5%;
-        display: none;
-        border: unset;
-        outline: unset;
-        border-radius: 8px;
-        color: var(--textBlack);
-        font-size: 1.5rem;
-        background-color: var(--listLogoBackground);
-        align-items: center;
-      }
-      .menu-toggle:hover {
-        background-color: var(--hoverOverlayMenuButton);
-      }
-      .menu-overlay {
-        padding-top: 7rem;
-        display: flex;
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: 100;
-        background-color: var(--backgroundFaded);
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-        row-gap: 4rem;
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-      }
-      .menu-overlay nav {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        row-gap: 2rem;
-        flex-grow: 0;
-      }
-      .menu-overlay nav a {
-        font-size: 2rem;
-      }
-      .menu-overlay .header-actions {
-        display: flex;
-        flex-direction: row;
-      }
-      @media screen and (max-width: 1000px) {
-        header .menu-toggle {
-          display: flex;
-          position: relative;
-          z-index: 101;
-        }
-      }
-      .section_overall {
-        max-width: 100%;
-        justify-content: center;
-        align-items: center;
-        align-self: center;
-      }
-      .section_title {
-        padding: 80px 100px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-      }
-      .section_content {
-        width: 80vw;
-        color: var(--textBlack);
-        font-family: 'Space Grotesk', 'Andale Mono';
-        font-size: 18px;
-        font-weight: 400;
-        flex: auto;
-      }
-      .title_section {
-        padding-left: 10px;
-        padding-right: 10px;
-        border-radius: 8px;
-        color: var(--primaryColor);
-        font-family: 'Space Grotesk', 'Andale Mono';
-        font-size: 40px;
-        font-weight: 500;
-        white-space: nowrap;
-        background-color: var(--greenPrimary);
-      }
-      @media screen and (max-width: 1000px) {
-        .section_overall {
-          padding-left: 0px;
-          padding-right: 0px;
-        }
-        .section_title {
-          padding: 80px 5%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        .section_content {
-          margin-top: 20px;
-          text-align: center;
-        }
-        .title_section {
-          text-align: center;
-          white-space: unset;
-        }
-      }
-      .card_process_index {
-        color: var(--primaryColor);
-        font-size: 60px;
-        font-weight: 600;
-        flex-shrink: 0;
-      }
-      .card_process_title {
-        color: var(--primaryColor);
-        font-size: 30px;
-        font-weight: 600;
-        flex-grow: 1;
-      }
-      .icon-show-more {
-        margin-left: auto;
-        display: flex;
-        width: 58px;
-        height: 58px;
-        border-radius: 50px;
-        color: var(--primaryColor);
-        font-size: 36px;
-        font-weight: 600;
-        background-color: white;
-        justify-content: center;
-        align-items: center;
-        flex-shrink: 0;
-      }
-      @media screen and (max-width: 1000px) {
-        .card_process_title {
-          width: 80%;
-          font-size: 20px;
-          text-align: center;
-          justify-content: center;
-        }
-        .card_process_index {
-          font-size: 40px;
-        }
-        .icon-show-more {
-          width: 48px;
-          height: 48px;
-          font-size: 30px;
-        }
-      }
-      .case_studies_block {
-        max-width: 100%;
-        justify-content: center;
-        align-items: center;
-        align-self: center;
-      }
-      .inner_block {
-        padding: 70px 60px;
-        margin-left: 5%;
-        margin-right: 5%;
-        display: flex;
-        border-radius: 45px;
-        background-color: var(--textBlack);
-        flex-direction: row;
-        justify-content: space-between;
-      }
-      .line {
-        margin-left: 64px;
-        margin-right: 64px;
-        width: 1px;
-        border-radius: 2px;
-        background-color: var(--white);
-      }
-      @media screen and (max-width: 1000px) {
-        .inner_block {
-          display: flex;
-          flex-direction: column;
-        }
-      }
-      .detail_text_field {
-        padding-top: 60px;
-        padding-bottom: 60px;
-        width: 45%;
-      }
-      @media screen and (max-width: 900px) {
-        .contact_image {
-          display: none;
-          width: 0px;
-          height: 0px;
-        }
-        .detail_text_field {
-          padding-left: 5%;
-          padding-right: 5%;
-          width: 100%;
-        }
-      }
-      .cta_overall {
-        margin-top: 100px;
-        margin-bottom: 100px;
-        max-width: 100%;
-        justify-content: center;
-        align-items: center;
-        align-self: center;
-      }
-      .cta_block {
-        margin-left: 5%;
-        margin-right: 5%;
-        display: flex;
-        height: 100%;
-        border-radius: 45px;
-        background-color: var(--backgroundWhite);
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .cta_text {
-        padding: 60px;
-        display: flex;
-        width: 50%;
-        flex-direction: column;
-      }
-      .cta_image {
-        display: flex;
-        width: 50%;
-        justify-content: center;
-        align-items: center;
-        align-self: center;
-      }
-      @media screen and (max-width: 700px) {
-        .cta_block {
-          padding-left: 20px;
-          padding-right: 20px;
-          flex-direction: column;
-        }
-        .cta_text {
-          width: 100%;
-          text-align: center;
-          align-items: center;
-        }
-        .cta_image {
-          margin-bottom: 20px;
-          width: 100%;
-        }
-      }
-      .footer_block {
-        padding: 50px 5%;
-        margin-left: 5%;
-        margin-right: 5%;
-        display: flex;
-        border-top-left-radius: 45px;
-        border-top-right-radius: 45px;
-        background-color: var(--primaryColor);
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      .footer_header {
-        margin-bottom: 20px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .footer_body {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: start;
-      }
-      .footer_content_us {
-        display: flex;
-        width: 30%;
-        height: 100%;
-        color: white;
-        font-size: 18px;
-        font-weight: 400;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      .footer_map {
-        padding: 0px;
-        display: flex;
-        width: 65%;
-        height: 230px;
-        border-radius: 14px;
-        overflow: hidden;
-        background-color: var(--background292A32);
-        justify-content: center;
-        align-items: center;
-      }
-      .footer_map .map {
-        width: 100%;
-        height: 100%;
-        border-radius: 14px;
-        overflow: hidden;
-      }
-      @media screen and (max-width: 1000px) {
-        .footer_block {
-          background-color: var(--primaryColor);
-          flex-direction: column;
-          justify-content: space-between;
-        }
-        .footer_header {
-          text-align: center;
-          flex-direction: column;
-          gap: 20px;
-        }
-        .footer_body {
-          width: 100%;
-          flex-direction: column;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .footer_content_us {
-          width: 100%;
-          text-align: center;
-          align-items: center;
-        }
-        .footer_map {
-          padding: 0px;
-          margin-top: 20px;
-          margin-bottom: 20px;
-          width: 100%;
-          height: 200px;
-        }
-        .map {
-          width: 100%;
-          height: 100%;
-        }
-      }
-      @media screen and (max-width: 600px) {
-        .footer_map {
-          padding: 0px;
-          margin-top: 10px;
-          margin-bottom: 10px;
-          width: 100%;
-          height: 180px;
-        }
-        .map {
-          width: 100%;
-          height: 100%;
-        }
-      }
-      .header-web {
-        display: flex;
-        max-width: 100%;
-      }
-      .header-web-padding {
-        padding: 20px 5% 70px 5%;
-        display: flex;
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .text-header-web {
-        display: flex;
-        width: 45%;
-        flex-direction: column;
-      }
-      .w500-60-custom {
-        color: var(--textBlack);
-        font-family: 'Space Grotesk', 'Andale Mono';
-        font-size: 60px;
-        font-weight: 500;
-      }
-      .w400-20-custom {
-        color: var(--textBlack);
-        font-family: 'Space Grotesk', 'Andale Mono';
-        font-size: 20px;
-        font-weight: 400;
-      }
-      .primary_image {
-        width: 50%;
-        height: 700px;
-        border: none;
-      }
-      @media screen and (max-width: 1000px) {
-        .header-web-padding {
-          padding-left: 0%;
-          padding-right: 0%;
-          padding-bottom: 0%;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        .text-header-web {
-          display: flex;
-          width: 100%;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        .w500-60-custom {
-          color: var(--textBlack);
-          font-family: 'Space Grotesk', 'Andale Mono';
-          font-size: 60px;
-          font-weight: 500;
-          text-align: center;
-        }
-        .w400-20-custom {
-          color: var(--textBlack);
-          font-family: 'Space Grotesk', 'Andale Mono';
-          font-size: 20px;
-          font-weight: 400;
-          text-align: center;
-        }
-        .primary_image {
-          width: 100%;
-          height: 500px;
-        }
-        @media screen and (max-width: 1000px) {
-          .header-web {
-            padding-left: 3%;
-            padding-right: 3%;
-          }
-        }
-      }
-      .service_content {
-        display: flex;
-        width: 45%;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      .service_word {
-        padding-left: 10px;
-        padding-right: 10px;
-        display: flex;
-        width: 230px;
-        border-radius: 8px;
-        text-align: start;
-        flex-wrap: wrap;
-      }
-      @media screen and (max-width: 1254px) {
-        .service_word {
-          width: 100%;
-        }
-      }
-      @media screen and (max-width: 600px) {
-        .service_content {
-          width: 100%;
-          align-items: center;
-        }
-        .service_word {
-          width: 100%;
-          text-align: center;
-          justify-content: center;
-          align-items: center;
-        }
-        .service_image {
-          display: none;
-          width: 0px;
-          height: 0px;
-        }
-      }
-      .list-logo-container {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        display: flex;
-        max-width: 100%;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-      }
-      .list-logo-content {
-        padding-left: 100px;
-        padding-right: 100px;
-        display: flex;
-        width: 100%;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-      }
-      .list-logo-content img {
-        height: 80px;
-      }
-      @media screen and (max-width: 600px) {
-        .list-logo-content {
-          padding-left: 10px;
-          padding-right: 10px;
-        }
-      }
-      header {
-        padding-top: 1rem;
-        padding-left: 2rem;
-        padding-right: 2rem;
-        display: flex;
-        max-width: 100%;
-        z-index: 1;
-        justify-content: space-between;
-        align-items: center;
-      }
-      header > * {
-        display: flex;
-        align-items: center;
-      }
-      header .nav-menu a {
-        color: var(--textBlack);
-        font-family: 'Space Grotesk', 'Andale Mono';
-        font-size: 20px;
-        font-weight: 400;
-        text-decoration: none;
-      }
-      header .nav-item {
-        margin-left: 20px;
-        margin-right: 20px;
-        color: var(--textBlack);
-        font-family: 'Space Grotesk', 'Andale Mono';
-        font-size: 20px;
-        font-weight: 400;
-        text-decoration: none;
-      }
-      header .nav-menu {
-        justify-content: center;
-        align-items: center;
-      }
-      header .nav-menu div {
-        display: flex;
-        align-items: center;
-      }
-      .theme_toggle {
-        margin-left: 5px;
-      }
-      @media screen and (max-width: 1000px) {
-        header {
-          display: flex;
-          justify-content: space-between;
-        }
-        header > .nav-menu {
-          display: none;
-        }
-        header > nav {
-          display: none;
-        }
-        .theme_toggle {
-          margin-left: 0px;
-          margin-right: 0rem;
-        }
-      }
-      .language-header {
-        padding-left: 10px;
-        padding-right: 10px;
-        display: flex;
-        height: 45px;
-        border-radius: 14px;
-        align-items: center;
-      }
-      .language-header:hover {
-        background-color: var(--hoverOverlayColor);
-      }
-      .language-header select {
-        border: none;
-        cursor: pointer;
-        color: var(--textBlack);
-        font-family: 'Space Grotesk', 'Andale Mono';
-        font-size: 18px;
-        font-weight: 400;
-        text-align: center;
-        background-color: transparent;
-      }
+      @import url(https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap);
       html, body {
         padding: 0;
         margin: 0;
@@ -687,15 +134,634 @@
           --sectionPadding: 4rem;
         }
       }
-      .theme-toggle {
-        padding: 0.7rem;
+      .main {
         display: flex;
+        max-width: 100%;
+        flex-direction: column;
+        background-color: var(--backgroundTheme);
+      }
+      .main section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+      }
+      .loading-container {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--backgroundTheme);
+      }
+      .loading-spinner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      header {
+        display: flex;
+        z-index: 1;
+        max-width: 100%;
+        padding-top: 1rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header > * {
+        display: flex;
+        align-items: center;
+      }
+      header .nav-menu a {
+        color: var(--textBlack);
+        font-family: 'Space Grotesk', 'Andale Mono';
+        font-size: 20px;
+        font-weight: 400;
+        text-decoration: none;
+      }
+      header .nav-item {
+        margin-left: 20px;
+        margin-right: 20px;
+        color: var(--textBlack);
+        font-family: 'Space Grotesk', 'Andale Mono';
+        font-size: 20px;
+        font-weight: 400;
+        text-decoration: none;
+      }
+      header .nav-menu {
+        justify-content: center;
+        align-items: center;
+      }
+      header .nav-menu div {
+        display: flex;
+        align-items: center;
+      }
+      .theme_toggle {
+        margin-left: 5px;
+      }
+      @media screen and (max-width: 1000px) {
+        header {
+          display: flex;
+          justify-content: space-between;
+        }
+        header > .nav-menu {
+          display: none;
+        }
+        header > nav {
+          display: none;
+        }
+        .theme_toggle {
+          margin-left: 0px;
+          margin-right: 0rem;
+        }
+      }
+      .language-header {
+        display: flex;
+        height: 45px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 14px;
+        align-items: center;
+      }
+      .language-header:hover {
+        background-color: var(--hoverOverlayColor);
+      }
+      .language-header select {
+        border: none;
+        cursor: pointer;
+        color: var(--textBlack);
+        text-align: center;
+        font-family: 'Space Grotesk', 'Andale Mono';
+        font-size: 18px;
+        font-weight: 400;
+        background-color: transparent;
+      }
+      .btn-container {
+        display: flex;
+        cursor: pointer;
+      }
+      .btn-primary-black {
+        padding: 20px 20px;
+        border-radius: 14px;
+        align-items: center;
+        color: var(--backgroundWhite);
+        text-align: center;
+        font-family: 'Space Grotesk', 'Andale Mono';
+        font-size: 20px;
+        background-color: var(--textBlack);
+      }
+      #customs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        text-align: center;
+      }
+      #customs .custom-grid {
+        display: flex;
+        max-width: 100rem;
+        margin-bottom: 1.5rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      #customs .custom-grid > * {
+        box-sizing: border-box;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 15rem;
+      }
+      .menu-toggle {
+        display: none;
+        padding: 0.7rem;
+        margin-right: 5%;
         border: unset;
-        outline: unset;
         border-radius: 8px;
+        outline: unset;
+        align-items: center;
+        color: var(--textBlack);
+        font-size: 1.5rem;
+        background-color: var(--listLogoBackground);
+      }
+      .menu-toggle:hover {
+        background-color: var(--hoverOverlayMenuButton);
+      }
+      .menu-overlay {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 100;
+        padding-top: 7rem;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        row-gap: 4rem;
+        background-color: var(--backgroundFaded);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+      }
+      .menu-overlay nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 2rem;
+        flex-grow: 0;
+      }
+      .menu-overlay nav a {
+        font-size: 2rem;
+      }
+      .menu-overlay .header-actions {
+        display: flex;
+        flex-direction: row;
+      }
+      @media screen and (max-width: 1000px) {
+        header .menu-toggle {
+          display: flex;
+          position: relative;
+          z-index: 101;
+        }
+      }
+      .section_overall {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+      }
+      .section_title {
+        display: flex;
+        padding: 80px 100px;
+        flex-direction: row;
+        align-items: center;
+      }
+      .section_content {
+        width: 80vw;
+        flex: auto;
+        color: var(--textBlack);
+        font-family: 'Space Grotesk', 'Andale Mono';
+        font-size: 18px;
+        font-weight: 400;
+      }
+      .title_section {
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 8px;
+        color: var(--primaryColor);
+        font-family: 'Space Grotesk', 'Andale Mono';
+        font-size: 40px;
+        font-weight: 500;
+        white-space: nowrap;
+        background-color: var(--greenPrimary);
+      }
+      @media screen and (max-width: 1000px) {
+        .section_overall {
+          padding-left: 0px;
+          padding-right: 0px;
+        }
+        .section_title {
+          display: flex;
+          padding: 80px 5%;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .section_content {
+          margin-top: 20px;
+          text-align: center;
+        }
+        .title_section {
+          text-align: center;
+          white-space: unset;
+        }
+      }
+      .card_process_index {
+        flex-shrink: 0;
+        color: var(--primaryColor);
+        font-size: 60px;
+        font-weight: 600;
+      }
+      .card_process_title {
+        flex-grow: 1;
+        color: var(--primaryColor);
+        font-size: 30px;
+        font-weight: 600;
+      }
+      .icon-show-more {
+        display: flex;
+        width: 58px;
+        height: 58px;
+        margin-left: auto;
+        border-radius: 50px;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        color: var(--primaryColor);
+        font-size: 36px;
+        font-weight: 600;
+        background-color: white;
+      }
+      @media screen and (max-width: 1000px) {
+        .card_process_title {
+          width: 80%;
+          justify-content: center;
+          text-align: center;
+          font-size: 20px;
+        }
+        .card_process_index {
+          font-size: 40px;
+        }
+        .icon-show-more {
+          width: 48px;
+          height: 48px;
+          font-size: 30px;
+        }
+      }
+      .case_studies_block {
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+      }
+      .inner_block {
+        display: flex;
+        padding: 70px 60px;
+        margin-left: 5%;
+        margin-right: 5%;
+        border-radius: 45px;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: var(--textBlack);
+      }
+      .line {
+        width: 1px;
+        margin-left: 64px;
+        margin-right: 64px;
+        border-radius: 2px;
+        background-color: var(--white);
+      }
+      @media screen and (max-width: 1000px) {
+        .inner_block {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      .detail_text_field {
+        width: 45%;
+        padding-top: 60px;
+        padding-bottom: 60px;
+      }
+      @media screen and (max-width: 900px) {
+        .contact_image {
+          display: none;
+          width: 0px;
+          height: 0px;
+        }
+        .detail_text_field {
+          width: 100%;
+          padding-left: 5%;
+          padding-right: 5%;
+        }
+      }
+      .cta_overall {
+        max-width: 100%;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+      }
+      .cta_block {
+        display: flex;
+        height: 100%;
+        margin-left: 5%;
+        margin-right: 5%;
+        border-radius: 45px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--backgroundWhite);
+      }
+      .cta_text {
+        display: flex;
+        width: 50%;
+        padding: 60px;
+        flex-direction: column;
+      }
+      .cta_image {
+        display: flex;
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+      }
+      @media screen and (max-width: 700px) {
+        .cta_block {
+          padding-left: 20px;
+          padding-right: 20px;
+          flex-direction: column;
+        }
+        .cta_text {
+          width: 100%;
+          align-items: center;
+          text-align: center;
+        }
+        .cta_image {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+      }
+      .footer_block {
+        display: flex;
+        padding: 50px 5%;
+        margin-left: 5%;
+        margin-right: 5%;
+        border-top-left-radius: 45px;
+        border-top-right-radius: 45px;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: var(--primaryColor);
+      }
+      .footer_header {
+        display: flex;
+        margin-bottom: 20px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .footer_body {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: start;
+      }
+      .footer_content_us {
+        display: flex;
+        width: 30%;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+        color: white;
+        font-size: 18px;
+        font-weight: 400;
+      }
+      .footer_map {
+        display: flex;
+        width: 65%;
+        height: 230px;
+        padding: 0px;
+        border-radius: 14px;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--background292A32);
+      }
+      .footer_map .map {
+        width: 100%;
+        height: 100%;
+        border-radius: 14px;
+        overflow: hidden;
+      }
+      @media screen and (max-width: 1000px) {
+        .footer_block {
+          flex-direction: column;
+          justify-content: space-between;
+          background-color: var(--primaryColor);
+        }
+        .footer_header {
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
+        }
+        .footer_body {
+          width: 100%;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .footer_content_us {
+          width: 100%;
+          align-items: center;
+          text-align: center;
+        }
+        .footer_map {
+          width: 100%;
+          height: 200px;
+          padding: 0px;
+          margin-top: 20px;
+          margin-bottom: 20px;
+        }
+        .map {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      @media screen and (max-width: 600px) {
+        .footer_map {
+          width: 100%;
+          height: 180px;
+          padding: 0px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+        .map {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .header-web {
+        display: flex;
+        max-width: 100%;
+      }
+      .header-web-padding {
+        display: flex;
+        width: 100%;
+        padding: 20px 5% 70px 5%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .text-header-web {
+        display: flex;
+        width: 45%;
+        flex-direction: column;
+      }
+      .w500-60-custom {
+        color: var(--textBlack);
+        font-family: 'Space Grotesk', 'Andale Mono';
+        font-size: 60px;
+        font-weight: 500;
+      }
+      .w400-20-custom {
+        color: var(--textBlack);
+        font-family: 'Space Grotesk', 'Andale Mono';
+        font-size: 20px;
+        font-weight: 400;
+      }
+      .primary_image {
+        width: 50%;
+        height: 700px;
+        border: none;
+      }
+      @media screen and (max-width: 1000px) {
+        .header-web-padding {
+          padding-left: 0%;
+          padding-right: 0%;
+          padding-bottom: 0%;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .text-header-web {
+          display: flex;
+          width: 100%;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .w500-60-custom {
+          color: var(--textBlack);
+          text-align: center;
+          font-family: 'Space Grotesk', 'Andale Mono';
+          font-size: 60px;
+          font-weight: 500;
+        }
+        .w400-20-custom {
+          color: var(--textBlack);
+          text-align: center;
+          font-family: 'Space Grotesk', 'Andale Mono';
+          font-size: 20px;
+          font-weight: 400;
+        }
+        .primary_image {
+          width: 100%;
+          height: 500px;
+        }
+        @media screen and (max-width: 1000px) {
+          .header-web {
+            padding-left: 3%;
+            padding-right: 3%;
+          }
+        }
+      }
+      .service_content {
+        display: flex;
+        width: 45%;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .service_word {
+        display: flex;
+        width: 230px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 8px;
+        flex-wrap: wrap;
+        text-align: start;
+      }
+      @media screen and (max-width: 1254px) {
+        .service_word {
+          width: 100%;
+        }
+      }
+      @media screen and (max-width: 600px) {
+        .service_content {
+          width: 100%;
+          align-items: center;
+        }
+        .service_word {
+          width: 100%;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+        .service_image {
+          display: none;
+          width: 0px;
+          height: 0px;
+        }
+      }
+      .list-logo-container {
+        display: flex;
+        max-width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .list-logo-content {
+        display: flex;
+        width: 100%;
+        padding-left: 100px;
+        padding-right: 100px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+      .list-logo-content img {
+        height: 80px;
+      }
+      @media screen and (max-width: 600px) {
+        .list-logo-content {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+      }
+      .theme-toggle {
+        display: flex;
+        padding: 0.7rem;
+        border: unset;
+        border-radius: 8px;
+        outline: unset;
+        align-items: center;
         color: var(--textBlack);
         background-color: transparent;
-        align-items: center;
       }
       .theme-toggle:hover {
         background-color: var(--hoverOverlayColor);
@@ -732,11 +798,11 @@
         background-color: var(--backgroundTheme);
       }
       .container {
+        max-width: 1200px;
         padding-left: 16px;
         padding-right: 16px;
         margin-left: auto;
         margin-right: auto;
-        max-width: 1200px;
         justify-content: center;
         align-items: center;
         align-self: center;
@@ -744,9 +810,9 @@
       .hero {
         padding-top: 80px;
         padding-bottom: 80px;
-        text-align: center;
         justify-content: center;
         align-items: center;
+        text-align: center;
         background: var(--gradientBackground);
       }
       .hero-title {
@@ -757,18 +823,18 @@
         background-clip: text;
       }
       .hero-subtitle {
+        max-width: 768px;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 16px;
-        max-width: 768px;
         color: var(--gray-700);
         font-size: clamp(1.25rem, 3vw, 1.5rem);
       }
       .hero-description {
+        max-width: 512px;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 32px;
-        max-width: 512px;
         color: var(--gray-600);
         font-size: 18px;
       }
@@ -812,9 +878,9 @@
         margin-top: 1.5rem;
       }
       .image-container {
+        position: relative;
         width: 100%;
         height: 400px;
-        position: relative;
       }
       .team-image, .culture-image {
         width: 100%;
@@ -824,22 +890,22 @@
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
       }
       .image-overlay {
-        width: 100%;
-        height: 400px;
-        border-radius: 16px;
         position: absolute;
         top: 0px;
         left: 0px;
         bottom: 0px;
         right: 0px;
+        width: 100%;
+        height: 400px;
+        border-radius: 16px;
         background: linear-gradient(135deg, rgba(53, 218, 255, 0.2), rgba(59, 130, 246, 0.2));
       }
       .purple-overlay {
         background: linear-gradient(135deg, rgba(53, 218, 255, 0.2), rgba(168, 85, 247, 0.2));
       }
       .stats-grid {
-        margin-top: 32px;
         display: grid;
+        margin-top: 32px;
         gap: 32px;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       }
@@ -879,16 +945,16 @@
         text-align: center;
       }
       .card-icon {
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 24px;
         display: flex;
         width: 64px;
         height: 64px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 24px;
         border-radius: 50px;
-        font-size: 32px;
         justify-content: center;
         align-items: center;
+        font-size: 32px;
       }
       .card-icon-cyan {
         background: linear-gradient(135deg, #ccf7fe, #99effd);
@@ -950,8 +1016,8 @@
       .quote-text {
         margin-bottom: 16px;
         color: var(--quoteTextColor);
-        font-style: italic;
         font-size: 20px;
+        font-style: italic;
       }
       .quote-author {
         color: var(--textBlack);
@@ -959,10 +1025,10 @@
         font-weight: 600;
       }
       .vision-card {
+        max-width: 1024px;
         padding: 48px;
         margin-left: auto;
         margin-right: auto;
-        max-width: 1024px;
         border-radius: 16px;
         text-align: center;
         background: var(--cardBackground);
@@ -976,11 +1042,11 @@
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
       }
       .vision-icon {
+        width: 80px;
+        height: 80px;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 24px;
-        width: 80px;
-        height: 80px;
         color: var(--primary-cyan);
       }
       .purple-icon {
@@ -1042,8 +1108,8 @@
         background-color: var(--gray-900);
       }
       .footer-content {
-        margin-bottom: 32px;
         display: grid;
+        margin-bottom: 32px;
         gap: 32px;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       }
@@ -1074,9 +1140,9 @@
       }
       .contact-info {
         display: flex;
-        color: var(--gray-400);
         flex-direction: column;
         gap: 8px;
+        color: var(--gray-400);
       }
       .contact-item {
         display: flex;
@@ -1153,13 +1219,17 @@
         display: flex;
         width: 100vw;
         height: 100vh;
-        background-color: var(--backgroundTheme);
         justify-content: center;
         align-items: center;
+        background-color: var(--backgroundTheme);
       }
       .loading-spinner {
         display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         text-align: center;
+<<<<<<< HEAD
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -1194,6 +1264,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+=======
+>>>>>>> 23d32c0 (upgrade jaspr ver)
       }
     </style>
   </head>
@@ -1201,11 +1273,513 @@
     <!--@app-->
     <!--${}-->
     <div class="main">
-      <div class="loading-container">
-        <div class="loading-spinner">
-          <dotlottie-player style="width: 100px; height: 100px" src="https://lottie.host/5ab9acca-7662-4dcf-8ac8-dc4670cb16dd/aE8Z02PyVA.lottie" background="transparent" speed="1.0" loop autoplay><div></div></dotlottie-player>
-          <div style="height: 30px"></div>
-          <p style="color: var(--textBlack); font-size: 16px; font-weight: 500">Loading...</p>
+      <div style="background: var(--gradientBackground)">
+        <div style="box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); background-color: var(--textBlack); position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); padding: 15px 15px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; font-family: Arial, sans-serif; z-index: 1000; max-width: 800px; gap: 20px">
+          <div style="display: flex; flex-direction: column; gap: 6px; max-width: 500px">
+            <p style="display: flex; padding: 0px; margin: 0px; flex-wrap: wrap; color: var(--backgroundTheme)">We use cookies to improve your experience.</p>
+            <div style="display: flex; flex-direction: row; flex-wrap: wrap">
+              <p style="display: flex; padding: 0px; margin: 0px; flex-wrap: wrap; color: var(--backgroundTheme)">Learn more in our</p>
+              <div style="width: 5px"></div>
+              <a style="color: #f5a623; text-decoration: none" href="/privacy-policy">Privacy Policy</a>
+              .
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px">
+            <button style="border: solid var(--backgroundTheme) 1px; cursor: pointer; color: var(--backgroundTheme); background-color: transparent; padding: 8px 20px; border-radius: 24px; font-weight: bold">Decline</button>
+            <button style="color: var(--textBlack); background-color: var(--backgroundTheme); border: none; padding: 8px 20px; border-radius: 24px; cursor: pointer; font-weight: bold">Accept</button>
+          </div>
+        </div>
+        <header>
+          <a href="/">
+            <img style="width: 120px; height: 120px; padding: 0.7rem; margin-left: 5%; border-radius: 8px; color: var(--textBlack)" src="images/x_cross.png"/>
+          </a>
+          <nav class="nav-menu">
+            <div class="nav-item"><a href="/about">About Us</a></div>
+            <div class="nav-item"><div style="cursor: pointer; text-decoration: none">Services</div></div>
+            <div class="nav-item"><div style="cursor: pointer; text-decoration: none">Contact</div></div>
+            <div class="nav-item"><div style="cursor: pointer; text-decoration: none">Careers</div></div>
+            <div class="language-header">
+              <div class="custom-select-display" style="display: flex; padding-left: 8px; padding-right: 8px; cursor: pointer; align-items: center"><img style="width: 35px; height: 25px" src="images/flags/us.svg"/></div>
+              <select style="position: absolute; z-index: 1; width: 50px; height: 30px; opacity: 0.0; cursor: pointer">
+                <option style="display: flex; padding: 2px 1px; align-items: center; color: var(--textBlack)" value="en" selected>
+                  <img style="width: 20px; height: 15px; margin-right: 12px" src="images/flags/us.svg"/>
+                  <span style="flex-grow: 1">English</span>
+                </option>
+                <option style="display: flex; padding: 2px 1px; align-items: center; color: var(--textBlack)" value="vi">
+                  <img style="width: 20px; height: 15px; margin-right: 12px" src="images/flags/vn.svg"/>
+                  <span style="flex-grow: 1">Tiếng Việt</span>
+                </option>
+                <option style="display: flex; padding: 2px 1px; align-items: center; color: var(--textBlack)" value="ko">
+                  <img style="width: 20px; height: 15px; margin-right: 12px" src="images/flags/kr.svg"/>
+                  <span style="flex-grow: 1">한국어</span>
+                </option>
+                <option style="display: flex; padding: 2px 1px; align-items: center; color: var(--textBlack)" value="ja">
+                  <img style="width: 20px; height: 15px; margin-right: 12px" src="images/flags/jp.svg"/>
+                  <span style="flex-grow: 1">日本語</span>
+                </option>
+              </select>
+            </div>
+            <div class="theme_toggle">
+              <button class="theme-toggle" style="visibility: hidden" aria-label="Theme Toggle"><img src="images/sun.svg"/></button>
+            </div>
+          </nav>
+          <button class="menu-toggle" aria-label="Menu Toggle"><img style="width: 40px; height: 40px" src="images/menu-svgrepo-com.svg"/></button>
+        </header>
+        <div class="header-web">
+          <div class="header-web-padding">
+            <div class="text-header-web">
+              <div class="w500-60-custom">Innovating the Future with Cross Tech &amp; Edu</div>
+              <div style="height: 35px"></div>
+              <div class="w400-20-custom">We accompany businesses with advanced solutions for sustainable development in the digital world</div>
+              <div style="height: 35px"></div>
+              <div class="btn-container"><div class="btn-primary-black">Discover Our Solutions</div></div>
+            </div>
+            <iframe class="primary_image" src="https://lottie.host/embed/3a7f8b85-040f-422b-a652-b0cb1561e655/AnFjBAGkJL.lottie"></iframe>
+          </div>
+        </div>
+        <div class="list-logo-container">
+          <div class="list-logo-content">
+            <a href="https://jvb-corp.com/vi/" target="_blank"><img src="images/jvb_logo.svg"/></a>
+            <a href="https://ited.edu.vn/" target="_blank"><img src="images/ited.jpg"/></a>
+            <a href="https://vfastsoft.com/" target="_blank"><img src="images/vfast.png"/></a>
+            <img src="images/LaiXeVanXuan.jpg"/>
+          </div>
+        </div>
+        <div id="services">
+          <div class="section_overall">
+            <div class="section_title">
+              <h1 class="title_section">Services</h1>
+              <div style="width: 40px"></div>
+              <div class="section_content">Explore real-world examples of our proven digital marketing success through case studies</div>
+            </div>
+          </div>
+          <div style="display: flex; max-width: 100%; flex-direction: column; justify-content: center; align-items: center; align-self: center">
+            <div style="display: flex; max-width: 100%; padding-left: 10%; padding-right: 10%; justify-content: center; align-items: center; align-self: center">
+              <section id="customs">
+                <div class="custom-grid">
+                  <div style="display: flex; width: 100%; padding: 50px; border: solid var(--primaryColor) 1px; border-radius: 45px; box-shadow: 0px 5px var(--primaryColor); flex-direction: row; justify-content: space-between; background-color: #F3F3F3">
+                    <div class="service_content">
+                      <div class="service_word">
+                        <span style="padding: 4px 6px; border-radius: 4px; color: var(--primaryColor); font-size: 30px; font-weight: 500; background-color: var(--greenPrimary)">Mobile</span>
+                        <span style="padding: 4px 6px; border-radius: 4px; color: var(--primaryColor); font-size: 30px; font-weight: 500; background-color: var(--greenPrimary)">App</span>
+                        <span style="padding: 4px 6px; border-radius: 4px; color: var(--primaryColor); font-size: 30px; font-weight: 500; background-color: var(--greenPrimary)">Development</span>
+                      </div>
+                      <div style="height: 20px"></div>
+                      <div style="display: flex; width: 230px; flex-direction: row; align-items: center">
+                        <img style="padding: 10px; border-radius: 20px; background-color: white" width="20" height="20" src="images/arrow_up_right.svg"/>
+                        <div style="width: 15px"></div>
+                        <div style="color: var(--primaryColor); text-align: start; font-size: 20px; font-weight: 400">Flutter, React, Swift, Kotlin</div>
+                      </div>
+                    </div>
+                    <img class="service_image" width="200" height="200" src="images/mobile_image.svg"/>
+                  </div>
+                  <div style="display: flex; width: 100%; padding: 50px; border: solid var(--primaryColor) 1px; border-radius: 45px; box-shadow: 0px 5px var(--primaryColor); flex-direction: row; justify-content: space-between; background-color: var(--greenPrimary)">
+                    <div class="service_content">
+                      <div class="service_word">
+                        <span style="padding: 4px 6px; border-radius: 4px; color: var(--primaryColor); font-size: 30px; font-weight: 500; background-color: white">Web</span>
+                        <span style="padding: 4px 6px; border-radius: 4px; color: var(--primaryColor); font-size: 30px; font-weight: 500; background-color: white">App</span>
+                        <span style="padding: 4px 6px; border-radius: 4px; color: var(--primaryColor); font-size: 30px; font-weight: 500; background-color: white">Development</span>
+                      </div>
+                      <div style="height: 20px"></div>
+                      <div style="display: flex; width: 230px; flex-direction: row; align-items: center">
+                        <img style="padding: 10px; border-radius: 20px; background-color: white" width="20" height="20" src="images/arrow_up_right.svg"/>
+                        <div style="width: 15px"></div>
+                        <div style="color: var(--primaryColor); text-align: start; font-size: 20px; font-weight: 400">Flutter, React, NodeJs, PHP...</div>
+                      </div>
+                    </div>
+                    <img class="service_image" width="200" height="200" src="images/web_image.svg"/>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div style="display: flex; max-width: 100%; padding-left: 10%; padding-right: 10%; justify-content: center; align-items: center; align-self: center">
+              <section id="customs">
+                <div class="custom-grid">
+                  <div style="display: flex; width: 100%; padding: 50px; border: solid var(--primaryColor) 1px; border-radius: 45px; box-shadow: 0px 5px var(--primaryColor); flex-direction: row; justify-content: space-between; background-color: var(--primaryColor)">
+                    <div class="service_content">
+                      <div class="service_word">
+                        <span style="padding: 4px 6px; border-radius: 4px; color: var(--primaryColor); font-size: 30px; font-weight: 500; background-color: white">IT</span>
+                        <span style="padding: 4px 6px; border-radius: 4px; color: var(--primaryColor); font-size: 30px; font-weight: 500; background-color: white">Human</span>
+                        <span style="padding: 4px 6px; border-radius: 4px; color: var(--primaryColor); font-size: 30px; font-weight: 500; background-color: white">Resource</span>
+                        <span style="padding: 4px 6px; border-radius: 4px; color: var(--primaryColor); font-size: 30px; font-weight: 500; background-color: white">Provider</span>
+                      </div>
+                      <div style="height: 20px"></div>
+                      <div style="display: flex; width: 230px; flex-direction: row; align-items: center">
+                        <img style="padding: 10px; border-radius: 20px; background-color: white" width="20" height="20" src="images/arrow_up_right.svg"/>
+                        <div style="width: 15px"></div>
+                        <div style="color: white; text-align: start; font-size: 20px; font-weight: 400">Onsite model in Hanoi</div>
+                      </div>
+                    </div>
+                    <img class="service_image" width="200" height="200" src="images/employee_supply_image.svg"/>
+                  </div>
+                  <div style="display: flex; width: 100%; padding: 50px; border: solid var(--primaryColor) 1px; border-radius: 45px; box-shadow: 0px 5px var(--primaryColor); flex-direction: row; justify-content: space-between; background-color: #F3F3F3">
+                    <div class="service_content">
+                      <div class="service_word">
+                        <span style="padding: 4px 6px; border-radius: 4px; color: var(--primaryColor); font-size: 30px; font-weight: 500; background-color: var(--greenPrimary)">Human</span>
+                        <span style="padding: 4px 6px; border-radius: 4px; color: var(--primaryColor); font-size: 30px; font-weight: 500; background-color: var(--greenPrimary)">Resource</span>
+                        <span style="padding: 4px 6px; border-radius: 4px; color: var(--primaryColor); font-size: 30px; font-weight: 500; background-color: var(--greenPrimary)">Training</span>
+                      </div>
+                      <div style="height: 20px"></div>
+                      <div style="display: flex; width: 230px; flex-direction: row; align-items: center">
+                        <img style="padding: 10px; border-radius: 20px; background-color: white" width="20" height="20" src="images/arrow_up_right.svg"/>
+                        <div style="width: 15px"></div>
+                        <div style="color: var(--primaryColor); text-align: start; font-size: 20px; font-weight: 400">Coding, English, Presentation, Leadership...</div>
+                      </div>
+                    </div>
+                    <img class="service_image" width="200" height="200" src="images/programing_image.svg"/>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+        <div class="cta_overall">
+          <div class="cta_block">
+            <div class="cta_text">
+              <div style="color: var(--textBlack); font-size: 30px; font-weight: 500">Let's create something magical</div>
+              <div style="height: 20px"></div>
+              <div style="color: var(--textBlack); font-size: 18px; font-weight: 400">
+                Contact us today to learn more about how our digital marketing services can help your business grow and succeed online.
+              </div>
+              <div style="height: 20px"></div>
+              <div class="btn-container"><div class="btn-primary-black">Get Your Free Proposal</div></div>
+            </div>
+            <div class="cta_image"><img style="width: 50%; height: 100%" src="images/intheoffice_image.svg"/></div>
+          </div>
+        </div>
+        <div id="case-studies">
+          <div class="section_overall">
+            <div class="section_title">
+              <h1 class="title_section">Case Studies</h1>
+              <div style="width: 40px"></div>
+              <div class="section_content">Explore real-world examples of our proven digital marketing success through case studies</div>
+            </div>
+          </div>
+          <div class="case_studies_block">
+            <div class="inner_block">
+              <div style="display: flex; flex-direction: column">
+                <div style="color: var(--white); font-size: 18px; font-weight: 400">
+                  We partnered with a logistics company to develop a mobile platform (iOS &amp; Android) for ordering and tracking shipments, integrated with maps and route drawing.
+                </div>
+                <div style="height: 20px"></div>
+                <div style="display: flex; flex-direction: row">
+                  <div style="color: var(--greenPrimary); font-size: 20px; font-weight: 400">Learn More</div>
+                  <div style="width: 15px"></div>
+                  <img width="25" height="25" src="images/learn_more_blue_icon.svg"/>
+                </div>
+                <div style="height: 20px"></div>
+              </div>
+              <div class="line"></div>
+              <div style="display: flex; flex-direction: column">
+                <div style="color: var(--white); font-size: 18px; font-weight: 400">
+                  For individual clients, we developed an app platform to help learners prepare for driving license exams and a system to manage students.
+                </div>
+                <div style="height: 20px"></div>
+                <div style="display: flex; flex-direction: row">
+                  <div style="color: var(--greenPrimary); font-size: 20px; font-weight: 400">Learn More</div>
+                  <div style="width: 15px"></div>
+                  <img width="25" height="25" src="images/learn_more_blue_icon.svg"/>
+                </div>
+                <div style="height: 20px"></div>
+              </div>
+              <div class="line"></div>
+              <div style="display: flex; flex-direction: column">
+                <div style="color: var(--white); font-size: 18px; font-weight: 400">
+                  We are also working with an academic organization to develop an AI-integrated web app to improve and optimize English learning and teaching.
+                </div>
+                <div style="height: 20px"></div>
+                <div style="display: flex; flex-direction: row">
+                  <div style="color: var(--greenPrimary); font-size: 20px; font-weight: 400">Learn More</div>
+                  <div style="width: 15px"></div>
+                  <img width="25" height="25" src="images/learn_more_blue_icon.svg"/>
+                </div>
+                <div style="height: 20px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="process">
+          <div class="section_overall">
+            <div class="section_title">
+              <h1 class="title_section">Workflow</h1>
+              <div style="width: 40px"></div>
+              <div class="section_content">With Agile, we’ll take it step by step to achieve your business goals.</div>
+            </div>
+          </div>
+          <div style="max-width: 100%; justify-content: center; align-items: center; align-self: center">
+            <div style="display: flex; width: 100%; flex-direction: column; row-gap: 30px">
+              <button style="display: flex; padding: 40px 5%; margin-left: 5%; margin-right: 5%; border: solid var(--primaryColor) 1px; border-radius: 45px; box-shadow: 0px 5px var(--primaryColor); flex-direction: column; background-color: white">
+                <div style="display: flex; width: 100%; justify-content: space-between; align-items: center">
+                  <div class="card_process_index">01</div>
+                  <div class="card_process_title">Consulting</div>
+                  <div class="icon-show-more">+</div>
+                </div>
+              </button>
+              <button style="display: flex; padding: 40px 5%; margin-left: 5%; margin-right: 5%; border: solid var(--primaryColor) 1px; border-radius: 45px; box-shadow: 0px 5px var(--primaryColor); flex-direction: column; background-color: white">
+                <div style="display: flex; width: 100%; justify-content: space-between; align-items: center">
+                  <div class="card_process_index">02</div>
+                  <div class="card_process_title">Business Analysis</div>
+                  <div class="icon-show-more">+</div>
+                </div>
+              </button>
+              <button style="display: flex; padding: 40px 5%; margin-left: 5%; margin-right: 5%; border: solid var(--primaryColor) 1px; border-radius: 45px; box-shadow: 0px 5px var(--primaryColor); flex-direction: column; background-color: white">
+                <div style="display: flex; width: 100%; justify-content: space-between; align-items: center">
+                  <div class="card_process_index">03</div>
+                  <div class="card_process_title">Solution Proposal</div>
+                  <div class="icon-show-more">+</div>
+                </div>
+              </button>
+              <button style="display: flex; padding: 40px 5%; margin-left: 5%; margin-right: 5%; border: solid var(--primaryColor) 1px; border-radius: 45px; box-shadow: 0px 5px var(--primaryColor); flex-direction: column; background-color: white">
+                <div style="display: flex; width: 100%; justify-content: space-between; align-items: center">
+                  <div class="card_process_index">04</div>
+                  <div class="card_process_title">Prototype Design</div>
+                  <div class="icon-show-more">+</div>
+                </div>
+              </button>
+              <button style="display: flex; padding: 40px 5%; margin-left: 5%; margin-right: 5%; border: solid var(--primaryColor) 1px; border-radius: 45px; box-shadow: 0px 5px var(--primaryColor); flex-direction: column; background-color: white">
+                <div style="display: flex; width: 100%; justify-content: space-between; align-items: center">
+                  <div class="card_process_index">05</div>
+                  <div class="card_process_title">Product Development</div>
+                  <div class="icon-show-more">+</div>
+                </div>
+              </button>
+              <button style="display: flex; padding: 40px 5%; margin-left: 5%; margin-right: 5%; border: solid var(--primaryColor) 1px; border-radius: 45px; box-shadow: 0px 5px var(--primaryColor); flex-direction: column; background-color: white">
+                <div style="display: flex; width: 100%; justify-content: space-between; align-items: center">
+                  <div class="card_process_index">06</div>
+                  <div class="card_process_title">Monitoring and Improvement</div>
+                  <div class="icon-show-more">+</div>
+                </div>
+              </button>
+              <button style="display: flex; padding: 40px 5%; margin-left: 5%; margin-right: 5%; border: solid var(--primaryColor) 1px; border-radius: 45px; box-shadow: 0px 5px var(--primaryColor); flex-direction: column; background-color: white">
+                <div style="display: flex; width: 100%; justify-content: space-between; align-items: center">
+                  <div class="card_process_index">07</div>
+                  <div class="card_process_title">Reporting and Communication</div>
+                  <div class="icon-show-more">+</div>
+                </div>
+              </button>
+              <button style="display: flex; padding: 40px 5%; margin-left: 5%; margin-right: 5%; border: solid var(--primaryColor) 1px; border-radius: 45px; box-shadow: 0px 5px var(--primaryColor); flex-direction: column; background-color: white">
+                <div style="display: flex; width: 100%; justify-content: space-between; align-items: center">
+                  <div class="card_process_index">08</div>
+                  <div class="card_process_title">Continuous Product Release</div>
+                  <div class="icon-show-more">+</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div id="careers">
+          <div class="section_overall">
+            <div class="section_title">
+              <h1 class="title_section">Team</h1>
+              <div style="width: 40px"></div>
+              <div class="section_content">Meet the skilled and experienced team behind our successful application development project</div>
+            </div>
+          </div>
+          <div style="max-width: 100%">
+            <div style="display: flex; margin-left: 5%; margin-right: 5%; flex-direction: column">
+              <section id="customs">
+                <div class="custom-grid">
+                  <a style="color: var(--textBlack); text-decoration: none" href="https://boxingnguyen.github.io/" target="_blank">
+                    <div style="padding: 40px 35px; border: solid var(--textBlack) 1px; border-radius: 45px; box-shadow: 0px 5px var(--textBlack); background-color: var(--white)">
+                      <div style="display: flex; flex-direction: row">
+                        <div>
+                          <img style="border: solid var(--greenPrimary) 2px; border-radius: 20px" alt="Nguyễn Quyền Anh" width="130" height="130" src="images/NguyenQuyenAnh.png"/>
+                        </div>
+                        <div style="width: 20px"></div>
+                        <div style="display: flex; width: 100%; flex-direction: column; justify-content: center; align-items: start">
+                          <div style="width: 100%">
+                            <div style="width: 100%; color: var(--textBlack); text-align: start; font-size: 20px; font-weight: 500">Quyen Anh Nguyen (Brian)</div>
+                            <div style="color: var(--textBlack); text-align: start; font-size: 18px; font-weight: 400">CEO and Founder</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="height: 1px; margin-top: 28px; margin-bottom: 28px; background-color: var(--textBlack)"></div>
+                      <div style="color: var(--textBlack); text-align: start; font-size: 18px; font-weight: 400">
+                        Graduated from Hanoi University of Science and Technology in Advanced programs, 10 years of experience in IT industry as full stack developer and work with multinational customers.
+                      </div>
+                    </div>
+                  </a>
+                  <div style="padding: 40px 35px; border: solid var(--textBlack) 1px; border-radius: 45px; box-shadow: 0px 5px var(--textBlack); background-color: var(--white)">
+                    <div style="display: flex; flex-direction: row">
+                      <div>
+                        <img style="border: solid var(--greenPrimary) 2px; border-radius: 20px" alt="Trần Việt" width="130" height="130" src="images/viettran.png"/>
+                      </div>
+                      <div style="width: 20px"></div>
+                      <div style="display: flex; width: 100%; flex-direction: column; justify-content: center; align-items: start">
+                        <div style="width: 100%">
+                          <div style="width: 100%; color: var(--textBlack); text-align: start; font-size: 20px; font-weight: 500">Viet Tran</div>
+                          <div style="color: var(--textBlack); text-align: start; font-size: 18px; font-weight: 400">CCO and co-founder</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="height: 1px; margin-top: 28px; margin-bottom: 28px; background-color: var(--textBlack)"></div>
+                    <div style="color: var(--textBlack); text-align: start; font-size: 18px; font-weight: 400">Master of Public Policy Fulbright University, expert on business and investment strategy</div>
+                  </div>
+                  <div style="padding: 40px 35px; border: solid var(--textBlack) 1px; border-radius: 45px; box-shadow: 0px 5px var(--textBlack); background-color: var(--white)">
+                    <div style="display: flex; flex-direction: row">
+                      <div>
+                        <img style="border: solid var(--greenPrimary) 2px; border-radius: 20px" alt="Phùng Quang Huy" width="130" height="130" src="images/Phùng Quang Huy.JPG"/>
+                      </div>
+                      <div style="width: 20px"></div>
+                      <div style="display: flex; width: 100%; flex-direction: column; justify-content: center; align-items: start">
+                        <div style="width: 100%">
+                          <div style="width: 100%; color: var(--textBlack); text-align: start; font-size: 20px; font-weight: 500">Phùng Quang Huy</div>
+                          <div style="color: var(--textBlack); text-align: start; font-size: 18px; font-weight: 400">CTO</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="height: 1px; margin-top: 28px; margin-bottom: 28px; background-color: var(--textBlack)"></div>
+                    <div style="color: var(--textBlack); text-align: start; font-size: 18px; font-weight: 400">Specializes in web development and analytics with 12 years of experience</div>
+                  </div>
+                </div>
+              </section>
+              <section id="customs">
+                <div class="custom-grid">
+                  <div style="padding: 40px 35px; border: solid var(--textBlack) 1px; border-radius: 45px; box-shadow: 0px 5px var(--textBlack); background-color: var(--white)">
+                    <div style="display: flex; flex-direction: row">
+                      <div>
+                        <img style="border: solid var(--greenPrimary) 2px; border-radius: 20px" alt="Bùi Bảo Phong" width="130" height="130" src="images/Bùi Bảo Phong.JPG"/>
+                      </div>
+                      <div style="width: 20px"></div>
+                      <div style="display: flex; width: 100%; flex-direction: column; justify-content: center; align-items: start">
+                        <div style="width: 100%">
+                          <div style="width: 100%; color: var(--textBlack); text-align: start; font-size: 20px; font-weight: 500">Bui Bao Phong</div>
+                          <div style="color: var(--textBlack); text-align: start; font-size: 18px; font-weight: 400">Full stack developer</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="height: 1px; margin-top: 28px; margin-bottom: 28px; background-color: var(--textBlack)"></div>
+                    <div style="color: var(--textBlack); text-align: start; font-size: 18px; font-weight: 400">1 year of experience in web &amp; mobile app development</div>
+                  </div>
+                  <div style="padding: 40px 35px; border: solid var(--textBlack) 1px; border-radius: 45px; box-shadow: 0px 5px var(--textBlack); background-color: var(--white)">
+                    <div style="display: flex; flex-direction: row">
+                      <div>
+                        <img style="border: solid var(--greenPrimary) 2px; border-radius: 20px" alt="Nguyễn Đăng Tùng" width="130" height="130" src="images/dangtung.png"/>
+                      </div>
+                      <div style="width: 20px"></div>
+                      <div style="display: flex; width: 100%; flex-direction: column; justify-content: center; align-items: start">
+                        <div style="width: 100%">
+                          <div style="width: 100%; color: var(--textBlack); text-align: start; font-size: 20px; font-weight: 500">Tung Tran</div>
+                          <div style="color: var(--textBlack); text-align: start; font-size: 18px; font-weight: 400">Full stack developer</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="height: 1px; margin-top: 28px; margin-bottom: 28px; background-color: var(--textBlack)"></div>
+                    <div style="color: var(--textBlack); text-align: start; font-size: 18px; font-weight: 400">3 years of experience in web &amp; mobile app development</div>
+                  </div>
+                  <div style="padding: 40px 35px; border: solid var(--textBlack) 1px; border-radius: 45px; box-shadow: 0px 5px var(--textBlack); background-color: var(--white)">
+                    <div style="display: flex; flex-direction: row">
+                      <div>
+                        <img style="border: solid var(--greenPrimary) 2px; border-radius: 20px" alt="Lê Việt Hùng" width="130" height="130" src="images/Lê Việt Hùng.jpeg"/>
+                      </div>
+                      <div style="width: 20px"></div>
+                      <div style="display: flex; width: 100%; flex-direction: column; justify-content: center; align-items: start">
+                        <div style="width: 100%">
+                          <div style="width: 100%; color: var(--textBlack); text-align: start; font-size: 20px; font-weight: 500">Le Viet Hung</div>
+                          <div style="color: var(--textBlack); text-align: start; font-size: 18px; font-weight: 400">Mobile app developer</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="height: 1px; margin-top: 28px; margin-bottom: 28px; background-color: var(--textBlack)"></div>
+                    <div style="color: var(--textBlack); text-align: start; font-size: 18px; font-weight: 400">2 years of experience in web &amp; mobile app development</div>
+                  </div>
+                </div>
+              </section>
+              <div style="display: flex; width: 100%; flex-direction: column; align-items: end"><div class="btn-container"><div class="btn-primary-black">View Full Team</div></div></div>
+            </div>
+          </div>
+        </div>
+        <div id="contact">
+          <div class="section_overall">
+            <div class="section_title">
+              <h1 class="title_section">Contact Us</h1>
+              <div style="width: 40px"></div>
+              <div class="section_content">Let's discuss your needs now and together we will make your dream come true!</div>
+            </div>
+          </div>
+          <div id="contact" style="max-width: 100%">
+            <div style="display: flex; padding-left: 5%; padding-right: 5%; margin-left: 5%; margin-right: 5%; border-radius: 45px; flex-direction: row; justify-content: space-around; align-items: center; background-color: #F3F3F3">
+              <div class="detail_text_field">
+                <div style="display: flex; height: 92px; flex-direction: column; justify-content: space-between">
+                  Name
+                  <input style="height: 58px; padding-left: 30px; padding-right: 30px; border-radius: 14px; color: var(--primaryColor); font-size: 18px; font-weight: 400; background-color: white" type="text" value/>
+                </div>
+                <div style="height: 25px"></div>
+                <div style="display: flex; height: 92px; flex-direction: column; justify-content: space-between">
+                  Email
+                  <input style="height: 58px; padding-left: 30px; padding-right: 30px; border-radius: 14px; color: var(--primaryColor); font-size: 18px; font-weight: 400; background-color: white" type="text" value/>
+                </div>
+                <div style="height: 25px"></div>
+                <div style="display: flex; height: 92px; flex-direction: column; justify-content: space-between">
+                  Title
+                  <input style="height: 58px; padding-left: 30px; padding-right: 30px; border-radius: 14px; color: var(--primaryColor); font-size: 18px; font-weight: 400; background-color: white" type="text" value/>
+                </div>
+                <div style="height: 25px"></div>
+                <div style="display: flex; height: 223px; flex-direction: column; justify-content: space-between">
+                  Message
+                  <div style="height: 6px"></div>
+                  <input style="height: 170px; padding: 18px 30px; border: solid var(--primaryColor) 2px; border-radius: 14px; color: var(--primaryColor); font-size: 18px; font-weight: 400; background-color: white; resize: none; white-space: pre-wrap; word-wrap: break-word; overflow-y: auto; vertical-align: top" type="text" value/>
+                </div>
+                <div style="height: 20px"></div>
+                <div style="height: 20px"></div>
+                <button style="width: 100%; height: 58px; border-radius: 14px; cursor: pointer; color: white; font-size: 18px; font-weight: 500; background-color: var(--greenPrimary)">Submit</button>
+              </div>
+              <div><img class="contact_image" height="300" src="images/undraw_business-deal_nx2n.svg"/></div>
+            </div>
+          </div>
+        </div>
+        <div style="height: 140px"></div>
+        <div style="max-width: 100%">
+          <div class="footer_block">
+            <div class="footer_header">
+              <div style="display: flex; flex-direction: row; align-items: center">
+                <img width="40" height="40" src="images/x_cross.png"/>
+                <div style="width: 6px"></div>
+                <div style="color: white; font-size: 30px; font-weight: 500">Cross Tech &amp; Edu</div>
+              </div>
+              <div style="display: flex; flex-direction: row; color: white; font-size: 18px; font-weight: 400; text-decoration: underline">
+                About Us
+                <div style="width: 20px"></div>
+                Services
+                <div style="width: 20px"></div>
+                Use Cases
+                <div style="width: 20px"></div>
+                Pricing
+              </div>
+              <div style="display: flex; flex-direction: row">
+                <img width="30" height="30" src="images/instagram_icon.png"/>
+                <div style="width: 20px"></div>
+                <img width="30" height="30" src="images/facebook_icon.png"/>
+                <div style="width: 20px"></div>
+                <img width="30" height="30" src="images/twitter_icon.png"/>
+              </div>
+            </div>
+            <div style="height: 20px"></div>
+            <div class="footer_body">
+              <div class="footer_content_us">
+                <div style="display: flex; width: 120px; padding: 5px; border-radius: 14px; flex-wrap: wrap; justify-content: center; color: black; text-align: center; background-color: var(--greenPrimary)">Contact</div>
+                <div style="height: 20px"></div>
+                <div>
+                  <a style="color: white; text-decoration: none" href="mailto:crosstechedu@gmail.com">Email: crosstechedu@gmail.com</a>
+                </div>
+                <div style="height: 20px"></div>
+                <div><a style="color: white; text-decoration: none" href="tel:0338305895">Phone: 0338305895</a></div>
+                <div style="height: 20px"></div>
+                <div>
+                  <a style="color: white; text-decoration: none" href="https://maps.app.goo.gl/8RR39Ge1WESWiPcj6" target="_blank">Address: No. 24 - K7, Ciputra Urban Area, Phu Thuong Ward, Tay Ho District, Hanoi City, Vietnam</a>
+                </div>
+              </div>
+              <div class="footer_map">
+                <iframe class="map" style="width: 100%; height: 100%; border: none" frameborder="0" style="border:0;" allowfullscreen aria-hidden="false" tabindex="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3722.8291308260964!2d105.80479707504539!3d21.079485680582636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abe65144a209%3A0xaf7eeca92c256d9e!2sCross%20Technology%20%26%20Education!5e0!3m2!1sen!2sus!4v1747126150721!5m2!1sen!2sus"></iframe>
+              </div>
+            </div>
+            <div style="height: 20px"></div>
+            <div style="display: flex; padding-top: 50px; border-top-style: solid; border-top-color: white; border-top-width: 1px; color: white">
+              © 2024 Crosstechedu. All rights reserved.
+              <div style="width: 40px"></div>
+              <div style="text-decoration: underline">Privacy Policy</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/constants/app_colors.dart';
 import 'package:cross_website/language/language_manager.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 
@@ -8,16 +9,17 @@ class CookieConsentBanner extends StatelessComponent {
   const CookieConsentBanner({super.key});
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
+  Component build(BuildContext context) {
     final consent = context.watch<bool?>(LanguageManager.cookieConsentProvider);
+    final children = <Component>[];
     if (consent != null) {
-      return;
+      return Component.fragment(children);
     }
 
     final accentColor = Color('#f5a623');
     final shadowColor = 'rgba(0, 0, 0, 0.3)';
 
-    yield div(
+    children.add(div(
       styles: Styles(
         shadow: BoxShadow(
             color: Color(shadowColor),
@@ -60,7 +62,7 @@ class CookieConsentBanner extends StatelessComponent {
                     margin: Spacing.all(0.px),
                     flexWrap: FlexWrap.wrap,
                     color: AppColors.backgroundTheme),
-                [text('We use cookies to improve your experience.')]),
+                [Component.text('We use cookies to improve your experience.')]),
             div(
                 styles: Styles(
                   display: Display.flex,
@@ -76,7 +78,7 @@ class CookieConsentBanner extends StatelessComponent {
                           flexWrap: FlexWrap.wrap,
                           color: AppColors.backgroundTheme),
                       [
-                        text('Learn more in our'),
+                        Component.text('Learn more in our'),
                       ]),
                   SizeBoxComponent(width: 5),
                   a(
@@ -87,9 +89,9 @@ class CookieConsentBanner extends StatelessComponent {
                         'text-decoration': 'none',
                       },
                     ),
-                    [text('Privacy Policy')],
+                    [Component.text('Privacy Policy')],
                   ),
-                  text('.'),
+                  Component.text('.'),
                 ]),
           ],
         ),
@@ -119,7 +121,7 @@ class CookieConsentBanner extends StatelessComponent {
                   return;
                 },
               },
-              [text('Decline')],
+              [Component.text('Decline')],
             ),
             button(
               styles: Styles(
@@ -139,11 +141,12 @@ class CookieConsentBanner extends StatelessComponent {
                   return;
                 },
               },
-              [text('Accept')],
+              [Component.text('Accept')],
             ),
           ],
         ),
       ],
-    );
+    ));
+    return Component.fragment(children);
   }
 }

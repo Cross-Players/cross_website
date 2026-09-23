@@ -1,11 +1,12 @@
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 class Divider extends StatelessComponent {
   const Divider({super.key});
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield div(classes: 'divider', []);
+  Component build(BuildContext context) {
+    return div(classes: 'divider', []);
   }
 
   @css

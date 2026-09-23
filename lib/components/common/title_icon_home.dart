@@ -1,5 +1,6 @@
 import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/constants/app_colors.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:cross_website/components/header.dart';
 
@@ -10,12 +11,12 @@ class TitleIconHome extends StatelessComponent {
   const TitleIconHome({super.key, this.content, required this.title});
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield div(classes: 'section_overall', [
+  Component build(BuildContext context) {
+    return div(classes: 'section_overall', [
       div(classes: 'section_title', [
-        h1(classes: 'title_section', [text(title)]),
+        h1(classes: 'title_section', [Component.text(title)]),
         SizeBoxComponent(width: 40),
-        div(classes: 'section_content', [text(content ?? "")])
+        div(classes: 'section_content', [Component.text(content ?? "")])
       ])
     ]);
   }
