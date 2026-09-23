@@ -147,6 +147,9 @@
         align-items: center;
         flex-grow: 1;
       }
+      .main h1, h4, p {
+        color: var(--textBlack);
+      }
       .loading-container {
         display: flex;
         width: 100vw;
@@ -726,31 +729,125 @@
           height: 0px;
         }
       }
-      .list-logo-container {
+      .clients-section {
         display: flex;
         max-width: 100%;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 0.4rem;
+        padding: 48px 100px;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
       }
-      .list-logo-content {
+      .clients-heading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+      }
+      .clients-eyebrow {
+        padding: 4px 14px;
+        border-radius: 999px;
+        color: var(--primaryColor);
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        background-color: var(--greenPrimary);
+      }
+      .clients-title {
+        margin: 0;
+        color: var(--textBlack);
+        font-size: 28px;
+        font-weight: 500;
+      }
+      .clients-grid {
         display: flex;
         width: 100%;
-        padding-left: 100px;
-        padding-right: 100px;
-        flex-direction: row;
+        max-width: 1200px;
+        padding: 0;
+        margin: 0;
         flex-wrap: wrap;
-        justify-content: space-evenly;
+        justify-content: center;
+        gap: 24px;
+        list-style: none;
       }
-      .list-logo-content img {
-        height: 80px;
+      .clients-grid > li {
+        flex: 0 0 calc((100% - 4 * 24px) / 5);
+      }
+      .client-card {
+        display: flex;
+        height: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 20px;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        color: var(--textBlack);
+        text-decoration: none;
+        background: var(--cardBackground);
+        border: 1px solid var(--cardBorder);
+        box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+        backdrop-filter: blur(8px);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .client-card-link:hover, .client-card-link:focus-visible {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+      }
+      .client-logo {
+        display: flex;
+        width: 100%;
+        height: 110px;
+        padding: 14px;
+        box-sizing: border-box;
+        border-radius: 14px;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+      }
+      .client-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .client-logo-fill {
+        padding: 0;
+        background-color: #3469AB;
+      }
+      .client-name {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      @media screen and (max-width: 900px) {
+        .clients-section {
+          padding: 40px 24px;
+        }
+        .clients-grid > li {
+          flex: 0 0 calc((100% - 2 * 24px) / 3);
+        }
       }
       @media screen and (max-width: 600px) {
-        .list-logo-content {
-          padding-left: 10px;
-          padding-right: 10px;
+        .clients-section {
+          padding: 32px 16px;
+        }
+        .clients-grid {
+          gap: 14px;
+        }
+        .clients-grid > li {
+          flex: 0 0 calc((100% - 14px) / 2);
+        }
+        .client-card {
+          padding: 12px;
+          border-radius: 16px;
+        }
+        .client-logo {
+          height: 84px;
+        }
+        .clients-title {
+          font-size: 22px;
         }
       }
       .theme-toggle {
@@ -765,11 +862,6 @@
       }
       .theme-toggle:hover {
         background-color: var(--hoverOverlayColor);
-      }
-      h2 {
-        color: #1a73e8;
-        font-size: 2rem;
-        font-weight: 700;
       }
       :root {
         --primary-cyan: #35daff;
@@ -1185,10 +1277,10 @@
         }
       }
       .career-table-header {
-        padding: 16px;
-        margin-bottom: 2px;
         display: flex;
         width: 100%;
+        padding: 16px;
+        margin-bottom: 2px;
         background: var(--gradientBackground);
       }
       .career-table-item {
@@ -1229,48 +1321,16 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-<<<<<<< HEAD
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
       }
-      .main {
-        display: flex;
-        max-width: 100%;
-        background-color: var(--backgroundTheme);
-        flex-direction: column;
-      }
-      .main section {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        flex-grow: 1;
-      }
-      .main h1, h4, p {
-        color: var(--textBlack);
-      }
-      .loading-container {
-        display: flex;
-        width: 100vw;
-        height: 100vh;
-        background-color: var(--backgroundTheme);
-        justify-content: center;
-        align-items: center;
-      }
-      .loading-spinner {
-        display: flex;
-        text-align: center;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-=======
->>>>>>> 23d32c0 (upgrade jaspr ver)
+      h2 {
+        color: #1a73e8;
+        font-size: 2rem;
+        font-weight: 700;
       }
     </style>
   </head>
   <body>
-    <!--@app-->
+    <!--@app data={"careerJobs":[],"careersErrorMessage":"Failed to load job listings."}-->
     <!--${}-->
     <div class="main">
       <div class="about-new-page">
@@ -1279,14 +1339,9 @@
             <img style="width: 120px; height: 120px; padding: 0.7rem; margin-left: 5%; border-radius: 8px; color: var(--textBlack)" src="images/x_cross.png"/>
           </a>
           <nav class="nav-menu">
-<<<<<<< HEAD
-            <div class="nav-item"><a href="/">Translation not found</a></div>
-            <div class="nav-item"><a href="/about">Translation not found</a></div>
-            <div class="nav-item"><a href="/careers">Translation not found</a></div>
-=======
             <div class="nav-item"><a href="/">Home</a></div>
             <div class="nav-item"><a href="/about">About Us</a></div>
->>>>>>> 23d32c0 (upgrade jaspr ver)
+            <div class="nav-item"><a href="/#contact">Contact</a></div>
             <div class="language-header">
               <div class="custom-select-display" style="display: flex; padding-left: 8px; padding-right: 8px; cursor: pointer; align-items: center"><img style="width: 35px; height: 25px" src="images/flags/us.svg"/></div>
               <select style="position: absolute; z-index: 1; width: 50px; height: 30px; opacity: 0.0; cursor: pointer">

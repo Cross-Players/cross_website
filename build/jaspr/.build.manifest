@@ -1,17 +1,15 @@
+.DS_Store
 .dart_tool/package_config.json
 favicon.ico
-<<<<<<< HEAD
-flutter_bootstrap.js
-=======
 favicon.png
->>>>>>> 23d32c0 (upgrade jaspr ver)
 icons/Icon-192.png
 icons/Icon-512.png
 icons/Icon-maskable-192.png
 icons/Icon-maskable-512.png
+images/.DS_Store
 images/Bùi Bảo Phong.JPG
-images/LaiXeVanXuan.jpg
 images/LeVietHung.jpg
+images/Lê Việt Hùng.jpeg
 images/NguyenQuyenAnh.png
 images/Phùng Quang Huy.JPG
 images/amazon_icon.png
@@ -60,6 +58,7 @@ images/search_engine_optimization.png
 images/social_media_marketing.png
 images/sun.svg
 images/tungtran.jpg
+images/twendee_logo.svg
 images/twitter_icon.png
 images/undraw_business-deal_nx2n.svg
 images/vfast.png
@@ -68,34 +67,8 @@ images/vision.png
 images/web_image.svg
 images/x_cross.png
 images/zoom_icon.png
-<<<<<<< HEAD
-index.html
-main.clients.dart.js
-main.clients.dart.js_1.part.js
-main.clients.dart.js_10.part.js
-main.clients.dart.js_11.part.js
-main.clients.dart.js_12.part.js
-main.clients.dart.js_13.part.js
-main.clients.dart.js_14.part.js
-main.clients.dart.js_16.part.js
-main.clients.dart.js_17.part.js
-main.clients.dart.js_18.part.js
-main.clients.dart.js_19.part.js
-main.clients.dart.js_2.part.js
-main.clients.dart.js_20.part.js
-main.clients.dart.js_21.part.js
-main.clients.dart.js_22.part.js
-main.clients.dart.js_23.part.js
-main.clients.dart.js_3.part.js
-main.clients.dart.js_4.part.js
-main.clients.dart.js_5.part.js
-main.clients.dart.js_6.part.js
-main.clients.dart.js_7.part.js
-main.clients.dart.js_8.part.js
-=======
 main.client.dart.js
 main.client.dart.js_1.part.js
->>>>>>> 23d32c0 (upgrade jaspr ver)
 manifest.json
 packages/$sdk/dev_compiler/amd/require.js
 packages/$sdk/dev_compiler/ddc/ddc_module_loader.js
@@ -104,19 +77,9 @@ packages/_fe_analyzer_shared/src/parser/parser.md
 packages/analyzer/fix_data.yaml
 packages/analyzer/src/summary/format.fbs
 packages/analyzer/src/wolf/README.md
-<<<<<<< HEAD
-packages/build_runner/src/server/README.md
-packages/build_runner/src/server/build_updates_client/live_reload_client.js
-packages/build_runner/src/server/graph_viz.html
-packages/build_runner/src/server/graph_viz.js
-packages/build_runner/src/server/graph_viz_main.dart.js
-packages/cross_website/.env/cross-website-83900-firebase-adminsdk-fbsvc-36a102538e.json
-packages/cross_website/app.client.json
-=======
 packages/build_runner/src/commands/serve/live_reload_client.js
 packages/build_web_compilers/src/dev_compiler_stack_trace/stack_trace_mapper.dart.js
 packages/cross_website/app.client.module.json
->>>>>>> 23d32c0 (upgrade jaspr ver)
 packages/cross_website/app.styles.json
 packages/cross_website/clients.bundle.json
 packages/cross_website/components/common/button_primary_black.styles.json
@@ -135,31 +98,20 @@ packages/cross_website/components/home_page/item_services.styles.json
 packages/cross_website/components/home_page/list_logo.styles.json
 packages/cross_website/constants/app_colors.styles.json
 packages/cross_website/constants/theme_toogle.styles.json
-<<<<<<< HEAD
 packages/cross_website/data/firebase.imports.json
-packages/cross_website/pages/about_new.client.json
-packages/cross_website/pages/about_new.styles.json
-packages/cross_website/pages/admin.client.json
-packages/cross_website/pages/career.client.json
-packages/cross_website/pages/career.styles.json
-packages/cross_website/pages/home.client.json
-=======
 packages/cross_website/locales/translations.csv
 packages/cross_website/pages/about.client.module.json
 packages/cross_website/pages/about.styles.json
 packages/cross_website/pages/about_new.styles.json
->>>>>>> 23d32c0 (upgrade jaspr ver)
+packages/cross_website/pages/career.client.module.json
+packages/cross_website/pages/career.styles.json
+packages/cross_website/pages/career_view.styles.json
 packages/cross_website/pages/home.styles.json
 packages/cross_website/pages/loading_screen.styles.json
 packages/cross_website/pages/not_found_page.client.module.json
 packages/cross_website/pages/not_found_page.styles.json
-<<<<<<< HEAD
-packages/cross_website/pages/policy/gplx_policy.client.json
 packages/cross_website/pages/policy/gplx_policy.styles.json
-packages/cross_website/pages/services.client.json
-=======
 packages/cross_website/pages/services.client.module.json
->>>>>>> 23d32c0 (upgrade jaspr ver)
 packages/cross_website/pages/services.styles.json
 packages/cross_website/styles.bundle.json
 packages/dart_firebase_admin/src/utils/validator.ts
@@ -172,10 +124,7 @@ packages/flutter/fix_data/fix_material/fix_app_bar.yaml
 packages/flutter/fix_data/fix_material/fix_app_bar_theme.yaml
 packages/flutter/fix_data/fix_material/fix_button_bar.yaml
 packages/flutter/fix_data/fix_material/fix_color_scheme.yaml
-<<<<<<< HEAD
-=======
 packages/flutter/fix_data/fix_material/fix_dropdown_button.yaml
->>>>>>> 23d32c0 (upgrade jaspr ver)
 packages/flutter/fix_data/fix_material/fix_expansion_tile.yaml
 packages/flutter/fix_data/fix_material/fix_input_decoration.yaml
 packages/flutter/fix_data/fix_material/fix_material.yaml
@@ -200,16 +149,9 @@ packages/flutter/fix_data/fix_widgets/fix_rich_text.yaml
 packages/flutter/fix_data/fix_widgets/fix_widgets.yaml
 packages/flutter/src/foundation/README.md
 packages/flutter/src/material/shaders/ink_sparkle.frag
-<<<<<<< HEAD
+packages/flutter/src/material/shaders/stretch_effect.frag
+packages/flutter/src/widgets/shaders/stretch_effect.frag
 packages/flutter_lints/flutter.yaml
-packages/flutter_test/fix_data/README.md
-packages/flutter_test/fix_data/fix_flutter_test/fix_animation_sheet_builder.yaml
-packages/flutter_test/fix_data/fix_flutter_test/fix_binding/fix_automated_test_widgets_flutter_binding.yaml
-packages/flutter_test/fix_data/fix_flutter_test/fix_binding/fix_live_test_widgets_flutter_binding.yaml
-packages/flutter_test/fix_data/fix_flutter_test/fix_binding/fix_test_widgets_flutter_binding.yaml
-packages/flutter_test/fix_data/fix_flutter_test/fix_semantics_controller.yaml
-packages/flutter_test/fix_data/fix_flutter_test/fix_widget_tester.yaml
-packages/flutter_test/fix_data/template.yaml
 packages/intl/src/data/dates/README.txt
 packages/intl/src/data/dates/patterns/af.json
 packages/intl/src/data/dates/patterns/am.json
@@ -453,24 +395,12 @@ packages/intl/src/data/dates/symbols/zh_CN.json
 packages/intl/src/data/dates/symbols/zh_HK.json
 packages/intl/src/data/dates/symbols/zh_TW.json
 packages/intl/src/data/dates/symbols/zu.json
-packages/jaspr_web_compilers/src/dev_compiler_stack_trace/stack_trace_mapper.dart.js
-packages/leak_tracker/DEPENDENCIES.md
-packages/leak_tracker/src/DEPENDENCIES.md
-packages/leak_tracker/src/devtools_integration/DEPENDENCIES.md
-packages/leak_tracker/src/leak_tracking/DEPENDENCIES.md
-packages/leak_tracker/src/leak_tracking/primitives/README.md
-packages/leak_tracker/src/leak_tracking/primitives/_retaining_path/DEPENDENCIES.md
-packages/leak_tracker/src/shared/DEPENDENCIES.md
-packages/leak_tracker_flutter_testing/src/testing_for_testing/README.md
-packages/leak_tracker_testing/DEPENDENCIES.md
+packages/jni/jni_symbols.yaml
 packages/lints/core.yaml
 packages/lints/recommended.yaml
-=======
-packages/flutter/src/material/shaders/stretch_effect.frag
-packages/flutter/src/widgets/shaders/stretch_effect.frag
 packages/node_preamble/preamble.js
 packages/node_preamble/preamble.min.js
->>>>>>> 23d32c0 (upgrade jaspr ver)
+packages/platform/fix_data.yaml
 packages/sky_engine/_embedder.yaml
 packages/sky_engine/_internal/allowed_experiments.json
 packages/sky_engine/fix_data/fix_dart_ui.yaml
@@ -486,3 +416,4 @@ packages/vm_service/DEPENDENCIES.md
 packages/vm_service/src/DEPENDENCIES.md
 packages/vm_service/src/README.md
 packages/web/fix_data.yaml
+packages/xml/src/xpath/AGENTS.md

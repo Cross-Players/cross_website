@@ -300,11 +300,12 @@ class _EmployeePageState extends State<EmployeePage> {
           ),
           TextButton(
             onPressed: () async {
+              final messenger = ScaffoldMessenger.of(context);
               Navigator.pop(context);
               try {
                 await EmployeeService.deleteEmployee(employee.id);
                 if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  messenger.showSnackBar(
                     const SnackBar(
                       content: CustomSelectableText(
                         text: 'Xóa nhân viên thành công',
@@ -315,7 +316,7 @@ class _EmployeePageState extends State<EmployeePage> {
                 }
               } catch (e) {
                 if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  messenger.showSnackBar(
                     SnackBar(
                       content: CustomSelectableText(text: 'Lỗi khi xóa: $e'),
                       backgroundColor: Colors.red,
@@ -729,7 +730,7 @@ class _AddEmployeeDialogState extends State<_AddEmployeeDialog> {
         ),
         const SizedBox(height: 8),
         DropdownButtonFormField<String>(
-          value: value,
+          initialValue: value,
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(color: Colors.grey[400]),

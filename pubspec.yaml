@@ -38,6 +38,7 @@ dev_dependencies:
   jaspr_test: ^0.23.4
   jaspr_lints: ^0.7.2
   jaspr_riverpod: ^0.4.6
+  flutter_lints: ^6.0.0
 
 jaspr:
   mode: static

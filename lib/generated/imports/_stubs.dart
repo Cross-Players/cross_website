@@ -6,23 +6,11 @@
 
 // ignore_for_file: directives_ordering, non_constant_identifier_names
 
-dynamic Firebase;
-dynamic FirebaseApp;
-typedef FirebaseOrStubbed = dynamic;
-typedef FirebaseAppOrStubbed = dynamic;
-dynamic FirebaseFirestore;
-dynamic FieldValue;
-dynamic DocumentSnapshot;
-typedef FirebaseFirestoreOrStubbed = dynamic;
-typedef FieldValueOrStubbed = dynamic;
-typedef DocumentSnapshotOrStubbed = dynamic;
-dynamic FirebaseAuth;
-typedef FirebaseAuthOrStubbed = dynamic;
-dynamic DefaultFirebaseOptions;
-typedef DefaultFirebaseOptionsOrStubbed = dynamic;
+dynamic File;
+typedef FileOrStubbed = dynamic;
 dynamic FirebaseAdminApp;
-dynamic Credential;
 typedef FirebaseAdminAppOrStubbed = dynamic;
+dynamic Credential;
 typedef CredentialOrStubbed = dynamic;
 dynamic Firestore;
 typedef FirestoreOrStubbed = dynamic;

@@ -112,15 +112,16 @@ class HeaderState extends State<Header> {
               label: LanguageManager.translate('header_services', selectedLang),
               path: '#services'
             ),
-            (
-              label: LanguageManager.translate('header_contact', selectedLang),
-              path: '#contact'
-            ),
           ],
           (
-            label: LanguageManager.translate('header_careers', selectedLang),
-            path: '/careers'
+            label: LanguageManager.translate('header_contact', selectedLang),
+            path: '#contact'
           ),
+          // Careers is temporarily hidden.
+          // (
+          //   label: LanguageManager.translate('header_careers', selectedLang),
+          //   path: '/careers'
+          // ),
         ])
           div(classes: 'nav-item', [
             if (route.path == '/about' ||
@@ -128,12 +129,12 @@ class HeaderState extends State<Header> {
                 route.path == '/careers')
               Link(
                 to: route.path,
-<<<<<<< HEAD
-                child: text(route.label),
-=======
                 children: [Component.text(route.label)],
->>>>>>> 23d32c0 (upgrade jaspr ver)
               )
+            else if (currentPath != '/')
+              // Anchors live on the home page: load it and let the browser
+              // jump to the section.
+              a(href: '/${route.path}', [Component.text(route.label)])
             else
               div(
                   styles: Styles(

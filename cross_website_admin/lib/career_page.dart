@@ -1,7 +1,7 @@
 import 'package:cross_website_admin/constants/app_styles.dart';
 import 'package:cross_website_admin/constants/custom_selectable_text.dart';
+import 'package:cross_website_admin/models/job.dart';
 import 'package:flutter/material.dart';
-import '../models/job.dart';
 import 'services/job_service.dart';
 
 class CareerPage extends StatefulWidget {
@@ -265,11 +265,12 @@ class _CareerPageState extends State<CareerPage> {
           ),
           TextButton(
             onPressed: () async {
+              final messenger = ScaffoldMessenger.of(context);
               Navigator.pop(context);
               try {
                 await JobService.deleteJob(job.id);
                 if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  messenger.showSnackBar(
                     const SnackBar(
                       content: CustomSelectableText(
                         text: 'Xóa công việc thành công',
@@ -280,7 +281,7 @@ class _CareerPageState extends State<CareerPage> {
                 }
               } catch (e) {
                 if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  messenger.showSnackBar(
                     SnackBar(
                       content: CustomSelectableText(text: 'Lỗi khi xóa: $e'),
                       backgroundColor: Colors.red,

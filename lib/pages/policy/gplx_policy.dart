@@ -1,7 +1,7 @@
 import 'package:cross_website/components/common/size_box_component.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
-@client
 class GPLXPolicy extends StatefulComponent {
   const GPLXPolicy({super.key});
   @css
@@ -28,8 +28,8 @@ class _GPLXPolicyState extends State<GPLXPolicy> {
   }
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield div(
+  Component build(BuildContext context) {
+    return div(
       styles: Styles(maxWidth: 100.percent),
       [
         div(
@@ -47,7 +47,7 @@ class _GPLXPolicyState extends State<GPLXPolicy> {
                 'style':
                     'padding:8px; margin-bottom:16px; cursor:pointer; border-radius:6px; border:1px solid #ccc; background:#f7f7f7;'
               }, [
-                text(_isVietnamese ? 'English' : 'Tiếng Việt')
+                Component.text(_isVietnamese ? 'English' : 'Tiếng Việt')
               ]),
             ]),
         if (_isVietnamese) _PrivacyPolicyVN() else _PrivacyPolicyEN(),
@@ -66,7 +66,7 @@ class _PrivacyPolicyVN extends StatelessComponent {
       h3(attributes: {
         'style': 'font-size:1.2rem; margin-top:24px; margin-bottom:8px;'
       }, [
-        text(title)
+        Component.text(title)
       ]),
       SizeBoxComponent(height: 10),
       if (bulletPoints != null && bulletPoints.isNotEmpty) ...[
@@ -76,7 +76,7 @@ class _PrivacyPolicyVN extends StatelessComponent {
                 .map((point) => li(attributes: {
                       'style': 'font-size:1rem; color:#333; margin-bottom:4px;'
                     }, [
-                      text(point)
+                      Component.text(point)
                     ]))
                 .toList()),
         SizeBoxComponent(height: 10),
@@ -85,29 +85,29 @@ class _PrivacyPolicyVN extends StatelessComponent {
         p(attributes: {
           'style': 'font-size:1rem; color:#333; margin-bottom:8px;'
         }, [
-          text(subTitle)
+          Component.text(subTitle)
         ]),
     ]);
   }
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield div(
+  Component build(BuildContext context) {
+    return div(
         styles: Styles(
             height: 100.vh, maxWidth: 100.percent, padding: Spacing.all(20.px)),
         [
           h2([
-            text('Chính Sách Quyền Riêng Tư'),
+            Component.text('Chính Sách Quyền Riêng Tư'),
           ]),
           SizeBoxComponent(height: 15),
           h2([
-            text('Ứng dụng: Học Giấy Phép Lái Xe Vạn Xuân'),
+            Component.text('Ứng dụng: Học Giấy Phép Lái Xe Vạn Xuân'),
           ]),
           SizeBoxComponent(height: 15),
           p([
-            text('Ứng dụng'),
-            strong([text(' Học Giấy Phép Lái Xe Vạn Xuân ')]),
-            text(
+            Component.text('Ứng dụng'),
+            strong([Component.text(' Học Giấy Phép Lái Xe Vạn Xuân ')]),
+            Component.text(
                 'được phát triển nhằm hỗ trợ người dùng ôn luyện và kiểm tra kiến thức cho kỳ thi giấy phép lái xe tại Việt Nam. Chúng tôi tôn trọng và cam kết bảo vệ quyền riêng tư của bạn.')
           ]),
           ..._sectionVN('1. Thông tin thu thập',
@@ -137,7 +137,7 @@ class _PrivacyPolicyVN extends StatelessComponent {
               'style':
                   'color:#aaa; font-size:14px; text-align:center; margin-top:32px;'
             }, [
-              text('© Van Xuan Quiz. All rights reserved.')
+              Component.text('© Van Xuan Quiz. All rights reserved.')
             ])
           ]),
         ]);
@@ -154,7 +154,7 @@ class _PrivacyPolicyEN extends StatelessComponent {
       h3(attributes: {
         'style': 'font-size:1.2rem; margin-top:24px; margin-bottom:8px;'
       }, [
-        text(title)
+        Component.text(title)
       ]),
       SizeBoxComponent(height: 10),
       if (bulletPoints != null && bulletPoints.isNotEmpty) ...[
@@ -164,7 +164,7 @@ class _PrivacyPolicyEN extends StatelessComponent {
                 .map((point) => li(attributes: {
                       'style': 'font-size:1rem; color:#333; margin-bottom:4px;'
                     }, [
-                      text(point)
+                      Component.text(point)
                     ]))
                 .toList()),
         SizeBoxComponent(height: 10),
@@ -173,29 +173,29 @@ class _PrivacyPolicyEN extends StatelessComponent {
         p(attributes: {
           'style': 'font-size:1rem; color:#333; margin-bottom:8px;'
         }, [
-          text(subTitle)
+          Component.text(subTitle)
         ]),
     ]);
   }
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield div(
+  Component build(BuildContext context) {
+    return div(
         styles: Styles(
             height: 100.vh, maxWidth: 100.percent, padding: Spacing.all(20.px)),
         [
           h2([
-            text('Privacy Policy'),
+            Component.text('Privacy Policy'),
           ]),
           SizeBoxComponent(height: 15),
           h2([
-            text('App: Van Xuan Driving License Quiz'),
+            Component.text('App: Van Xuan Driving License Quiz'),
           ]),
           SizeBoxComponent(height: 15),
           p([
-            text('The '),
-            strong([text(' Van Xuan Driving License Quiz ')]),
-            text(
+            Component.text('The '),
+            strong([Component.text(' Van Xuan Driving License Quiz ')]),
+            Component.text(
                 'app is developed to help users practice and test their knowledge for the driving license exam in Vietnam. We respect and are committed to protecting your privacy.')
           ]),
           ..._sectionEN('1. Information We Collect',
@@ -225,7 +225,7 @@ class _PrivacyPolicyEN extends StatelessComponent {
               'style':
                   'color:#aaa; font-size:14px; text-align:center; margin-top:32px;'
             }, [
-              text('© Van Xuan Quiz. All rights reserved.')
+              Component.text('© Van Xuan Quiz. All rights reserved.')
             ])
           ]),
         ]);

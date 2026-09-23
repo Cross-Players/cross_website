@@ -32,7 +32,7 @@ class CardProcessBlockState extends State<CardProcessBlock> {
             // width: 100.vw,
             padding: Padding.symmetric(horizontal: 5.percent, vertical: 40.px),
             margin: Spacing.symmetric(horizontal: 5.percent),
-            border: Border(color: AppColors.primaryColor, width: 1.px),
+            border: Border.all(color: AppColors.primaryColor, width: 1.px),
             radius: BorderRadius.circular(45.px),
             shadow: BoxShadow(
                 offsetX: 0.px, offsetY: 5.px, color: AppColors.primaryColor),
@@ -65,7 +65,6 @@ class CardProcessBlockState extends State<CardProcessBlock> {
                       fontSize: 18.px,
                       fontWeight: FontWeight.w400),
                   [
-                    // TODO(anyone): make content lign left
                     Component.text(component.content),
                   ])
             ])
@@ -73,7 +72,8 @@ class CardProcessBlockState extends State<CardProcessBlock> {
   }
 
   Component _iconShowMore() {
-    return div(classes: 'icon-show-more', [Component.text(_isShowMoore ? "-" : "+")]);
+    return div(
+        classes: 'icon-show-more', [Component.text(_isShowMoore ? "-" : "+")]);
   }
 
   Component _line() {

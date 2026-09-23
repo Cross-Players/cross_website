@@ -688,7 +688,7 @@ class _AboutNewState extends State<AboutNew> {
     ]);
   }
 
-  Component _buildPhilosophySection(selectedLang) {
+  Component _buildPhilosophySection(String selectedLang) {
     return section(classes: 'section section-alt', [
       div(classes: 'container', [
         div(classes: 'section-header', [
@@ -726,8 +726,8 @@ class _AboutNewState extends State<AboutNew> {
       div(classes: 'quote-icon', [
         img(src: imagePath, alt: 'Philosophy Icon', width: 90, height: 70),
       ]),
-      blockquote(classes: 'quote-text', [Component.text("$quote")]),
-      p(classes: 'quote-author', [Component.text('$author')]),
+      blockquote(classes: 'quote-text', [Component.text(quote)]),
+      p(classes: 'quote-author', [Component.text(author)]),
     ]);
   }
 

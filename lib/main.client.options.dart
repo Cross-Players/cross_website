@@ -25,5 +25,15 @@ import 'package:cross_website/app.dart' deferred as _app;
 /// }
 /// ```
 ClientOptions get defaultClientOptions => ClientOptions(
-  clients: {'app': ClientLoader((p) => _app.App(), loader: _app.loadLibrary)},
+  clients: {
+    'app': ClientLoader(
+      (p) => _app.App(
+        careerJobs: (p['careerJobs'] as List<Object?>)
+            .map((i) => (i as Map<String, Object?>).cast<String, String>())
+            .toList(),
+        careersErrorMessage: p['careersErrorMessage'] as String?,
+      ),
+      loader: _app.loadLibrary,
+    ),
+  },
 );

@@ -32,7 +32,9 @@ import 'package:cross_website/components/home_page/list_logo.dart'
 import 'package:cross_website/components/header.dart' as _header;
 import 'package:cross_website/constants/app_colors.dart' as _app_colors;
 import 'package:cross_website/constants/theme_toogle.dart' as _theme_toogle;
+import 'package:cross_website/pages/policy/gplx_policy.dart' as _gplx_policy;
 import 'package:cross_website/pages/about_new.dart' as _about_new;
+import 'package:cross_website/pages/career_view.dart' as _career_view;
 import 'package:cross_website/pages/home.dart' as _home;
 import 'package:cross_website/pages/loading_screen.dart' as _loading_screen;
 import 'package:cross_website/app.dart' as _app;
@@ -55,7 +57,7 @@ import 'package:cross_website/app.dart' as _app;
 /// ```
 ServerOptions get defaultServerOptions => ServerOptions(
   clientId: 'main.client.dart.js',
-  clients: {_app.App: ClientTarget<_app.App>('app')},
+  clients: {_app.App: ClientTarget<_app.App>('app', params: __appApp)},
   styles: () => [
     ..._app_colors.root,
     ..._app.AppState.styles,
@@ -74,7 +76,14 @@ ServerOptions get defaultServerOptions => ServerOptions(
     ..._list_logo.ListLogo.styles,
     ..._theme_toogle.ThemeToggleState.styles,
     ..._about_new.AboutNew.styles,
+    ..._career_view.CareerView.styles,
     ..._home.HomeState.styles,
     ..._loading_screen.LoadingScreen.styles,
+    ..._gplx_policy.GPLXPolicy.styles,
   ],
 );
+
+Map<String, Object?> __appApp(_app.App c) => {
+  'careerJobs': c.careerJobs,
+  'careersErrorMessage': c.careersErrorMessage,
+};

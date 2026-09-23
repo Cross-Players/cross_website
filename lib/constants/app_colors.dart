@@ -1,5 +1,4 @@
 import 'package:jaspr/dom.dart';
-import 'package:jaspr/jaspr.dart';
 
 class AppColors {
   static const Color primaryColor = Color.variable('--primaryColor');

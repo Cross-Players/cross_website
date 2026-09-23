@@ -38,10 +38,10 @@ class Images {
   static const String crossLogo = "images/x_cross.png";
 
   //company
+  static const String twendeeLogo = "images/twendee_logo.svg";
   static const String jvbLogo = "images/jvb_logo.svg";
   static const String vfastLogo = "images/vfast.png";
   static const String itedLogo = "images/ited.jpg";
-  static const String laiXeVanXuanLogo = "images/LaiXeVanXuan.jpg";
 
   //employees
   static const String quyenAnh = "images/NguyenQuyenAnh.png";

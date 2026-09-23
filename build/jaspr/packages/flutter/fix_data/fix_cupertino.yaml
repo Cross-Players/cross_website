@@ -436,9 +436,6 @@ transforms:
       minSize:
         kind: fragment
         value: 'arguments[minSize]'
-<<<<<<< HEAD
-# Before adding a new fix: read instructions at the top of this file.
-=======
 
   # Changes made in https://github.com/flutter/flutter/pull/170625
   - title: "Migrate to 'builder'"
@@ -564,4 +561,3 @@ transforms:
         kind: fragment
         value: 'arguments[builder]'
 # Before adding a new fix: read instructions at the top of this file.
->>>>>>> 23d32c0 (upgrade jaspr ver)

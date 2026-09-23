@@ -261,7 +261,7 @@ class ContactUsBlockState extends State<ContactUsBlock> {
           styles: Styles(
             height: 170.px,
             padding: Padding.symmetric(horizontal: 30.px, vertical: 18.px),
-            border: Border(color: AppColors.primaryColor, width: 2.px),
+            border: Border.all(color: AppColors.primaryColor, width: 2.px),
             radius: BorderRadius.circular(14.px),
             color: AppColors.primaryColor,
             fontSize: 18.px,

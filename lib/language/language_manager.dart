@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:csv/csv.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
@@ -47,14 +49,14 @@ class LanguageManager {
       if (browserLang.startsWith('ko')) return 'ko';
       return 'en';
     } catch (e) {
-      print('Error detecting client language: $e');
+      log('Error detecting client language: $e');
       return 'en';
     }
   }
 
   static void saveLanguage(String langCode, BuildContext context) {
     if (!isClient || !_hasCookieConsent) {
-      print('Skipping saveLanguage due to no cookie consent');
+      log('Skipping saveLanguage due to no cookie consent');
       return;
     }
     try {
@@ -63,13 +65,13 @@ class LanguageManager {
           '$_languageKey=$langCode; expires=${expires.toIso8601String()}; path=/';
       web.document.cookie = cookie;
     } catch (e) {
-      print('Error saving language to cookie: $e');
+      log('Error saving language to cookie: $e');
     }
   }
 
   static String? getStoredLanguage() {
     if (!isClient || !_hasCookieConsent) {
-      print('No cookie consent or not client, skipping cookie read');
+      log('No cookie consent or not client, skipping cookie read');
       return null;
     }
     try {
@@ -81,13 +83,13 @@ class LanguageManager {
         }
       }
     } catch (e) {
-      print('Error reading language from cookie: $e');
+      log('Error reading language from cookie: $e');
     }
     return null;
   }
 
   static void setCookieConsent(bool consent, BuildContext context) {
-    print('setCookieConsent called with consent: $consent');
+    log('setCookieConsent called with consent: $consent');
     _hasCookieConsent = consent;
     context.read(cookieConsentProvider.notifier).state = consent;
 
@@ -99,7 +101,7 @@ class LanguageManager {
         web.document.cookie = consentCookie;
 
         if (!consent) {
-          print('Clearing language cookie due to Decline');
+          log('Clearing language cookie due to Decline');
           web.document.cookie =
               '$_languageKey=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
           context.read(selectedLanguageProvider.notifier).state = 'en';
@@ -109,7 +111,7 @@ class LanguageManager {
           context.read(selectedLanguageProvider.notifier).state = langCode;
         }
       } catch (e) {
-        print('Error saving cookie consent or language: $e');
+        log('Error saving cookie consent or language: $e');
       }
     } else {
       final langCode = consent ? _getClientLanguage() : 'en';
@@ -128,7 +130,7 @@ class LanguageManager {
         }
       }
     } catch (e) {
-      print('Error reading cookie consent: $e');
+      log('Error reading cookie consent: $e');
     }
     return false;
   }
@@ -136,20 +138,20 @@ class LanguageManager {
   static final selectedLanguageProvider = StateProvider<String>((ref) {
     final hasConsent = ref.watch(cookieConsentProvider);
     if (hasConsent == null) {
-      print('No cookie consent decision, defaulting to English');
+      log('No cookie consent decision, defaulting to English');
       return 'en';
     }
     if (!hasConsent) {
-      print('Cookie consent declined, defaulting to English');
+      log('Cookie consent declined, defaulting to English');
       return 'en';
     }
     final storedLang = getStoredLanguage();
     if (storedLang != null && languages.containsKey(storedLang)) {
-      print('Using stored language: $storedLang');
+      log('Using stored language: $storedLang');
       return storedLang;
     }
     final clientLang = _getClientLanguage();
-    print('Using client language: $clientLang');
+    log('Using client language: $clientLang');
     return languages.containsKey(clientLang) ? clientLang : 'en';
   });
 
@@ -178,7 +180,7 @@ class LanguageManager {
       // original file's line endings.
       final rows = const CsvToListConverter(eol: '\n').convert(translationsCsv);
       if (rows.isEmpty) {
-        print('No translations available: bundled CSV is empty');
+        log('No translations available: bundled CSV is empty');
         return false;
       }
 
@@ -198,7 +200,7 @@ class LanguageManager {
       _isLoaded = true;
       return true;
     } catch (e) {
-      print('Error parsing bundled translations: $e');
+      log('Error parsing bundled translations: $e');
       return false;
     }
   }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class AppUtils {
@@ -5,6 +7,8 @@ class AppUtils {
     try {
       final Uri uri = Uri.parse(url);
       if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {}
-    } catch (e) {}
+    } catch (e) {
+      log('Could not launch $url: $e');
+    }
   }
 }

@@ -6,13 +6,16 @@
 
 // ignore_for_file: directives_ordering, deprecated_member_use
 
+import 'dart:io' show File;
 import 'package:dart_firebase_admin/dart_firebase_admin.dart'
     show FirebaseAdminApp, Credential;
 import 'package:dart_firebase_admin/firestore.dart' show Firestore;
+export 'dart:io' show File;
 export 'package:dart_firebase_admin/dart_firebase_admin.dart'
     show FirebaseAdminApp, Credential;
 export 'package:dart_firebase_admin/firestore.dart' show Firestore;
 
-typedef FirebaseAdminAppOrStubbed = FirebaseAdminApp;
 typedef CredentialOrStubbed = Credential;
+typedef FileOrStubbed = File;
+typedef FirebaseAdminAppOrStubbed = FirebaseAdminApp;
 typedef FirestoreOrStubbed = Firestore;

@@ -1,1 +1,1 @@
-{"name":"App","id":["cross_website","lib/app.dart"],"import":"package:cross_website/app.dart","params":[]}
+{"name":"App","id":["cross_website","lib/app.dart"],"import":"package:cross_website/app.dart","params":[{"name":"careerJobs","isNamed":true,"decoder":"(p['careerJobs'] as List<Object?>).map((i) => (i as Map<String, Object?>).cast<String, String>()).toList()","encoder":"c.careerJobs"},{"name":"careersErrorMessage","isNamed":true,"decoder":"p['careersErrorMessage'] as String?","encoder":"c.careersErrorMessage"}]}

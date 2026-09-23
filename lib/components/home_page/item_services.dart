@@ -36,7 +36,7 @@ class ItemServices extends StatelessComponent {
             display: Display.flex,
             width: 100.percent,
             padding: Padding.all(50.px),
-            border: Border(width: 1.px, color: AppColors.primaryColor),
+            border: Border.all(width: 1.px, color: AppColors.primaryColor),
             radius: BorderRadius.circular(45.px),
             shadow: BoxShadow(
                 offsetX: 0.px, offsetY: 5.px, color: AppColors.primaryColor),

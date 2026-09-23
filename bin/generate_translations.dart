@@ -28,5 +28,5 @@ Future<void> main() async {
 
   final outFile = File('lib/locales/translations_data.dart');
   await outFile.writeAsString(buffer.toString());
-  print('✅ Generated lib/locales/translations_data.dart');
+  stdout.writeln('✅ Generated lib/locales/translations_data.dart');
 }

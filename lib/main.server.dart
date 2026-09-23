@@ -1,13 +1,33 @@
+import 'dart:developer';
+
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/server.dart';
 
 import 'app.dart';
+import 'data/firebase.dart';
 import 'main.server.options.dart';
 
 void main() async {
   Jaspr.initializeApp(
     options: defaultServerOptions,
   );
+
+  String? careersErrorMessage;
+  var careerJobs = const <Map<String, String>>[];
+  try {
+    final loadedJobs = await FirebaseService.instance.loadJobs();
+    careerJobs = loadedJobs
+        .map((job) => {
+              'title': job.title,
+              'salary': job.salary,
+              'deadlineTime': job.deadlineTime,
+              'link': job.link,
+            })
+        .toList();
+  } catch (e) {
+    careersErrorMessage = 'Failed to load job listings.';
+    log('Error loading jobs: $e');
+  }
 
   runApp(Document(
     title: 'Cross Website',
@@ -30,22 +50,6 @@ void main() async {
     ],
     head: [
       link(rel: 'manifest', href: 'manifest.json'),
-<<<<<<< HEAD:lib/main.dart
-      script(
-        src: "flutter_bootstrap.js",
-        async: true,
-      ),
-      link(href: 'images/x_cross.png', rel: 'icon', type: 'image/png'),
-      script(
-        src:
-            "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js",
-      ),
-      script(
-        src:
-            "https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs",
-        attributes: {'type': 'module'},
-      ),
-=======
       link(href: 'images/x_cross.png', rel: 'icon', type: 'image/png'),
       script(
           src:
@@ -54,8 +58,10 @@ void main() async {
           src:
               "https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs",
           attributes: {'type': 'module'}),
->>>>>>> 23d32c0 (upgrade jaspr ver):lib/main.server.dart
     ],
-    body: App(),
+    body: App(
+      careerJobs: careerJobs,
+      careersErrorMessage: careersErrorMessage,
+    ),
   ));
 }

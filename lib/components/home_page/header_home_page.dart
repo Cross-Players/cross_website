@@ -100,7 +100,7 @@ class HeaderHomePage extends StatelessComponent {
         css('.primary_image').styles(
           width: 50.percent,
           height: 700.px,
-          border: Border(style: BorderStyle.none),
+          border: Border.all(style: BorderStyle.none),
         ),
         css.media(
             MediaQuery.screen(maxWidth: HeaderState.mobileBreakpoint.px), [

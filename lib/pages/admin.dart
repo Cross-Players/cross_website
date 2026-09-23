@@ -1,12 +1,12 @@
+import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
-@client
 class Admin extends StatelessComponent {
   const Admin({super.key});
 
   @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield div(
+  Component build(BuildContext context) {
+    return div(
         styles: Styles(
           display: Display.flex,
           width: 100.percent,

@@ -1590,12 +1590,7 @@ if (!self.deferred_loader) {
           this.initializeAndLinkLibrary(entryPointLibraryName);
       this.savedEntryPointLibraryName = entryPointLibraryName;
       this.savedDartSdkRuntimeOptions = dartSdkRuntimeOptions;
-<<<<<<< HEAD
-      // TODO(35113): Provide the ability to pass arguments in a type safe way.
-      entryPointLibrary.main([]);
-=======
       this._runMain(entryPointLibrary);
->>>>>>> 23d32c0 (upgrade jaspr ver)
     }
 
     setDartSDKRuntimeOptions(options) {
@@ -1730,13 +1725,6 @@ if (!self.deferred_loader) {
       // TODO(nshahan): Start sharing a single source of truth for the restart
       // generation between the dart:_runtime and this module system.
       this.hotRestartGeneration += 1;
-<<<<<<< HEAD
-      console.log('Hot restarting application from main method in: ' +
-        this.savedEntryPointLibraryName + ' (generation: ' +
-        this.hotRestartGeneration + ').');
-      // TODO(35113): Provide the ability to pass arguments in a type safe way.
-      entryPointLibrary.main([]);
-=======
       console.log(
           'Hot restarting application from main method in: ' +
           this.savedEntryPointLibraryName +
@@ -1782,7 +1770,6 @@ if (!self.deferred_loader) {
       this.pendingHotRestartLibraryInitializers = Object.create(null);
 
       this._runMain(entryPointLibrary);
->>>>>>> 23d32c0 (upgrade jaspr ver)
     }
   }
 
@@ -1822,12 +1809,8 @@ if (!self.deferred_loader) {
      */
     getClassesInLibrary(libraryUri) {
       libraryManager.initializeAndLinkLibrary(libraryUri);
-<<<<<<< HEAD
-      return dartRuntimeLibrary().getLibraryMetadata(libraryUri, libraryManager.libraries);
-=======
       return dartRuntimeLibrary().getLibraryMetadata(
           libraryUri, libraryManager.libraries);
->>>>>>> 23d32c0 (upgrade jaspr ver)
     }
 
     /**
@@ -1869,12 +1852,8 @@ if (!self.deferred_loader) {
      */
     getClassMetadata(libraryUri, name, objectInstance) {
       libraryManager.initializeAndLinkLibrary(libraryUri);
-<<<<<<< HEAD
-      return dartRuntimeLibrary().getClassMetadata(libraryUri, name, objectInstance, libraryManager.libraries);
-=======
       return dartRuntimeLibrary().getClassMetadata(
           libraryUri, name, objectInstance, libraryManager.libraries);
->>>>>>> 23d32c0 (upgrade jaspr ver)
     }
 
     /**
@@ -2103,15 +2082,6 @@ if (!self.deferred_loader) {
     }
 
     /**
-<<<<<<< HEAD
-     * Returns the source map path for a given Dart file, if one was registered.
-     *
-     * @param {String} url The path of a Dart file.
-     * @returns {?String} The associated source map location if one exists.
-     */
-    getSourceMap(url) {
-      return dartRuntimeLibrary().getSourceMap(url);
-=======
      * Entrypoint for DDC-generated code to set a source map for a given
      * library bundle name.
      *
@@ -2135,7 +2105,6 @@ if (!self.deferred_loader) {
      */
     getSourceMap(libraryBundleName) {
       return sourceMaps[libraryBundleName];
->>>>>>> 23d32c0 (upgrade jaspr ver)
     }
   }
 
