@@ -36,7 +36,8 @@ class About extends StatelessComponent {
                   'GMO-Z.com RUNSYSTEM, tiền thân là Công ty RUNSYSTEM, hoạt động trong ngành phát triển phần mềm, cung cấp các giải pháp và dịch vụ CNTT cho thị trường Việt Nam và Nhật Bản. Với phương châm "Chúng tôi làm việc vì nụ cười của bạn", chúng tôi luôn cố gắng hết mình để cải thiện môi trường làm việc, công nghệ và quy trình nhằm tối đa hóa năng suất, cung cấp các sản phẩm chất lượng cao đạt tiêu chuẩn toàn cầu, mang lại giá trị lớn cho khách hàng và các thành viên của GMO-Z.com RUNSYSTEM.')
             ]),
             div(classes: 'company-profile-btn', [
-              button(classes: 'profile-button', [Component.text('Hồ sơ công ty')])
+              button(
+                  classes: 'profile-button', [Component.text('Hồ sơ công ty')])
             ])
           ]),
           // div(classes: 'company-banner', [

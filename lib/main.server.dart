@@ -4,6 +4,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/server.dart';
 
 import 'app.dart';
+import 'components/seo.dart';
 import 'data/firebase.dart';
 import 'main.server.options.dart';
 
@@ -30,11 +31,10 @@ void main() async {
   }
 
   runApp(Document(
-    title: 'Cross Website',
+    title: siteName,
+    lang: 'en',
+    meta: {'theme-color': '#64B6F7'},
     styles: [
-      css.import(
-          "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"),
-      css.import('https://fonts.googleapis.com/css?family=Roboto'),
       css('html, body').styles(
         width: 100.percent,
         minHeight: 100.vh,
@@ -49,15 +49,21 @@ void main() async {
       ),
     ],
     head: [
+      // Fonts: connect early and load one stylesheet instead of chained CSS
+      // @imports, which block rendering until each one resolves.
+      link(rel: 'preconnect', href: 'https://fonts.googleapis.com'),
+      link(
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+          attributes: {'crossorigin': ''}),
+      link(
+          rel: 'stylesheet',
+          href:
+              'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap'),
       link(rel: 'manifest', href: 'manifest.json'),
-      link(href: 'images/x_cross.png', rel: 'icon', type: 'image/png'),
-      script(
-          src:
-              "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"),
-      script(
-          src:
-              "https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs",
-          attributes: {'type': 'module'}),
+      link(rel: 'icon', href: 'favicon.ico', attributes: {'sizes': '48x48'}),
+      link(rel: 'icon', href: 'icons/cross-192.png', type: 'image/png'),
+      link(rel: 'apple-touch-icon', href: 'icons/apple-touch-icon.png'),
     ],
     body: App(
       careerJobs: careerJobs,

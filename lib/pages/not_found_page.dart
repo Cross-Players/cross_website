@@ -9,7 +9,9 @@ class NotFoundPage extends StatelessComponent {
   Component build(BuildContext context) {
     return section(classes: 'not-found', [
       h1([Component.text('404 - Page Not Found')]),
-      p([Component.text('Sorry, the page you are looking for does not exist.')]),
+      p([
+        Component.text('Sorry, the page you are looking for does not exist.')
+      ]),
       a(
         href: '/',
         [Component.text('← Go back to homepage')],

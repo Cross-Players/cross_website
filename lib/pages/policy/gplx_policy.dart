@@ -1,3 +1,4 @@
+import 'package:cross_website/components/seo.dart';
 import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
@@ -32,6 +33,7 @@ class _GPLXPolicyState extends State<GPLXPolicy> {
     return div(
       styles: Styles(maxWidth: 100.percent),
       [
+        const PageSeo(SeoPages.gplxPolicy),
         div(
             styles: Styles(
               display: Display.flex,

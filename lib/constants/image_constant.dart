@@ -35,7 +35,8 @@ class Images {
   static const String twitterIcon = "images/twitter_icon.png";
   static const String facebookIcon = "images/facebook_icon.png";
   static const String instagramIcon = "images/instagram_icon.png";
-  static const String crossLogo = "images/x_cross.png";
+  static const String crossLogo = "images/x_cross_240.webp";
+  static const String loadingAnimation = "images/loading.lottie";
 
   //company
   static const String twendeeLogo = "images/twendee_logo.svg";
@@ -44,12 +45,12 @@ class Images {
   static const String itedLogo = "images/ited.jpg";
 
   //employees
-  static const String quyenAnh = "images/NguyenQuyenAnh.png";
-  static const String vietTran = "images/viettran.png";
-  static const String quangHuy = "images/Phùng Quang Huy.JPG";
-  static const String baoPhong = "images/Bùi Bảo Phong.JPG";
-  static const String tungTran = "images/tungtran.jpg";
-  static const String vietHung = "images/LeVietHung.jpg";
+  static const String quyenAnh = "images/team/nguyen-quyen-anh.webp";
+  static const String vietTran = "images/team/viet-tran.webp";
+  static const String quangHuy = "images/team/phung-quang-huy.webp";
+  static const String baoPhong = "images/team/bui-bao-phong.webp";
+  static const String tungTran = "images/team/tung-tran.webp";
+  static const String vietHung = "images/team/le-viet-hung.webp";
 }
 
 class Icons {

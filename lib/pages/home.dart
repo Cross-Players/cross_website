@@ -1,3 +1,4 @@
+import 'package:cross_website/components/seo.dart';
 import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/components/common/title_icon_home.dart';
 import 'package:cross_website/components/cookie_consent_banner.dart';
@@ -57,6 +58,7 @@ class HomeState extends State<Home> {
       ),
       [
         CookieConsentBanner(),
+        const PageSeo(SeoPages.home),
         Header(),
         HeaderHomePage(),
         ListLogo(),

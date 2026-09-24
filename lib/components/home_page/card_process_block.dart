@@ -82,9 +82,7 @@ class CardProcessBlockState extends State<CardProcessBlock> {
             height: 1.px,
             margin: Margin.symmetric(vertical: 30.px),
             backgroundColor: AppColors.primaryColor),
-      [
-
-    ]);
+        []);
   }
 
   @css

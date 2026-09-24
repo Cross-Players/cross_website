@@ -105,7 +105,8 @@ class CookieConsentBanner extends StatelessComponent {
           [
             button(
               styles: Styles(
-                border: Border.all(color: AppColors.backgroundTheme, width: 1.px),
+                border:
+                    Border.all(color: AppColors.backgroundTheme, width: 1.px),
                 cursor: Cursor.pointer,
                 color: AppColors.backgroundTheme,
                 backgroundColor: Colors.transparent,

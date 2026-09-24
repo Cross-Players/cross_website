@@ -6,6 +6,9 @@ icons/Icon-192.png
 icons/Icon-512.png
 icons/Icon-maskable-192.png
 icons/Icon-maskable-512.png
+icons/apple-touch-icon.png
+icons/cross-192.png
+icons/cross-512.png
 images/.DS_Store
 images/Bùi Bảo Phong.JPG
 images/LeVietHung.jpg
@@ -51,12 +54,19 @@ images/netflix_icon.png
 images/notion_icon.png
 images/office.jpg
 images/office1.jpg
+images/og-image.png
 images/pay_per_click_advertising.png
 images/philosophy.png
 images/programing_image.svg
 images/search_engine_optimization.png
 images/social_media_marketing.png
 images/sun.svg
+images/team/bui-bao-phong.webp
+images/team/le-viet-hung.webp
+images/team/nguyen-quyen-anh.webp
+images/team/phung-quang-huy.webp
+images/team/tung-tran.webp
+images/team/viet-tran.webp
 images/tungtran.jpg
 images/twendee_logo.svg
 images/twitter_icon.png
@@ -66,6 +76,7 @@ images/viettran.png
 images/vision.png
 images/web_image.svg
 images/x_cross.png
+images/x_cross_240.webp
 images/zoom_icon.png
 main.client.dart.js
 main.client.dart.js_1.part.js
@@ -417,3 +428,4 @@ packages/vm_service/src/DEPENDENCIES.md
 packages/vm_service/src/README.md
 packages/web/fix_data.yaml
 packages/xml/src/xpath/AGENTS.md
+robots.txt

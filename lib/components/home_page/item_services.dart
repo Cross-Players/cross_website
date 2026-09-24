@@ -73,6 +73,7 @@ class ItemServices extends StatelessComponent {
                 [
                   iconComponent ??
                       img(
+                          alt: '',
                           height: 20,
                           width: 20,
                           src: Icons.upRightArrowIcon,
@@ -92,6 +93,7 @@ class ItemServices extends StatelessComponent {
           ]),
           itemBig != null
               ? img(
+                  alt: title ?? '',
                   classes: 'service_image',
                   src: itemBig!,
                   height: 200,

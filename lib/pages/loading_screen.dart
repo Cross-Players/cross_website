@@ -1,6 +1,6 @@
 import 'package:cross_website/components/common/dotlottie_player.dart';
-import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/constants/app_colors.dart';
+import 'package:cross_website/constants/image_constant.dart';
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
@@ -10,25 +10,25 @@ class LoadingScreen extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     return div(classes: 'loading-container', [
+      // Load the player script only when this screen is actually shown,
+      // rather than on every page.
+      Document.head(children: [
+        script(
+          id: 'dotlottie-player-script',
+          src:
+              'https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs',
+          attributes: {'type': 'module'},
+        ),
+      ]),
       div(classes: 'loading-spinner', [
         DotLottiePlayer(
-          src:
-              'https://lottie.host/5ab9acca-7662-4dcf-8ac8-dc4670cb16dd/aE8Z02PyVA.lottie',
+          src: Images.loadingAnimation,
           background: 'transparent',
           speed: 1.0,
           width: 100,
           height: 100,
           loop: true,
           autoplay: true,
-        ),
-        SizeBoxComponent(height: 30),
-        p(
-          styles: Styles(
-            color: AppColors.textBlack,
-            fontSize: 16.px,
-            fontWeight: FontWeight.w500,
-          ),
-          [Component.text('Loading...')],
         ),
       ]),
     ]);

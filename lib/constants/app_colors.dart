@@ -50,8 +50,6 @@ const smallMobileBreakpoint = Unit.rem(25);
 
 @css
 List<StyleRule> get root => [
-      css.import('font/lucide/lucide.css'),
-
       // Global
       css('html, body').styles(padding: Padding.zero, margin: Margin.zero),
       css('html').styles(

@@ -72,7 +72,11 @@ class CaseStudiesBlock extends StatelessComponent {
                 ],
               ),
               SizeBoxComponent(width: 15),
-              img(src: Images.learnMoreBlueIcon, width: 25, height: 25),
+              img(
+                  alt: '',
+                  src: Images.learnMoreBlueIcon,
+                  width: 25,
+                  height: 25),
             ],
           ),
           SizeBoxComponent(height: 20),

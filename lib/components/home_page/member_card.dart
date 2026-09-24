@@ -36,7 +36,8 @@ class MemberCard extends StatelessComponent {
                   styles: Styles(
                       padding:
                           Padding.symmetric(horizontal: 35.px, vertical: 40.px),
-                      border: Border.all(color: AppColors.textBlack, width: 1.px),
+                      border:
+                          Border.all(color: AppColors.textBlack, width: 1.px),
                       radius: BorderRadius.circular(45.px),
                       shadow: BoxShadow(
                           offsetX: 0.px,
@@ -70,8 +71,11 @@ class MemberCard extends StatelessComponent {
                 width: 130,
                 height: 130,
                 alt: alt,
+                loading: MediaLoading.lazy,
+                attributes: {'decoding': 'async'},
                 styles: Styles(
-                  border: Border.all(width: 2.px, color: AppColors.greenPrimary),
+                  border:
+                      Border.all(width: 2.px, color: AppColors.greenPrimary),
                   radius: BorderRadius.circular(20.px),
                 ))
           ]),
@@ -85,7 +89,6 @@ class MemberCard extends StatelessComponent {
                 alignItems: AlignItems.start,
               ),
               [
-               
                 div(
                     styles: Styles(
                       width: 100.percent,

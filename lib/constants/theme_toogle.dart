@@ -25,7 +25,7 @@ class ThemeToggleState extends State<ThemeToggle> {
   @override
   Component build(BuildContext context) {
     return Component.fragment([
-      if (!kIsWeb) 
+      if (!kIsWeb)
         Document.head(children: [
           // ignore: prefer_html_methods
           Component.element(id: 'theme-script', tag: 'script', children: [
@@ -69,12 +69,8 @@ class ThemeToggleState extends State<ThemeToggle> {
     ''')
           ]),
         ]),
-      
-  
-      if (kIsWeb) 
+      if (kIsWeb)
         Document.html(attributes: {'class': isDark ? 'dark' : 'light'}),
-      
-  
       button(
         classes: 'theme-toggle',
         attributes: {'aria-label': 'Theme Toggle'},
@@ -89,7 +85,7 @@ class ThemeToggleState extends State<ThemeToggle> {
             ? Styles(visibility: Visibility.hidden)
             : Styles(fontSize: 30.px),
         // styles: Styles(fontSize: 30.px),
-        [img(src: isDark ? 'images/moon.svg' : 'images/sun.svg')],
+        [img(alt: '', src: isDark ? 'images/moon.svg' : 'images/sun.svg')],
       ),
     ]);
   }

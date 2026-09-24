@@ -165,6 +165,7 @@ class HeaderState extends State<Header> {
               ),
               [
                 img(
+                  alt: '',
                   src: getFlagAsset(selectedLang),
                   styles: Styles(
                     width: 35.px,
@@ -209,6 +210,7 @@ class HeaderState extends State<Header> {
                     },
                     [
                       img(
+                        alt: '',
                         src: getFlagAsset(lang.key),
                         styles: Styles(
                           width: 20.px,
@@ -237,6 +239,7 @@ class HeaderState extends State<Header> {
     return header([
       a(href: '/', [
         img(
+          alt: 'Cross Tech & Edu',
           src: Images.crossLogo,
           styles: Styles(
             width: Unit.pixels(120),
@@ -262,8 +265,6 @@ class HeaderState extends State<Header> {
 
   @css
   static List<StyleRule> get styles => [
-        css.import(
-            "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"),
         css('header', [
           css('&').styles(
             display: Display.flex,

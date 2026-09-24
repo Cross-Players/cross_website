@@ -20,8 +20,6 @@ class ButtonPrimaryBlack extends StatelessComponent {
 
   @css
   static List<StyleRule> get styles => [
-        css.import(
-            "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"),
         css('.btn-container')
             .styles(display: Display.flex, cursor: Cursor.pointer),
         css('.btn-primary-black', [

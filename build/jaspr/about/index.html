@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <base href="/"/>
     <meta charset="utf-8"/>
     <style>
-      @import url(https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap);
-      @import url(https://fonts.googleapis.com/css?family=Roboto);
       html, body {
         width: 100%;
         min-height: 100vh;
@@ -18,13 +16,31 @@
         font-size: 4rem;
       }
     </style>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
     <link href="manifest.json" rel="manifest"/>
-    <link href="images/x_cross.png" rel="icon" type="image/png"/>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script type="module" src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs"></script>
+    <link sizes="48x48" href="favicon.ico" rel="icon"/>
+    <link href="icons/cross-192.png" rel="icon" type="image/png"/>
+    <link href="icons/apple-touch-icon.png" rel="apple-touch-icon"/>
     <!--$-->
-    <title>About</title>
+    <title>About Us | Cross Tech &amp; Edu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="theme-color" content="#64B6F7"/>
+    <meta name="description" content="Meet CROSS TECH &amp; EDU CO., LTD.: our vision, mission, core values and the team connecting technology and education in Vietnam."/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="About Us | Cross Tech &amp; Edu"/>
+    <meta name="twitter:description" content="Meet CROSS TECH &amp; EDU CO., LTD.: our vision, mission, core values and the team connecting technology and education in Vietnam."/>
+    <meta name="twitter:image" content="https://www.crosstechedu.site/images/og-image.png"/>
+    <link id="canonical" href="https://www.crosstechedu.site/about" rel="canonical"/>
+    <meta id="og-type" property="og:type" content="website"/>
+    <meta id="og-site-name" property="og:site_name" content="Cross Tech &amp; Edu"/>
+    <meta id="og-title" property="og:title" content="About Us | Cross Tech &amp; Edu"/>
+    <meta id="og-description" property="og:description" content="Meet CROSS TECH &amp; EDU CO., LTD.: our vision, mission, core values and the team connecting technology and education in Vietnam."/>
+    <meta id="og-url" property="og:url" content="https://www.crosstechedu.site/about"/>
+    <meta id="og-image" property="og:image" content="https://www.crosstechedu.site/images/og-image.png"/>
+    <meta id="og-locale" property="og:locale" content="en_US"/>
     <script id="theme-script">
           (function() {
             // Function to get cookie by name
@@ -67,10 +83,6 @@
     <!--/-->
     <script src="main.client.dart.js" defer></script>
     <style>
-      @import url(font/lucide/lucide.css);
-      @import url(https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap);
-      @import url(https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap);
-      @import url(https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap);
       html, body {
         padding: 0;
         margin: 0;
@@ -354,8 +366,9 @@
       .title_section {
         padding-left: 10px;
         padding-right: 10px;
+        margin: 0;
         border-radius: 8px;
-        color: var(--primaryColor);
+        color: var(--textBlack);
         font-family: 'Space Grotesk', 'Andale Mono';
         font-size: 40px;
         font-weight: 500;
@@ -1336,38 +1349,38 @@
       <div class="about-new-page">
         <header>
           <a href="/">
-            <img style="width: 120px; height: 120px; padding: 0.7rem; margin-left: 5%; border-radius: 8px; color: var(--textBlack)" src="images/x_cross.png"/>
+            <img style="width: 120px; height: 120px; padding: 0.7rem; margin-left: 5%; border-radius: 8px; color: var(--textBlack)" alt="Cross Tech &amp; Edu" src="images/x_cross_240.webp"/>
           </a>
           <nav class="nav-menu">
             <div class="nav-item"><a href="/">Home</a></div>
             <div class="nav-item"><a href="/about">About Us</a></div>
             <div class="nav-item"><a href="/#contact">Contact</a></div>
             <div class="language-header">
-              <div class="custom-select-display" style="display: flex; padding-left: 8px; padding-right: 8px; cursor: pointer; align-items: center"><img style="width: 35px; height: 25px" src="images/flags/us.svg"/></div>
+              <div class="custom-select-display" style="display: flex; padding-left: 8px; padding-right: 8px; cursor: pointer; align-items: center"><img style="width: 35px; height: 25px" alt src="images/flags/us.svg"/></div>
               <select style="position: absolute; z-index: 1; width: 50px; height: 30px; opacity: 0.0; cursor: pointer">
                 <option style="display: flex; padding: 2px 1px; align-items: center; color: var(--textBlack)" value="en" selected>
-                  <img style="width: 20px; height: 15px; margin-right: 12px" src="images/flags/us.svg"/>
+                  <img style="width: 20px; height: 15px; margin-right: 12px" alt src="images/flags/us.svg"/>
                   <span style="flex-grow: 1">English</span>
                 </option>
                 <option style="display: flex; padding: 2px 1px; align-items: center; color: var(--textBlack)" value="vi">
-                  <img style="width: 20px; height: 15px; margin-right: 12px" src="images/flags/vn.svg"/>
+                  <img style="width: 20px; height: 15px; margin-right: 12px" alt src="images/flags/vn.svg"/>
                   <span style="flex-grow: 1">Tiếng Việt</span>
                 </option>
                 <option style="display: flex; padding: 2px 1px; align-items: center; color: var(--textBlack)" value="ko">
-                  <img style="width: 20px; height: 15px; margin-right: 12px" src="images/flags/kr.svg"/>
+                  <img style="width: 20px; height: 15px; margin-right: 12px" alt src="images/flags/kr.svg"/>
                   <span style="flex-grow: 1">한국어</span>
                 </option>
                 <option style="display: flex; padding: 2px 1px; align-items: center; color: var(--textBlack)" value="ja">
-                  <img style="width: 20px; height: 15px; margin-right: 12px" src="images/flags/jp.svg"/>
+                  <img style="width: 20px; height: 15px; margin-right: 12px" alt src="images/flags/jp.svg"/>
                   <span style="flex-grow: 1">日本語</span>
                 </option>
               </select>
             </div>
             <div class="theme_toggle">
-              <button class="theme-toggle" style="visibility: hidden" aria-label="Theme Toggle"><img src="images/sun.svg"/></button>
+              <button class="theme-toggle" style="visibility: hidden" aria-label="Theme Toggle"><img alt src="images/sun.svg"/></button>
             </div>
           </nav>
-          <button class="menu-toggle" aria-label="Menu Toggle"><img style="width: 40px; height: 40px" src="images/menu-svgrepo-com.svg"/></button>
+          <button class="menu-toggle" aria-label="Menu Toggle"><img style="width: 40px; height: 40px" alt src="images/menu-svgrepo-com.svg"/></button>
         </header>
         <section class="hero"><div class="container"><h1 class="hero-title">Cross Technology and Education</h1></div></section>
         <section class="section">
@@ -1391,7 +1404,7 @@
         <section class="section section-alt">
           <div class="container">
             <div class="vision-card">
-              <div class="vision-icon"><img width="80" height="80" src="images/vision.png"/></div>
+              <div class="vision-icon"><img alt width="80" height="80" src="images/vision.png"/></div>
               <h2 class="vision-title">Vision</h2>
               <blockquote class="vision-text">
                 To become a leading bridge of knowledge, where technology paves the way for a liberal, equitable, and creative education for all generations.
@@ -1402,7 +1415,7 @@
         <section class="section">
           <div class="container">
             <div class="vision-card">
-              <div class="vision-icon purple-icon"><img width="80" height="80" src="images/mission.png"/></div>
+              <div class="vision-icon purple-icon"><img alt width="80" height="80" src="images/mission.png"/></div>
               <h2 class="vision-title">Mission</h2>
               <blockquote class="vision-text">
                 To apply modern technology to build comprehensive education solutions, helping students, learners, and teachers develop skills, thinking, and lifelong learning abilities.
@@ -1511,7 +1524,7 @@
             <div class="footer_block">
               <div class="footer_header">
                 <div style="display: flex; flex-direction: row; align-items: center">
-                  <img width="40" height="40" src="images/x_cross.png"/>
+                  <img alt="Cross Tech &amp; Edu logo" width="40" height="40" src="images/x_cross_240.webp"/>
                   <div style="width: 6px"></div>
                   <div style="color: white; font-size: 30px; font-weight: 500">Cross Tech &amp; Edu</div>
                 </div>
@@ -1525,11 +1538,11 @@
                   Pricing
                 </div>
                 <div style="display: flex; flex-direction: row">
-                  <img width="30" height="30" src="images/instagram_icon.png"/>
+                  <img alt="Instagram" width="30" height="30" src="images/instagram_icon.png"/>
                   <div style="width: 20px"></div>
-                  <img width="30" height="30" src="images/facebook_icon.png"/>
+                  <img alt="Facebook" width="30" height="30" src="images/facebook_icon.png"/>
                   <div style="width: 20px"></div>
-                  <img width="30" height="30" src="images/twitter_icon.png"/>
+                  <img alt="Twitter" width="30" height="30" src="images/twitter_icon.png"/>
                 </div>
               </div>
               <div style="height: 20px"></div>
@@ -1547,9 +1560,7 @@
                     <a style="color: white; text-decoration: none" href="https://maps.app.goo.gl/8RR39Ge1WESWiPcj6" target="_blank">Address: No. 24 - K7, Ciputra Urban Area, Phu Thuong Ward, Tay Ho District, Hanoi City, Vietnam</a>
                   </div>
                 </div>
-                <div class="footer_map">
-                  <iframe class="map" style="width: 100%; height: 100%; border: none" frameborder="0" style="border:0;" allowfullscreen aria-hidden="false" tabindex="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3722.8291308260964!2d105.80479707504539!3d21.079485680582636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abe65144a209%3A0xaf7eeca92c256d9e!2sCross%20Technology%20%26%20Education!5e0!3m2!1sen!2sus!4v1747126150721!5m2!1sen!2sus"></iframe>
-                </div>
+                <div class="footer_map"></div>
               </div>
               <div style="height: 20px"></div>
               <div style="display: flex; padding-top: 50px; border-top-style: solid; border-top-color: white; border-top-width: 1px; color: white">

@@ -14,7 +14,7 @@ class TitleIconHome extends StatelessComponent {
   Component build(BuildContext context) {
     return div(classes: 'section_overall', [
       div(classes: 'section_title', [
-        h1(classes: 'title_section', [Component.text(title)]),
+        h2(classes: 'title_section', [Component.text(title)]),
         SizeBoxComponent(width: 40),
         div(classes: 'section_content', [Component.text(content ?? "")])
       ])
@@ -49,10 +49,13 @@ class TitleIconHome extends StatelessComponent {
             fontWeight: FontWeight.w400,
           )
         ]),
+        // Section titles are h2 so the hero headline is the page's only h1.
+        // Margin and colour match what the global h1 rules used to give them.
         css('.title_section').styles(
           padding: Padding.symmetric(horizontal: 10.px),
+          margin: Margin.zero,
           radius: BorderRadius.circular(8.px),
-          color: AppColors.primaryColor,
+          color: AppColors.textBlack,
           fontFamily: FontFamily.list(
               [FontFamily("Space Grotesk"), FontFamilies.andaleMono]),
           fontSize: 40.px,

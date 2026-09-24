@@ -132,6 +132,7 @@ class ContactUsBlockState extends State<ContactUsBlock> {
             _detailComponent(selectedLang),
             div(styles: Styles(), [
               img(
+                alt: 'Business partnership handshake',
                 classes: 'contact_image',
                 src: Images.shakeHandsImage,
                 height: 300,
@@ -152,7 +153,8 @@ class ContactUsBlockState extends State<ContactUsBlock> {
         justifyContent: JustifyContent.spaceBetween,
       ),
       [
-        Component.text(LanguageManager.translate('contact_us_name_label', lang)),
+        Component.text(
+            LanguageManager.translate('contact_us_name_label', lang)),
         input<String>(
           type: InputType.text,
           value: nameValue,
@@ -184,7 +186,8 @@ class ContactUsBlockState extends State<ContactUsBlock> {
         justifyContent: JustifyContent.spaceBetween,
       ),
       [
-        Component.text(LanguageManager.translate('contact_us_email_label', lang)),
+        Component.text(
+            LanguageManager.translate('contact_us_email_label', lang)),
         input<String>(
           type: InputType.text,
           value: emailValue,
@@ -216,7 +219,8 @@ class ContactUsBlockState extends State<ContactUsBlock> {
         justifyContent: JustifyContent.spaceBetween,
       ),
       [
-        Component.text(LanguageManager.translate('contact_us_title_label', lang)),
+        Component.text(
+            LanguageManager.translate('contact_us_title_label', lang)),
         input<String>(
           type: InputType.text,
           value: titleValue,
@@ -248,7 +252,8 @@ class ContactUsBlockState extends State<ContactUsBlock> {
         justifyContent: JustifyContent.spaceBetween,
       ),
       [
-        Component.text(LanguageManager.translate('contact_us_message_label', lang)),
+        Component.text(
+            LanguageManager.translate('contact_us_message_label', lang)),
         SizeBoxComponent(height: 6),
         input<String>(
           type: InputType.text,
@@ -358,7 +363,8 @@ class ContactUsBlockState extends State<ContactUsBlock> {
                 }
               },
         [
-          Component.text(LanguageManager.translate('contact_us_issubmit', lang)),
+          Component.text(
+              LanguageManager.translate('contact_us_issubmit', lang)),
         ],
       ),
     ]);

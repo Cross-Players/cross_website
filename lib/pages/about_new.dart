@@ -1,3 +1,4 @@
+import 'package:cross_website/components/seo.dart';
 import 'package:cross_website/components/common/custom_grid.dart';
 import 'package:cross_website/components/header.dart';
 import 'package:cross_website/components/home_page/footer_block.dart';
@@ -556,6 +557,7 @@ class _AboutNewState extends State<AboutNew> {
     final selectedLang =
         context.watch(LanguageManager.selectedLanguageProvider);
     return div(classes: 'about-new-page', [
+      const PageSeo(SeoPages.about),
       const Header(),
       // Hero Section
       _buildHeroSection(),
@@ -653,7 +655,7 @@ class _AboutNewState extends State<AboutNew> {
       div(classes: 'container', [
         div(classes: 'vision-card', [
           div(classes: 'vision-icon', [
-            img(src: 'images/vision.png', width: 80, height: 80),
+            img(alt: '', src: 'images/vision.png', width: 80, height: 80),
           ]),
           h2(classes: 'vision-title', [
             Component.text(
@@ -673,7 +675,7 @@ class _AboutNewState extends State<AboutNew> {
       div(classes: 'container', [
         div(classes: 'vision-card', [
           div(classes: 'vision-icon purple-icon', [
-            img(src: 'images/mission.png', width: 80, height: 80),
+            img(alt: '', src: 'images/mission.png', width: 80, height: 80),
           ]),
           h2(classes: 'vision-title', [
             Component.text(

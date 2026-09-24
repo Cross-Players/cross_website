@@ -11,11 +11,11 @@ class Divider extends StatelessComponent {
 
   @css
   static List<StyleRule> get styles => [
-    css('.divider').styles(
-      width: 97.vw,
-      height: 1.px,
-      // margin: 8px 0;
-      backgroundColor: Colors.lightGrey,
-    ),
-  ];
+        css('.divider').styles(
+          width: 97.vw,
+          height: 1.px,
+          // margin: 8px 0;
+          backgroundColor: Colors.lightGrey,
+        ),
+      ];
 }

@@ -26,7 +26,8 @@ class CtaBlock extends StatelessComponent {
               fontWeight: FontWeight.w500,
             ),
             [
-              Component.text(LanguageManager.translate('cta_title', selectedLang)),
+              Component.text(
+                  LanguageManager.translate('cta_title', selectedLang)),
             ],
           ),
           SizeBoxComponent(height: 20),
@@ -37,7 +38,8 @@ class CtaBlock extends StatelessComponent {
               fontWeight: FontWeight.w400,
             ),
             [
-              Component.text(LanguageManager.translate('cta_description', selectedLang)),
+              Component.text(
+                  LanguageManager.translate('cta_description', selectedLang)),
             ],
           ),
           SizeBoxComponent(height: 20),
@@ -53,6 +55,7 @@ class CtaBlock extends StatelessComponent {
         ]),
         div(classes: 'cta_image', [
           img(
+            alt: 'Cross Tech & Edu team at work',
             src: Images.inTheOfficeImage,
             styles: Styles(
               width: 50.percent,

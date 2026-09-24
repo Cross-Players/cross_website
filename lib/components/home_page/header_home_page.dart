@@ -19,7 +19,7 @@ class HeaderHomePage extends StatelessComponent {
     return div(classes: 'header-web', [
       div(classes: 'header-web-padding', [
         div(classes: 'text-header-web', [
-          div(classes: 'w500-60-custom', [
+          h1(classes: 'w500-60-custom', [
             Component.text(LanguageManager.translate(
                 'header_home_page_title', selectedLang)),
           ]),
@@ -44,17 +44,18 @@ class HeaderHomePage extends StatelessComponent {
         //   id: 'primary_image',
         //   src: 'images/demo_primary_image.png',
         // ),
-        iframe(classes: 'primary_image',
+        iframe(
+            classes: 'primary_image',
             src:
-                "https://lottie.host/embed/3a7f8b85-040f-422b-a652-b0cb1561e655/AnFjBAGkJL.lottie", [])
+                "https://lottie.host/embed/3a7f8b85-040f-422b-a652-b0cb1561e655/AnFjBAGkJL.lottie",
+            attributes: {'title': 'Cross Tech & Edu animation'},
+            [])
       ]),
     ]);
   }
 
   @css
   static List<StyleRule> get styles => [
-        css.import(
-            "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"),
         css('.header-web', [
           css('&').styles(
             display: Display.flex,

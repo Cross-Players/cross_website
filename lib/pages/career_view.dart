@@ -1,3 +1,4 @@
+import 'package:cross_website/components/seo.dart';
 import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/components/header.dart';
 import 'package:cross_website/components/home_page/footer_block.dart';
@@ -81,6 +82,7 @@ class CareerViewState extends State<CareerView> {
         [
           const Header(),
           _buildHeroSection(selectedLang),
+          const PageSeo(SeoPages.careers),
           div(
               styles: Styles(
                 display: Display.flex,

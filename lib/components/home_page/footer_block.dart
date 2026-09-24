@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cross_website/components/common/size_box_component.dart';
 import 'package:cross_website/constants/app_colors.dart';
 import 'package:cross_website/constants/image_constant.dart';
@@ -5,6 +7,7 @@ import 'package:cross_website/language/language_manager.dart';
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
+import 'package:universal_web/web.dart' as web;
 
 class FooterBlock extends StatelessComponent {
   const FooterBlock({super.key});
@@ -40,6 +43,7 @@ class FooterBlock extends StatelessComponent {
               alignItems: AlignItems.center),
           [
             img(
+                alt: 'Cross Tech & Edu logo',
                 width: 40,
                 height: 40,
                 // styles: Styles(raw: {"filter": "invert(1)"}),
@@ -52,7 +56,8 @@ class FooterBlock extends StatelessComponent {
                 fontWeight: FontWeight.w500,
               ),
               [
-                Component.text(LanguageManager.translate('footer_company_name', lang)),
+                Component.text(
+                    LanguageManager.translate('footer_company_name', lang)),
               ],
             ),
           ],
@@ -80,11 +85,23 @@ class FooterBlock extends StatelessComponent {
             styles:
                 Styles(display: Display.flex, flexDirection: FlexDirection.row),
             [
-              img(src: Images.instagramIcon, height: 30, width: 30),
+              img(
+                  alt: 'Instagram',
+                  src: Images.instagramIcon,
+                  height: 30,
+                  width: 30),
               SizeBoxComponent(width: 20),
-              img(src: Images.facebookIcon, height: 30, width: 30),
+              img(
+                  alt: 'Facebook',
+                  src: Images.facebookIcon,
+                  height: 30,
+                  width: 30),
               SizeBoxComponent(width: 20),
-              img(src: Images.twitterIcon, height: 30, width: 30),
+              img(
+                  alt: 'Twitter',
+                  src: Images.twitterIcon,
+                  height: 30,
+                  width: 30),
             ])
       ],
     );
@@ -123,7 +140,8 @@ class FooterBlock extends StatelessComponent {
             textDecoration: TextDecoration(line: TextDecorationLine.none),
           ),
           [
-            Component.text(LanguageManager.translate('footer_email_label', lang)),
+            Component.text(
+                LanguageManager.translate('footer_email_label', lang)),
           ],
         ),
       ]),
@@ -136,7 +154,8 @@ class FooterBlock extends StatelessComponent {
             textDecoration: TextDecoration(line: TextDecorationLine.none),
           ),
           [
-            Component.text(LanguageManager.translate('footer_phone_label', lang)),
+            Component.text(
+                LanguageManager.translate('footer_phone_label', lang)),
           ],
         ),
       ]),
@@ -150,35 +169,15 @@ class FooterBlock extends StatelessComponent {
             textDecoration: TextDecoration(line: TextDecorationLine.none),
           ),
           [
-            Component.text(LanguageManager.translate('footer_address_label', lang)),
+            Component.text(
+                LanguageManager.translate('footer_address_label', lang)),
           ],
         ),
       ]),
     ]);
   }
 
-  Component _map(String lang) {
-    return div(classes: 'footer_map', [
-      iframe(
-        src:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3722.8291308260964!2d105.80479707504539!3d21.079485680582636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abe65144a209%3A0xaf7eeca92c256d9e!2sCross%20Technology%20%26%20Education!5e0!3m2!1sen!2sus!4v1747126150721!5m2!1sen!2sus",
-        classes: 'map',
-        styles: Styles(
-          width: 100.percent,
-          height: 100.percent,
-          border: Border.none,
-        ),
-        attributes: {
-          'frameborder': '0',
-          'style': 'border:0;',
-          'allowfullscreen': '',
-          'aria-hidden': 'false',
-          'tabindex': '0',
-        },
-        [],
-      ),
-    ]);
-  }
+  Component _map(String lang) => const _LazyMap();
 
   Component _footer(String lang) {
     return div(
@@ -196,7 +195,8 @@ class FooterBlock extends StatelessComponent {
             textDecoration: TextDecoration(line: TextDecorationLine.underline),
           ),
           [
-            Component.text(LanguageManager.translate('footer_privacy_policy', lang)),
+            Component.text(
+                LanguageManager.translate('footer_privacy_policy', lang)),
           ],
         ),
       ],
@@ -322,4 +322,77 @@ class FooterBlock extends StatelessComponent {
           ),
         ]),
       ];
+}
+
+/// Google Maps embed that is only created once the footer nears the viewport.
+///
+/// `loading="lazy"` alone doesn't help here: hydration re-inserts the
+/// server-rendered DOM, and re-inserting an iframe makes the browser load it
+/// immediately (~450 KB of Maps scripts on every first visit).
+class _LazyMap extends StatefulComponent {
+  const _LazyMap();
+
+  @override
+  State<_LazyMap> createState() => _LazyMapState();
+}
+
+class _LazyMapState extends State<_LazyMap> {
+  static const _mapUrl =
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3722.8291308260964!2d105.80479707504539!3d21.079485680582636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abe65144a209%3A0xaf7eeca92c256d9e!2sCross%20Technology%20%26%20Education!5e0!3m2!1sen!2sus!4v1747126150721!5m2!1sen!2sus";
+
+  // How far below the viewport the map starts loading.
+  static const _preloadMargin = 600;
+
+  final _containerKey = GlobalNodeKey<web.HTMLElement>();
+  StreamSubscription<web.Event>? _scrollSub;
+  bool _showMap = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (!kIsWeb) return;
+    _scrollSub = web.EventStreamProviders.scrollEvent
+        .forTarget(web.window)
+        .listen((_) => _checkVisible());
+    // Also covers pages opened already scrolled down (e.g. /#contact).
+    Future.delayed(Duration.zero, _checkVisible);
+  }
+
+  void _checkVisible() {
+    final node = _containerKey.currentNode;
+    if (_showMap || node == null) return;
+    final top = node.getBoundingClientRect().top;
+    if (top < web.window.innerHeight + _preloadMargin) {
+      _scrollSub?.cancel();
+      _scrollSub = null;
+      setState(() => _showMap = true);
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollSub?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Component build(BuildContext context) {
+    return div(key: _containerKey, classes: 'footer_map', [
+      if (_showMap)
+        iframe(
+          src: _mapUrl,
+          classes: 'map',
+          styles: Styles(
+            width: 100.percent,
+            height: 100.percent,
+            border: Border.none,
+          ),
+          attributes: {
+            'allowfullscreen': '',
+            'title': 'Cross Technology and Education on Google Maps',
+          },
+          [],
+        ),
+    ]);
+  }
 }

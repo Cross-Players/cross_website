@@ -20,25 +20,32 @@ class Services extends StatelessComponent {
           a(
               href: 'https://docs.page/schultek/jaspr',
               [Component.text('official documentation')]),
-          Component.text(' provides you with all information you need to get started.'),
+          Component.text(
+              ' provides you with all information you need to get started.'),
         ]),
         li([
           h3([Component.text('💬 Community')]),
           Component.text('Got stuck? Ask your question on the official '),
-          a(href: 'https://docs.page/schultek/jaspr', [Component.text('Discord server')]),
+          a(
+              href: 'https://docs.page/schultek/jaspr',
+              [Component.text('Discord server')]),
           Component.text(' for the Jaspr community.'),
         ]),
         li([
           h3([Component.text('📦 Ecosystem')]),
           Component.text(
               'Get official packages and integrations for your project like jaspr_router, jaspr_tailwind or jaspr_riverpod. Find packages built for Jaspr on pub.dev using the '),
-          a(href: 'https://pub.dev/packages?q=topic%3Ajaspr', [Component.text('#jaspr')]),
+          a(
+              href: 'https://pub.dev/packages?q=topic%3Ajaspr',
+              [Component.text('#jaspr')]),
           Component.text(' topic, or publish your own.'),
         ]),
         li([
           h3([Component.text('💙 Support Jaspr')]),
           Component.text('If you like Jaspr, consider starring us on '),
-          a(href: 'https://github.com/schultek/jaspr', [Component.text('Github')]),
+          a(
+              href: 'https://github.com/schultek/jaspr',
+              [Component.text('Github')]),
           Component.text(' and tell your friends.'),
         ]),
       ]),
@@ -47,8 +54,8 @@ class Services extends StatelessComponent {
 
   @css
   static List<StyleRule> get styles => [
-    css('ol').styles(
-      maxWidth: 500.px,
-    ),
-  ];
+        css('ol').styles(
+          maxWidth: 500.px,
+        ),
+      ];
 }

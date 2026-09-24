@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cross_website/components/seo.dart';
 import 'package:cross_website/constants/app_colors.dart';
 import 'package:cross_website/language/language_manager.dart';
 import 'package:cross_website/pages/about_new.dart';
@@ -51,18 +52,23 @@ class AppState extends State<App> {
           routes: [
             Route(
               path: '/',
-              title: 'Home',
-              builder: (context, state) => const _ScrollToTop(key: ValueKey('/'), child: Home()),
+              title: SeoPages.home.title,
+              settings: const RouteSettings(
+                  changeFreq: ChangeFreq.monthly, priority: 1.0),
+              builder: (context, state) =>
+                  const _ScrollToTop(key: ValueKey('/'), child: Home()),
             ),
             Route(
               path: '/about',
-              title: 'About',
-              builder: (context, state) =>
-                  const _ScrollToTop(key: ValueKey('/about'), child: AboutNew()),
+              title: SeoPages.about.title,
+              settings: const RouteSettings(
+                  changeFreq: ChangeFreq.monthly, priority: 0.8),
+              builder: (context, state) => const _ScrollToTop(
+                  key: ValueKey('/about'), child: AboutNew()),
             ),
             Route(
               path: '/careers',
-              title: 'Careers',
+              title: SeoPages.careers.title,
               builder: (context, state) => _ScrollToTop(
                 key: const ValueKey('/careers'),
                 child: CareerView(
@@ -73,12 +79,14 @@ class AppState extends State<App> {
             ),
             Route(
               path: '/adminQuyenAnh',
-              title: 'Admin',
+              title: SeoPages.admin.title,
               builder: (context, state) => const Admin(),
             ),
             Route(
               path: '/gplx/policy',
-              title: 'GPLX Policy',
+              title: SeoPages.gplxPolicy.title,
+              settings: const RouteSettings(
+                  changeFreq: ChangeFreq.yearly, priority: 0.3),
               builder: (context, state) => const GPLXPolicy(),
             ),
           ],

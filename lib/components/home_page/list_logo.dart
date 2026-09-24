@@ -71,7 +71,11 @@ class ListLogo extends StatelessComponent {
       div(
           classes: client.fill ? 'client-logo client-logo-fill' : 'client-logo',
           [
-            img(src: client.logo, alt: '${client.name} logo'),
+            img(
+              src: client.logo,
+              alt: '${client.name} logo',
+              loading: MediaLoading.lazy,
+            ),
           ]),
       span(classes: 'client-name', [Component.text(client.name)]),
     ];
